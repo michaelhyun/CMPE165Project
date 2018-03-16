@@ -321,10 +321,9 @@ hr { border-top: 1px solid #111010; }
 	text-transform: uppercase;
 }
 .tm-home-box-2-container {
-	border-top: 1px solid #DDD;
-	border-bottom: 1px solid #DDD;
-	border-left: 1px solid #DDD;
+	border: 1px solid #DDD;
 	overflow: hidden;
+	width: 215px;
 }
 .tm-home-box-2-link {
 	display: inline-block;
