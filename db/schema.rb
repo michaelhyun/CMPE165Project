@@ -27,6 +27,31 @@ ActiveRecord::Schema.define(version: 20180322202310) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+
+  create_table "bookings", force: :cascade do |t|
+    t.string "firstname"
+    t.string "lastname"
+    t.string "confirmation"
+    t.string "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "reservations", force: :cascade do |t|
+    t.string "roomtype"
+    t.integer "numberofbeds"
+    t.string "hotelname"
+    t.datetime "checkindate"
+    t.datetime "checkoutdate"
+    t.boolean "hasinternet"
+    t.boolean "hasparking"
+    t.boolean "nonsmoking"
+    t.datetime "lastdatetocancel"
+    t.boolean "isreserved"
+    t.string "confirmationcode"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+>>>>>>> ca4cb9ca2ce01981dda384ba0844a55c32f63b51
   end
 
 end

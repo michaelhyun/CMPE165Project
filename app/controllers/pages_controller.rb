@@ -3,10 +3,6 @@ class PagesController < ApplicationController
         
     end
 
-    def reservation
-
-    end
-
     def signup
 
     end
