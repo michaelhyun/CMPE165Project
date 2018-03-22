@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  roomtype: MyString
+  numberofbeds: 1
+  hotelname: MyString
+  checkindate: 2018-03-15 18:49:59
+  checkoutdate: 2018-03-15 18:49:59
+  hasinternet: false
+  hasparking: false
+  nonsmoking: false
+  lastdatetocancel: 2018-03-15 18:49:59
+  isreserved: false
+  confirmationcode: MyString
+
+two:
+  roomtype: MyString
+  numberofbeds: 1
+  hotelname: MyString
+  checkindate: 2018-03-15 18:49:59
+  checkoutdate: 2018-03-15 18:49:59
+  hasinternet: false
+  hasparking: false
+  nonsmoking: false
+  lastdatetocancel: 2018-03-15 18:49:59
+  isreserved: false
+  confirmationcode: MyString
