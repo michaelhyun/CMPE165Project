@@ -3,6 +3,6 @@ Rails.application.routes.draw do
   root 'home#index', as:'home'
 
   get 'about' => 'pages#about', as: 'about'
-  get 'reservation' => 'pages#reservation', as: 'reservation'
+  get 'reservation' => 'reservations#index', as: 'reservation'
   get 'signup' => 'pages#signup', as: 'signup'
 end
