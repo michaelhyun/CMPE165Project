@@ -10,9 +10,6 @@ Rails.application.routes.draw do
 
   get 'about' => 'pages#about', as: 'about'
   get 'reservation' => 'reservations#index', as: 'reservation'
-<<<<<<< HEAD
-=======
-  
 
   # Param is the :id of the reservation 
   get 'booknow/:id' => 'bookings#booknow', as: 'booknow'
@@ -20,5 +17,4 @@ Rails.application.routes.draw do
   get 'booking' => 'bookings#index', as: 'booking'
 
   get 'signup' => 'pages#signup', as: 'signup'
->>>>>>> 96d1b38b137d58a184fd7cae3e1566d73009689b
 end
