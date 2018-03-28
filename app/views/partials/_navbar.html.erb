@@ -10,13 +10,26 @@
           </div>
             <nav class="tm-nav">
               <ul class ="nav navbar-nav">
-                  <li><%= link_to "Home", home_path %></li>
+<!--                   <li><%= link_to "Home", home_path %></li>
                   <li><%= link_to "About", about_path %></li>
                   <li><%= link_to "Reservation", reservation_path %></li>
-                  <li><%= link_to "Sign Up", signup_path %></li>
+                  <li><%= link_to "Sign up", new_user_registration_path %></li> -->
+                  <% if user_signed_in? %>
+                    <li><%= link_to "Home", home_path %></li>
+                    <li><%= link_to "About", about_path %></li>
+                    <li><%= link_to "Reservation", reservation_path %></li>
+                    <li><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
+                  <% else %>
+                    <li><%= link_to "Home", home_path %></li>
+                    <li><%= link_to "About", about_path %></li>
+                    <li><%= link_to "Reservation", reservation_path %></li>
+                    <li><%= link_to "Sign up", new_user_registration_path %></li>
+                  <% end %>
               </ul>
           </nav>		
         </div>				
     </div>
 </div>	  	
 </div>
+
+
