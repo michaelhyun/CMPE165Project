@@ -4,5 +4,12 @@ Rails.application.routes.draw do
 
   get 'about' => 'pages#about', as: 'about'
   get 'reservation' => 'reservations#index', as: 'reservation'
+  
+
+  # Param is the :id of the reservation 
+  get 'booknow/:id' => 'bookings#booknow', as: 'booknow'
+
+  get 'booking' => 'bookings#index', as: 'booking'
+
   get 'signup' => 'pages#signup', as: 'signup'
 end
