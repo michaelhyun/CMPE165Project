@@ -39,19 +39,21 @@ ActiveRecord::Schema.define(version: 20180322202310) do
 
   create_table "reservations", force: :cascade do |t|
     t.string "roomtype"
-    t.integer "numberofbeds"
+    t.integer "numberofbeds", default: 1
     t.string "hotelname"
     t.datetime "checkindate"
     t.datetime "checkoutdate"
-    t.boolean "hasinternet"
-    t.boolean "hasparking"
-    t.boolean "nonsmoking"
+    t.boolean "hasinternet", default: true
+    t.boolean "hasparking", default: true
+    t.boolean "nonsmoking", default: true
     t.datetime "lastdatetocancel"
-    t.boolean "isreserved"
-    t.string "confirmationcode"
+    t.boolean "isreserved", default: true
+    t.string "confirmationcode", default: "Not Reserved"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
->>>>>>> ca4cb9ca2ce01981dda384ba0844a55c32f63b51
+    t.string "imgurl"
+    t.integer "price"
+ 
   end
 
 end
