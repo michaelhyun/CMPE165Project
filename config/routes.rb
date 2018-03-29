@@ -9,10 +9,11 @@ Rails.application.routes.draw do
   root 'home#index', as:'home'
 
   get 'about' => 'pages#about', as: 'about'
-  get 'reservation' => 'reservations#index', as: 'reservation'
 
+  get 'reservation' => 'reservations#index', as: 'reservation'
+  get 'reservationsearch/' => 'reservations#search', as: 'reservationsearch'
   # Param is the :id of the reservation 
-  get 'booknow/:id' => 'bookings#booknow', as: 'booknow'
+  get 'booknow/:hotelid' => 'bookings#booknow', as: 'booknow'
 
   get 'booking' => 'bookings#index', as: 'booking'
 

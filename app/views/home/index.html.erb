@@ -25,7 +25,7 @@
 					<div class="tab-content">
 					    <div role="tabpanel" class="tab-pane fade in active tm-white-bg" id="hotel">
 					    	<div class="tm-search-box effect2">
-								<form action="#" method="post" class="hotel-search-form">
+								<form action="reservationsearch" method="get" class="hotel-search-form">
 									<div class="tm-form-inner">
 										<div class="form-group">
 							            	 <select class="form-control">
@@ -36,6 +36,11 @@
 												<option value="hilton">Hilton</option>
 											</select> 
 							          	</div>
+							          	<div class="form-group">
+							                <div class='input-group date' id='datetimepicker1'>
+							                    <input type='text' class="form-control" placeholder="City, State" />
+											</div>
+							            </div>
 							          	<div class="form-group">
 							                <div class='input-group date' id='datetimepicker1'>
 							                    <input type='text' class="form-control" placeholder="Check-in Date" />
@@ -64,7 +69,7 @@
 							            </div>
 									</div>							
 						            <div class="form-group tm-yellow-gradient-bg text-center">
-						            	<button type="submit" name="submit" class="tm-yellow-btn">Check Now</button>
+						            	<button type="submit" name="submit" class="tm-yellow-btn">Search</button>
 						            </div>  
 								</form>
 							</div>
