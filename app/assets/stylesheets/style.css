@@ -235,6 +235,14 @@ body { overflow-x: hidden; }
 	width: 346px;
 	height: 436px;
 }
+.tm-home-box-1-sticky{
+	position: -webkit-sticky;
+	position: sticky;
+	width: 346px;
+	height: 436px;
+	top: 0;
+}
+
 .tm-home-box-1-center {
 	margin: 0 auto;
 }
