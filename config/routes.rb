@@ -16,5 +16,4 @@ Rails.application.routes.draw do
 
   get 'booking' => 'bookings#index', as: 'booking'
 
-  get 'signup' => 'pages#signup', as: 'signup'
 end
