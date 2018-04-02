@@ -1,60 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Book Now</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Book Now</title>
 	<!-- white bg -->
 	<section class="tm-white-bg section-padding-bottom">
 		<div class="container">
 			<div class="row">
 				<div class="tm-section-header section-margin-top">
-					<div class="col-lg-4 col-md-3 col-sm-3"><hr></div>
+					<div class="col-lg-4 col-md-3 col-sm-3">
+						<hr>
+					</div>
 					<div class="col-lg-4 col-md-6 col-sm-6">
-					<h2 class="tm-section-title">Booking</h2></div>
-					<div class="col-lg-4 col-md-3 col-sm-3"><hr></div>	
-        </div>
-	<% if user_signed_in? %>	
-	<h3> <%= current_user %> </h3>
-	<h3> <%= current_user.email %> </h3>
-	<h3> <%= current_user %> </h3>
-	<h3> <%= current_user %> </h3>
-	<h3> <%= current_user %> </h3>
-	<h3> <%= current_user %> </h3>
-	<h3> <%= current_user %> </h3>
-	<h3> <%= current_user %> </h3>
-	<% end %>
-	<h3>Hotel Name: <%= @reservation_to_book.hotelname %> </h3>
-	<br/>
-	<h3>Hotel Price: $<%= @reservation_to_book.price %> </h3>
-	<br/>
-	<h3>Number of Beds: <%= @reservation_to_book.numberofbeds %> </h3>
-	<br/>
-	<h3>Has Internet: <%= @reservation_to_book.hasinternet %> </h3>
-	<br/>
-	<h3>Has Parking: <%= @reservation_to_book.hasparking %> </h3>
-	<br/>
-	<h3>Is Nonsmoking: <%= @reservation_to_book.nonsmoking %> </h3>
-	<br/>
-	<h3>Is Reserved: <%= @reservation_to_book.isreserved %> </h3>
-	<br/>
-	<h3>Confirmation Code: <%= @reservation_to_book.confirmationcode %> </h3>
-	<br/>
+						<h2 class="tm-section-title">Booking</h2>
+					</div>
+					<div class="col-lg-4 col-md-3 col-sm-3">
+						<hr>
+					</div>
+				</div>
+				<% if @reservation_to_book != nil %>
+				<h3>Hotel Name:
+					<%= @reservation_to_book.hotelname %>
+				</h3>
+				<br/>
+				<h3>Hotel Price: $
+					<%= @reservation_to_book.price %>
+				</h3>
+				<br/>
+				<h3>Number of Beds:
+					<%= @reservation_to_book.numberofbeds %>
+				</h3>
+				<br/>
+				<h3>Has Internet:
+					<%= @reservation_to_book.hasinternet %>
+				</h3>
+				<br/>
+				<h3>Has Parking:
+					<%= @reservation_to_book.hasparking %>
+				</h3>
+				<br/>
+				<h3>Is Nonsmoking:
+					<%= @reservation_to_book.nonsmoking %>
+				</h3>
+				<br/>
+				<h3>Is Reserved:
+					<%= @reservation_to_book.isreserved %>
+				</h3>
+				<br/>
+				<%= image_tag(@reservation_to_book.imgurl, alt:"image" ,class:"img-responsive")%>
+				<br/>
+
+				<form action="bookhotel" method="update">
+					<div class="form-group tm-yellow-gradient-bg text-center">
+					<%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+					<%= hidden_field_tag :useremail, current_user.email %>
+					<%= hidden_field_tag :hotel_name_resv, @reservation_to_book.hotelname %>
+					<%= hidden_field_tag :hotel_id, @reservation_to_book.id %>																			
+						<button type="submit" name="submit" class="tm-yellow-btn">Book Now</button>
+					</div>					
+				</form>
+			<% end %>
+	</section>
 	
 	<br/>
-	<%= image_tag(@reservation_to_book.imgurl, alt:"image" ,class:"img-responsive")%>	
-	</section>
-
-	<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>      		<!-- jQuery -->
-  	<script type="text/javascript" src="js/moment.js"></script>							<!-- moment.js -->
-	<script type="text/javascript" src="js/bootstrap.min.js"></script>					<!-- bootstrap js -->
-	<script type="text/javascript" src="js/bootstrap-datetimepicker.min.js"></script>	<!-- bootstrap date time picker js, http://eonasdan.github.io/bootstrap-datetimepicker/ -->
+	Debug: <%= params %>
+	<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+	<!-- jQuery -->
+	<script type="text/javascript" src="js/moment.js"></script>
+	<!-- moment.js -->
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<!-- bootstrap js -->
+	<script type="text/javascript" src="js/bootstrap-datetimepicker.min.js"></script>
+	<!-- bootstrap date time picker js, http://eonasdan.github.io/bootstrap-datetimepicker/ -->
 	<script type="text/javascript" src="js/jquery.flexslider-min.js"></script>
-<!--
+	<!--
 	<script src="js/froogaloop.js"></script>
 	<script src="js/jquery.fitvid.js"></script>
 -->
-   	<script type="text/javascript" src="js/templatemo-script.js"></script>      		<!-- Templatemo Script -->
-</body>
+	<script type="text/javascript" src="js/templatemo-script.js"></script>
+	<!-- Templatemo Script -->
+	</body>
+
 </html>
