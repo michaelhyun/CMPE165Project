@@ -16,7 +16,11 @@ Rails.application.routes.draw do
 
   # Param is the :id of the reservation 
   get 'booknow/:hotelid' => 'bookings#booknow', as: 'booknow'
-  patch 'bookhotel' => 'bookings#bookhotel', as: "bookhotel"
+  
+  # Show the bookings that belongs to the current user.
+  get 'mybooking' => 'bookings#mybooking', as: 'mybooking'
+
+  post 'booknow/bookhotel' => 'bookings#bookhotel', as: 'bookhotel'
 
   get 'booking' => 'bookings#index', as: 'booking'
   get 'signup' => 'pages#signup', as: 'signup'

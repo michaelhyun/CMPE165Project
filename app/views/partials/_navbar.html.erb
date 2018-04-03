@@ -17,7 +17,7 @@
                   <% if user_signed_in? %>
                     <li><%= link_to "Home", home_path %></li>
                     <li><%= link_to "About", about_path %></li>                    
-                    <li><%= link_to "My Bookings", reservation_path(:user => current_user, :useremail => current_user.email) %></li>                    
+                    <li><%= link_to "My Bookings", mybooking_path(:user => current_user, :useremail => current_user.email) %></li>                    
                     <li><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
                   <% else %>
                     <li><%= link_to "Home", home_path %></li>

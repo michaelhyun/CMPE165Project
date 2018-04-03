@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>My Bookings</title>
+
+	<section class="tm-white-bg section-padding-bottom">
+		<div class="container">
+			<div class="row">
+				<div class="tm-section-header section-margin-top">
+					<div class="col-lg-4 col-md-3 col-sm-3">
+						<hr>
+					</div>
+					<div class="col-lg-4 col-md-6 col-sm-6">
+						<h2 class="tm-section-title">My Bookings</h2>
+					</div>
+					<div class="col-lg-4 col-md-3 col-sm-3">
+						<hr>
+					</div>
+				</div>
+			</div>
+			<% if !@booked_reservation.nil? && @booked_reservation.count() > 0 %>
+				<% @booked_reservation.each do |listing| %>
+					<div class="col-lg-6">
+						<div class="tm-home-box-3">
+							<div class="tm-home-box-3-info">
+								<div class="tm-home-box-3-img-container" style="padding-right:30px">
+									<%= image_tag(listing.imgurl, alt:"image" ,class:"img-responsive")%>
+								</div>
+								<p class="tm-home-box-3-description">
+									<%= listing.hotelname %>
+										<br/> Listing ID: #
+										<%= listing.id %>
+											<br/>
+											<br/> $
+											<%= listing.price %>
+												<br/>
+								</p>
+								<div class="tm-home-box-2-container">
+								<!-- Add UNRESERVE buttons here! -->
+
+
+								</div>
+							</div>
+						</div>
+					</div>
+					<% end %>
+						<% else %>
+							<h3>
+								No hotels found.
+								<h3>
+		<% end %>
+		</div>
+	</section>
+	<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+	<!-- jQuery -->
+	<script type="text/javascript" src="js/moment.js"></script>
+	<!-- moment.js -->
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<!-- bootstrap js -->
+	<script type="text/javascript" src="js/bootstrap-datetimepicker.min.js"></script>
+	<script type="text/javascript" src="js/jquery.flexslider-min.js"></script>
+	<script type="text/javascript" src="js/templatemo-script.js"></script>
+	</body>
+
+</html>

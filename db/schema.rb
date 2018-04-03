@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180402201312) do
+ActiveRecord::Schema.define(version: 20180403162106) do
 
   create_table "bookings", force: :cascade do |t|
     t.string "firstname"
@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 20180402201312) do
     t.boolean "hasparking", default: true
     t.boolean "nonsmoking", default: true
     t.datetime "lastdatetocancel"
-    t.boolean "isreserved", default: true
+    t.boolean "isreserved", default: false
     t.string "confirmationcode", default: "Not Reserved"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20180402201312) do
     t.string "city"
     t.string "state"
     t.string "country"
+    t.string "reservedbyuserid"
   end
 
   create_table "users", force: :cascade do |t|

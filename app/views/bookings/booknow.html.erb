@@ -50,23 +50,32 @@
 					<%= @reservation_to_book.isreserved %>
 				</h3>
 				<br/>
+				<br/>
+				<h3>Is Reserved:
+					<%= @reservation_to_book.confirmationcode %>
+				</h3>
+				<br/>
+			
 				<%= image_tag(@reservation_to_book.imgurl, alt:"image" ,class:"img-responsive")%>
 				<br/>
 
-				<form action="bookhotel" method="update">
-					<div class="form-group tm-yellow-gradient-bg text-center">
+
+				<% if !@reservation_to_book.isreserved %>
+				<form action="bookhotel" method="post">
+					<div class="form-group tm-yellow-gradient-bg text-center">					
 					<%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+					<%= hidden_field_tag :userid, current_user.id %>
 					<%= hidden_field_tag :useremail, current_user.email %>
 					<%= hidden_field_tag :hotel_name_resv, @reservation_to_book.hotelname %>
-					<%= hidden_field_tag :hotel_id, @reservation_to_book.id %>																			
+					<%= hidden_field_tag :hotel_id, @reservation_to_book.id %>
 						<button type="submit" name="submit" class="tm-yellow-btn">Book Now</button>
 					</div>					
 				</form>
+				<% end %>
+
 			<% end %>
 	</section>
-	
-	<br/>
-	Debug: <%= params %>
+
 	<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
 	<!-- jQuery -->
 	<script type="text/javascript" src="js/moment.js"></script>

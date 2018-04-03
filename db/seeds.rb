@@ -137,6 +137,6 @@ for i in 0..hotels.count()
 
 	if hprice > 0
 		puts("# #{i} HOTELNAME: #{hname} \n\tIMGURL: #{iurl} \n\t\tPRICE: #{hprice} ")
-		r = Reservation.create(hotelname: hname, imgurl: iurl, price: hprice)
+		r = Reservation.create(hotelname: hname, imgurl: iurl, price: hprice, isreserved: false)
 	end	
 end
