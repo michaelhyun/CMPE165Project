@@ -2,7 +2,7 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-6 col-md-4 col-sm-3 tm-site-name-container">
-            <a href="#" class="tm-site-name">Holiday</a>	
+            <a href="#" class="tm-site-name">LikeHome</a>	
         </div>
         <div class="col-lg-6 col-md-8 col-sm-9">
             <div class="mobile-menu-icon">
@@ -10,10 +10,6 @@
           </div>
             <nav class="tm-nav">
               <ul class ="nav navbar-nav">
-<!--                   <li><%= link_to "Home", home_path %></li>
-                  <li><%= link_to "About", about_path %></li>
-                  <li><%= link_to "Reservation", reservation_path %></li>
-                  <li><%= link_to "Sign up", new_user_registration_path %></li> -->
                   <% if user_signed_in? %>
                     <li><%= link_to "Home", home_path %></li>
                     <li><%= link_to "About", about_path %></li>                    
@@ -22,7 +18,7 @@
                   <% else %>
                     <li><%= link_to "Home", home_path %></li>
                     <li><%= link_to "About", about_path %></li>
-                    <li><%= link_to "Reservation", reservation_path %></li>
+                    <li><%= link_to "Reservations", reservation_path %></li>
                     <li><%= link_to "Sign up", new_user_registration_path %></li>
                   <% end %>
               </ul>

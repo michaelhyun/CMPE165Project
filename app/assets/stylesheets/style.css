@@ -33,9 +33,9 @@ body { overflow-x: hidden; }
 .tm-site-name-container { padding-top: 20px; }
 .tm-site-name {
 	color: #FCDD44;
-	font-size: 27px;
+	font-size: 40px;
 	font-weight: 600;
-	text-transform: uppercase;
+	text-transform: none;
 }
 .tm-site-name:hover,
 .tm-site-name:focus {
@@ -46,15 +46,18 @@ body { overflow-x: hidden; }
 	display: block;
 	overflow: hidden;
 }
+
 .tm-nav li {
 	list-style: none;
 	float: left;
 }
 .tm-nav li a {
 	color: #838383;
+	font-size: 15px;
 	display: block;
-	padding: 45px 34px 15px 34px;
-	text-transform: uppercase;
+	font-weight: 300;
+	padding: 40px 20px 20px 20px;
+	text-transform: none;
 	transition: all 0.3s ease;
 }
 .tm-nav li a.active,
