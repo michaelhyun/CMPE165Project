@@ -4,4 +4,6 @@ Rails.application.routes.draw do
 root 'home#index'
 
 get '/' => 'home#index'
+get 'hotel_listing' => 'hotel#hotel_list'
+get 'hotel' => 'hotel#hotel_detail'
 end
