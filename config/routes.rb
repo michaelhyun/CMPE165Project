@@ -6,4 +6,5 @@ root 'home#index'
 get '/' => 'home#index'
 get 'hotel_listing' => 'hotel#hotel_list'
 get 'hotel' => 'hotel#hotel_detail'
+get 'hotel_booking' => 'hotel#hotel_booking'
 end

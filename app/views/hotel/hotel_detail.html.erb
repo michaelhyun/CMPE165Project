@@ -590,7 +590,7 @@
 							
 							<div class="available-row">
 							
-							<!-- // -->			
+							<!-- START OF ROOM LISTING 1 -->			
 							<div class="cat-list-item">
                   			<div class="cat-list-item-l">
                       			<a href="#"><img alt="" src="assets/available-01.jpg"></a>
@@ -624,8 +624,13 @@
                             			<div class="cat-list-content-p">
                               			<div class="available-price">634$</div>
                               			<div class="available-price-a">avg/night</div> 
-                              			<div class="available-price-c">9 available</div> 
-                              			<a href="#" class="available-btn">select</a>
+                              			<div class="available-price-c">9 available</div>
+
+
+                              			<!-- THIS IS WHERE IT LINKS TO THE BOOKINGS PAGE -->
+                              			<div class="available-btn"><%= link_to 'select', hotel_booking_path %></div>
+
+
                             			</div>
                           			</div>
                           			<div class="clear"></div>
@@ -636,7 +641,9 @@
                   			</div>
                   			<div class="clear"></div>
                 			</div>
-                			<!-- \\ -->
+                			<!-- END OF ROOM LISTING 2 -->
+
+
                 			<!-- // -->			
 							<div class="cat-list-item">
                   			<div class="cat-list-item-l">
