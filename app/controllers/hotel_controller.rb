@@ -7,5 +7,7 @@ class HotelController < ApplicationController
 
 	def hotel_booking
 	end
-	
+
+	def booking_complete
+	end
 end

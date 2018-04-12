@@ -7,4 +7,5 @@ get '/' => 'home#index'
 get 'hotel_listing' => 'hotel#hotel_list'
 get 'hotel' => 'hotel#hotel_detail'
 get 'hotel_booking' => 'hotel#hotel_booking'
+get 'booking_complete' => 'hotel#booking_complete'
 end
