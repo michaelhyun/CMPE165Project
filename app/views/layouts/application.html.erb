@@ -9,7 +9,8 @@
 	  <meta name="description" content="" />
 	  <meta name="keywords" content="" />
 	  <meta charset="utf-8" />
-	  <link rel="icon" href="favicon.png" />
+	  <!-- THIS IS THE LOGO IN THE TAB -->
+	  <link rel="icon" href="assets/favicon.png" />
 	  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" /> 
 	  <link href="assets/jquery-ui.css" rel="stylesheet"/>
 	  <link href="assets/owl.carousel.css" rel="stylesheet"/>
@@ -119,7 +120,10 @@
 	</div>
 	<div class="header-b">
 		<div class="wrapper-padding">
+
+			<!-- THIS IS THE MAIN LOGO ON THE TOP LEFT CORNER -->
 			<div class="header-logo"><a href="#"><img alt="" src="assets/logo.png" /></a></div>
+
 			<div class="header-right">
 				<div class="hdr-srch">
 					<a href="#" class="hdr-srch-btn"></a>
@@ -137,13 +141,13 @@
 					<ul>
 						<li><a><%= link_to 'Home', root_path %></a>
 						</li>
-						<li><%= link_to 'Hotels', hotel_listing_path %></a>
+						<li><a><%= link_to 'Hotels', hotel_listing_path %></a>
 						</li>
 						<li><a>Pages</a>
 							<ul>
 								<li><a><%= link_to 'About Us', aboutus_path %></a></li>
 								<li><a><%= link_to 'Contact Us', contactus_path %><</a></li>
-								<li><a><%= link_to 'Services', services_path %><</a></li>
+								<li><a><%= link_to 'Services', services_path %></a></li>
 							</ul>
 						</li>
 					</ul>
