@@ -1,4 +1,6 @@
 class HotelController < ApplicationController
+	skip_before_action :authenticate_user!
+
 	include HotelHelper
 	def hotel_list
 		default_loc = ''
