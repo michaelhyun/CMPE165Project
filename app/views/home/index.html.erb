@@ -60,103 +60,75 @@
 			<div class="page-search-content">
 				<!-- // tab content // -->
 				<div class="search-tab-content hotels-tab">
+				<form action="hotel_listing" method="get">
+				<div class="side-block fly-in">
+				<div class="side-block-search">
 					<div class="page-search-p">
-						<!-- // -->
-						<div class="srch-tab-line">
-							<label>Place / hotel name</label>
-							<div class="input-a"><input type="text" value="" placeholder="Example:france"></div>
-						</div>
-						<!-- // -->
-						<!-- // -->
-						<div class="srch-tab-line">
-							<div class="srch-tab-left">
-								<label>Check in</label>
-								<div class="input-a"><input type="text" value="" class="date-inpt" placeholder="mm/dd/yy"> <span class="date-icon"></span></div>	
-							</div>
-							<div class="srch-tab-right">
-								<label>Check out</label>
-								<div class="input-a"><input type="text" value="" class="date-inpt" placeholder="mm/dd/yy"> <span class="date-icon"></span></div>	
-							</div>
-							<div class="clear"></div>
-						</div>
-						<!-- \\ -->
-						<!-- // -->
-						<div class="srch-tab-line no-margin-bottom">
-							<div class="srch-tab-3c">
-								<label>Rooms</label>
-								<div class="select-wrapper">
-								<select class="custom-select">
-									<option>--</option>
-									<option>1</option>
-									<option>2</option>
-									<option>3</option>
-									<option>4</option>
-								</select>
+								<!-- // -->
+								<div class="srch-tab-line">
+									<label>Location</label>
+									<%= text_field_tag :location, '', class:'input-a', placeholder: 'Location' %>
 								</div>
-							</div>
-							<div class="srch-tab-3c">
-								<label>adult</label>
-								<div class="select-wrapper">
-								<select class="custom-select">
-									<option>--</option>
-									<option>1</option>
-									<option>2</option>
-									<option>3</option>
-									<option>4</option>
-								</select>
+								<!-- // -->
+								<!-- // -->
+								<div class="srch-tab-line">
+									<div class="srch-tab-left">
+										<label>Check in</label>
+										<div class="input-a"><input type="text" value="" class="date-inpt" placeholder="mm/dd/yy"> <span class="date-icon"></span></div>	
+									</div>
+									<div class="srch-tab-right">
+										<label>Check out</label>
+										<div class="input-a"><input type="text" value="" class="date-inpt" placeholder="mm/dd/yy"> <span class="date-icon"></span></div>	
+									</div>
+									<div class="clear"></div>
+								</div>            
+								<!-- \\ -->
+								<!-- // -->
+								<div class="srch-tab-line no-margin-bottom">
+									<div class="srch-tab-3c">
+										<label>Rooms</label>
+										<div class="select-wrapper">
+										<select class="custom-select">
+											<option>--</option>
+											<option>1</option>
+											<option>2</option>
+											<option>3</option>
+											<option>4</option>
+										</select>
+										</div>
+									</div>
+									<div class="srch-tab-3c">
+										<label>adult</label>
+										<div class="select-wrapper">
+										<select class="custom-select">
+											<option>--</option>
+											<option>1</option>
+											<option>2</option>
+											<option>3</option>
+											<option>4</option>
+										</select>
+										</div>
+									</div>
+									<div class="srch-tab-3c">
+										<label>Child</label>
+										<div class="select-wrapper">
+										<select class="custom-select">
+											<option>--</option>
+											<option>1</option>
+											<option>2</option>
+											<option>3</option>
+											<option>4</option>
+										</select>
+										</div>
+									</div>
+									<div class="clear"></div>
 								</div>
-							</div>
-							<div class="srch-tab-3c">
-								<label>Child</label>
-								<div class="select-wrapper">
-								<select class="custom-select">
-									<option>--</option>
-									<option>1</option>
-									<option>2</option>
-									<option>3</option>
-									<option>4</option>
-								</select>
-								</div>
-							</div>
-							<div class="clear"></div>
-						</div>
-						<!-- \\ -->
-						<!-- // advanced // -->
-						<div class="search-asvanced">
-						<!-- // -->
-						<div class="srch-tab-line">
-							<div class="srch-tab-left">
-								<label>hotel stars</label>
-								<div class="input-a"><input type="text" value="" placeholder="--"></div>	
-							</div>
-							<div class="srch-tab-right">
-								<label>Price</label>
-								<div class="input-a"><input type="text" value="" placeholder="--"></div>	
-							</div>
-							<div class="clear"></div>
-						</div>
-						<!-- \\ -->
-						<!-- // -->
-						<div class="srch-tab-line no-margin-bottom">
-							<label>Property type</label>
-							<div class="select-wrapper">
-								<select class="custom-select">
-									<option>--</option>
-									<option>1</option>
-									<option>2</option>
-									<option>3</option>
-									<option>4</option>
-								</select>
-							</div>	
-						</div>
-						<!-- \\ -->
-					</div>
-					<!-- \\ advanced \\ -->
-					</div>
-					<footer class="search-footer">
-						<a href="#" class="srch-btn">Search</a>	
-						<div class="clear"></div>
-					</footer>
+								<!-- \\ -->
+					<button type="submit" class="srch-btn">Search</button> 
+					</div>       
+				</div>          
+				</div>
+			</form>        
 				</div>
 				<!-- // tab content hotels // -->		
 			</div>
