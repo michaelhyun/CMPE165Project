@@ -33,23 +33,55 @@
 # }
 
 
-# Reading data from JSON and displaying need to change to varibale to insert into table 
+# Reading data from JSON and need to generate model
 #
-# require 'json'
-#
-# file = File.read("hotelsJSON.txt")
-# hotels_list = JSON.parse(file)
-#
-# hotels_list["results"].each do |hotel|
-#     puts "\nHotel name: #{hotel["property_name"]}"
-#     puts "Price: #{hotel["total_price"]["amount"]}"
-#     puts "Contacts: \n\t phone: #{hotel["contacts"][0]["detail"]} FAX: #{hotel["contacts"][1]["detail"]}"
-#     puts "Address: #{hotel["address"]["line1"]} #{hotel["address"]["city"]}, #{hotel["address"]["region"]} #{hotel["address"]["postal_code"]}" 
-#     puts "Image: #{hotel["image"]}"
-#     puts "Ratings: \n"
-#     hotels_list["results"].each_with_index do |hotel, index|
-#         unless hotel["awards"][index].nil?
-#             puts "\tRate: #{hotel["awards"][index]["rating"]} Provider: #{hotel["awards"][index]["provider"]}"
-#         end
-#     end
-# end
+                # require 'json'
+
+                # file = File.read("hotelsJSON.txt")
+                # hotels_list = JSON.parse(file)
+
+                # hotels_list["results"].each do |hotel|
+                #     hotel_name1 = hotel["property_name"]
+                #     price_per_day1 = hotel["total_price"]["amount"]
+                #     phone1 = hotel["contacts"][0]["detail"]
+                #     fax1 = hotel["contacts"][1]["detail"]
+                #     address1 = "#{hotel["address"]["line1"]} #{hotel["address"]["city"]}, #{hotel["address"]["region"]} #{hotel["address"]["postal_code"]}" 
+                #     image1 = hotel["image"]
+                #     number_of_nights1 = 1
+                #     room_type1 = hotel["rooms"][0]["room_type_info"]["room_type"]
+                #     size_of_bed1 = hotel["rooms"][0]["room_type_info"]["bed_type"]
+                #     number_of_beds1 = hotel["rooms"][0]["room_type_info"]["number_of_beds"]
+                    
+
+                #     ratings = Array.new
+                #     avg_rating1 = 0
+                #     index = 0
+                #     sum = 0;
+
+
+                #     until hotel["awards"][index].nil? do
+                #         ratings.push(hotel["awards"][index]["rating"])
+                #         index += 1
+                #     end
+                    
+                #     ratings.each do |r|
+                #         sum += r.to_i
+                #     end
+
+                #     if index != 0
+                #         avg_rating1 = sum/index.to_f
+                #     end
+
+                #     reservation = Reservation.create(
+                #         hotel_name = hotel_name1,
+                #         price_per_day = price_per_day1,
+                #         phone = phone1,
+                #         fax = fax1,
+                #         address = address1,
+                #         image = image1,
+                #         number_of_nights = number_of_nights1,
+                #         room_type = room_type1,
+                #         size_of_bed = size_of_bed1,
+                #         number_of_beds = number_of_beds1
+                #         )
+                # end
