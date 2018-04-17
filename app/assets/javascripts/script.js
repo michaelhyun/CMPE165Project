@@ -13,8 +13,7 @@ $(document).ready(function(){
 			}
 		}, $(this));
 	}
-	
-	
+		
 	var header_a = $('.header-a');
 	var header_b = $('.header-b');
 	var header_logo = $('.header-logo');

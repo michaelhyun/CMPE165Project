@@ -31,9 +31,13 @@ window.onload = function() {
 		createPagination:true,
 		pagination:'.swiper-pagination',
 		onSwiperCreated: function(swiper){
-			$slideInit();
+			try{
+				$slideInit();
+			}catch(err){
+
+			}
 			$('.swiper-preloader-bg').fadeOut();
-			$('#preloader').remove();
+			$('#preloader').remove();	
 		},
 		onSlideChangeEnd: function(swiper){$slideInit();}
 	});  
@@ -48,9 +52,12 @@ window.onload = function() {
 }
 $(window).resize(function(){
 	"use strict";
-	$slideInit();
+	if(typeof $slideInit != 'undefined')
+		$slideInit();	
 });
 $(window).focus(function(){
 	"use strict";
-	$slideInit();
+	if(typeof $slideInit != 'undefined')
+		$slideInit();	
+	//	$slideInit();
 });

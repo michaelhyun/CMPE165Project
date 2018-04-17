@@ -617,7 +617,7 @@
                 settings.callback();
                 doresize = true;
                 f = false;
-                delete settings
+                //delete settings
             })
         };
         if (!pp_alreadyInitialized && t()) {
@@ -2724,7 +2724,7 @@ else if (typeof ender != "undefined") mejs.$ = ender;
                         function() {
                             if (k !== null) {
                                 clearTimeout(k);
-                                delete k
+                                //delete k
                             }
                             var h = g.offset(),
                                 l = a.container.offset();
@@ -2732,7 +2732,7 @@ else if (typeof ender != "undefined") mejs.$ = ender;
                         }).on("mouseout", function() {
                         if (k !== null) {
                             clearTimeout(k);
-                            delete k
+                            //delete k
                         }
                         k = setTimeout(function() {
                             e.hideFullscreenButton()
@@ -3265,7 +3265,7 @@ else if (typeof ender != "undefined") mejs.$ = ender;
             var a = this.contextMenuTimer;
             if (a != null) {
                 clearTimeout(a);
-                delete a
+                //delete a
             }
         },
         hideContextMenu: function() {
