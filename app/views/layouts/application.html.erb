@@ -100,52 +100,32 @@
 				<%= button_to('Logout', destroy_user_session_path, method: :delete, class: 'authorize-btn') %>
 			<% end %>
 			</div>
+
 			<div class="header-viewed">
-				<a href="#" class="header-viewed-btn">recently viewed</a>
+			<%if user_signed_in? %>
+				<a href="#" class="header-viewed-btn">My Account</a>
 				<!-- // viewed drop // -->
 					<div class="viewed-drop">
 						<div class="viewed-drop-a">
 							<!-- // -->
 							<div class="viewed-item">
-								<div class="viewed-item-l">
-									<a href="#"><img alt="" src="assets/v-item-01.jpg" /></a>
-								</div>
 								<div class="viewed-item-r">
-									<div class="viewed-item-lbl"><a href="#">Andrassy Thai Hotel</a></div>
-									<div class="viewed-item-cat">location: thailand</div>
-									<div class="viewed-price">152$</div>
+									<div class="viewed-item-lbl"><a href="#">My Bookings</a></div>
 								</div>
 								<div class="clear"></div>
 							</div>
 							<!-- \\ -->
 							<!-- // -->
 							<div class="viewed-item">
-								<div class="viewed-item-l">
-									<a href="#"><img alt="" src="assets/v-item-02.jpg" /></a>
-								</div>
 								<div class="viewed-item-r">
-									<div class="viewed-item-lbl"><a href="#">Ermin's Hotel</a></div>
-									<div class="viewed-item-cat">location: dubai</div>
-									<div class="viewed-price">300$</div>
-								</div>
-								<div class="clear"></div>
-							</div>
-							<!-- \\ -->
-							<!-- // -->
-							<div class="viewed-item">
-								<div class="viewed-item-l">
-									<a href="#"><img alt="" src="assets/v-item-03.jpg" /></a>
-								</div>
-								<div class="viewed-item-r">
-									<div class="viewed-item-lbl"><a href="#">Best Western Hotel Reither</a></div>
-									<div class="viewed-item-cat">location: berlin</div>
-									<div class="viewed-price">2300$</div>
+									<div class="viewed-item-lbl"><a href="#">My Reservations </a></div>
 								</div>
 								<div class="clear"></div>
 							</div>
 							<!-- \\ -->
 						</div>
 					</div>
+				<<% end -%>
 				<!-- \\ viewed drop \\ -->
 			</div>
 			<div class="clear"></div>
