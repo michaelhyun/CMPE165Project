@@ -21,6 +21,33 @@ class HotelController < ApplicationController
 
 	end
 
+	def amadeus_search(name, long, lat)
+		API_KEY = '5G4EwbqGRnRI0AS52AzcvP52Jn3MwdkY'
+		radius = 50
+		check_in_date = '2018-05-06'
+		check_out_date = '2018-05-07'
+		url = "http://api.sandbox.amadeus.com/v1.2/hotels/search-circle?latitude=#{lat}&longitude=#{long}&radius=#{radius}&check_in=#{check_in_date}&check_out=#{check_out_date}&chain=RT¤cy=EUR&number_of_results=50&apikey=#{API_KEY}"
+		res = Faraday.get url
+		hotels_list = JSON.parse(res.body)
+		hotels_list = hotels_list['results']
+
+		table = Hash.new
+		hotels_list["results"].each do |hotel|
+			if hotel["property_name"] == name
+				table['property_name'] = hotel["property_name"]
+				table['price'] = hotel["total_price"]["amount"]
+				table['phone'] = hotel["contacts"][0]["detail"]
+				table['fax'] = hotel["contacts"][1]["detail"]
+				table['address'] = "#{hotel["address"]["line1"]} #{hotel["address"]["city"]}, #{hotel["address"]["region"]} #{hotel["address"]["postal_code"]}" 
+				table['room_type'] = hotel["rooms"][0]["room_type_info"]["room_type"]
+				table['bed_size'] = hotel["rooms"][0]["room_type_info"]["bed_type"]
+				table['number_of_beds'] = hotel["rooms"][0]["room_type_info"]["number_of_beds"]
+			end
+		end
+
+		return table
+	end
+
 	def google_place_search(where)
 		#https://developers.google.com/places/web-service/search
 		api_key = "AIzaSyAw_tCp8oVeFxIyk7Nb5ZZqKxKnTpiE6yI"
