@@ -3,7 +3,6 @@
 <head>
 </head>  
 <body>  
-
 <!-- main-cont -->
 <div class="main-cont">
   <div class="body-wrapper">
@@ -11,7 +10,7 @@
     <div class="page-head">
       <div class="page-title">Hotels - <span>list style</span></div>
       <div class="breadcrumbs">
-        <a href="#">Home</a> / <a href="#">Hotel</a> / <span>List style one</span>
+        <a href="/">Home</a> / <a href="#">Hotel</a> / <span>List style one</span>
       </div>
       <div class="clear"></div>
     </div>
@@ -19,16 +18,22 @@
       <div class="two-colls-left">
         
         <div class="srch-results-lbl fly-in">
-          <span>2,435 results found.</span>
+          <span>
+          Search Result : 
+          <% if !@results.nil? %>
+            <%= @results.count %>
+          <% end %>
+          </span>
         </div>
         
+      <form method="get">
         <div class="side-block fly-in">
           <div class="side-block-search">
             <div class="page-search-p">
 						<!-- // -->
 						<div class="srch-tab-line">
-							<label>Place / hotel name</label>
-							<div class="input-a"><input type="text" value="" placeholder="Example:france"></div>
+							<label>Location</label>
+              <%= text_field_tag :location, '', class:'input-a', placeholder: 'Location' %>
 						</div>
 						<!-- // -->
 						<!-- // -->
@@ -42,7 +47,7 @@
 								<div class="input-a"><input type="text" value="" class="date-inpt" placeholder="mm/dd/yy"> <span class="date-icon"></span></div>	
 							</div>
 							<div class="clear"></div>
-						</div>
+						</div>            
 						<!-- \\ -->
 						<!-- // -->
 						<div class="srch-tab-line no-margin-bottom">
@@ -85,11 +90,12 @@
 							<div class="clear"></div>
 						</div>
 						<!-- \\ -->
-              <button class="srch-btn">Search</button> 
-    					</div>        
+              <button type="submit" class="srch-btn">Search</button> 
+    				</div>       
           </div>          
         </div>
-        
+      </form>        
+
         <!-- // side // -->
         <div class="side-block fly-in">
           <div class="side-price">
@@ -258,13 +264,16 @@
     					</div>
               <div class="clear"></div>
             </div>
-            
+
             <div class="catalog-row list-rows">
-              
-              <!-- START OF LISTING 1 -->
+
+            <!--  Thao Started HERE:  -->
+            <% if !@results.nil? %>
+            <% @results.each do |result| %>            
                 <div class="cat-list-item fly-in">
                   <div class="cat-list-item-l">
-                      <a href="#"><img alt="" src="assets/lit-i-01.jpg"></a>
+                      <% imglink = helper_get_google_img(result) %>
+                      <%= image_tag( imglink ) %>
                   </div>
                   <div class="cat-list-item-r">
                     <div class="cat-list-item-rb">
@@ -274,9 +283,11 @@
                             <div class="cat-list-content-l">
                               <div class="cat-list-content-lb">
                                 <div class="cat-list-content-lpadding">
-                                  <div class="offer-slider-link"><a href="#">Andrassy Thai Hotel</a></div>
-                                  <div class="offer-slider-location">Thailand </div>
-                                  <p>Voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui. Nemo enim ipsam voluptatem quia voluptas.</p>
+                                  <div class="offer-slider-link"><a href="#"> <%= result['name'] %> </a></div>
+                                  <div class="offer-slider-location"><%= result['formatted_address'] %></div>
+                                  <p> 
+                                  Description
+                                  </p>
                                   <div class="cat-icons">
                                     <span class="cat-icon-01 active"></span>
                                     <span class="cat-icon-02"></span>
@@ -308,13 +319,7 @@
               									<b>756$</b>
               									<span>avg/night</span>
               								</div>           
-
-              								<!-- VVVVVVVVVVVVVVVVVVVVVVVV -->
-              								<!-- THE LINE BELOW THIS NEEDS TO HAVE UNIQUE IDENTIFIERS TO SEPCIFY WHICH HOTEL TO SHOW -->
-              								<!-- ^^^^^^^^^^^^^^^^^^^^^^^^^ -->
                               <div class="cat-list-btn"><%= link_to 'Select', hotel_path %></div>   
-
-                              	<!-- UP HERE ^^^^^^^^ -->
                             </div>
                           </div>
                           <div class="clear"></div>
@@ -325,372 +330,18 @@
                   </div>
                   <div class="clear"></div>
                 </div>
-              <!-- END OF LISTING 1 -->
-              <!-- // -->
-                <div class="cat-list-item fly-in">
-                  <div class="cat-list-item-l">
-                      <a href="#"><img alt="" src="assets/lit-i-02.jpg"></a>
-                  </div>
-                  <div class="cat-list-item-r">
-                    <div class="cat-list-item-rb">
-                      <div class="cat-list-item-p">
-                        <div class="cat-list-content">
-                          <div class="cat-list-content-a">
-                            <div class="cat-list-content-l">
-                              <div class="cat-list-content-lb">
-                                <div class="cat-list-content-lpadding">
-                                  <div class="offer-slider-link"><a href="#">Campanile Cracovie</a></div>
-                                  <div class="offer-slider-location">Thailand</div>
-                                  <p>Voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui. Nemo enim ipsam voluptatem quia voluptas.</p>
-                                  <div class="cat-icons">
-                                    <span class="cat-icon-01 active"></span>
-                                    <span class="cat-icon-02"></span>
-                                    <span class="cat-icon-03"></span>
-                                    <span class="cat-icon-04"></span>
-                                    <span class="cat-icon-05"></span>
-                                    <span class="cat-icon-06"></span>
-                                    <div class="clear"></div>
-                                  </div>
-                                </div>
-                              </div>
-                              <br class="clear" />
-                            </div>
-                          </div>
-                          <div class="cat-list-content-r">
-                            <div class="cat-list-content-p">
-                              <nav class="stars">
-            										<ul>
-            											<li><a href="#"><img alt="" src="assets/star-b.png" /></a></li>
-            											<li><a href="#"><img alt="" src="assets/star-b.png" /></a></li>
-            											<li><a href="#"><img alt="" src="assets/star-b.png" /></a></li>
-            											<li><a href="#"><img alt="" src="assets/star-b.png" /></a></li>
-            											<li><a href="#"><img alt="" src="assets/star-a.png" /></a></li>
-            										</ul>
-            										<div class="clear"></div>
-            									</nav>
-                              <div class="cat-list-review">270 reviews</div>
-                              <div class="offer-slider-r">
-              									<b>512$</b>
-              									<span>avg/night</span>
-              								</div>           
-                              <a href="#" class="cat-list-btn">Select</a>   
-                            </div>
-                          </div>
-                          <div class="clear"></div>
-                        </div>
-                      </div>
-                    </div>
-                    <br class="clear" />
-                  </div>
-                  <div class="clear"></div>
-                </div>
-              <!-- \\ -->
-              <!-- // -->
-                <div class="cat-list-item fly-in">
-                  <div class="cat-list-item-l">
-                      <a href="#"><img alt="" src="assets/lit-i-03.jpg"></a>
-                  </div>
-                  <div class="cat-list-item-r">
-                    <div class="cat-list-item-rb">
-                      <div class="cat-list-item-p">
-                        <div class="cat-list-content">
-                          <div class="cat-list-content-a">
-                            <div class="cat-list-content-l">
-                              <div class="cat-list-content-lb">
-                                <div class="cat-list-content-lpadding">
-                                  <div class="offer-slider-link"><a href="#">Park Plaza Westminster</a></div>
-                                  <div class="offer-slider-location">Romania</div>
-                                  <p>Voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui. Nemo enim ipsam voluptatem quia voluptas.</p>
-                                  <div class="cat-icons">
-                                    <span class="cat-icon-01 active"></span>
-                                    <span class="cat-icon-02"></span>
-                                    <span class="cat-icon-03 active"></span>
-                                    <span class="cat-icon-04 active"></span>
-                                    <span class="cat-icon-05"></span>
-                                    <span class="cat-icon-06"></span>
-                                    <div class="clear"></div>
-                                  </div>
-                                </div>
-                              </div>
-                              <br class="clear" />
-                            </div>
-                          </div>
-                          <div class="cat-list-content-r">
-                            <div class="cat-list-content-p">
-                              <nav class="stars">
-            										<ul>
-            											<li><a href="#"><img alt="" src="assets/star-b.png" /></a></li>
-            											<li><a href="#"><img alt="" src="assets/star-b.png" /></a></li>
-            											<li><a href="#"><img alt="" src="assets/star-b.png" /></a></li>
-            											<li><a href="#"><img alt="" src="assets/star-b.png" /></a></li>
-            											<li><a href="#"><img alt="" src="assets/star-a.png" /></a></li>
-            										</ul>
-            										<div class="clear"></div>
-            									</nav>
-                              <div class="cat-list-review">270 reviews</div>
-                              <div class="offer-slider-r">
-              									<b>321$</b>
-              									<span>avg/night</span>
-              								</div>           
-                              <a href="#" class="cat-list-btn">Select</a>   
-                            </div>
-                          </div>
-                          <div class="clear"></div>
-                        </div>
-                      </div>
-                    </div>
-                    <br class="clear" />
-                  </div>
-                  <div class="clear"></div>
-                </div>
-              <!-- \\ -->
-              <!-- // -->
-                <div class="cat-list-item fly-in">
-                  <div class="cat-list-item-l">
-                      <a href="#"><img alt="" src="assets/lit-i-04.jpg"></a>
-                  </div>
-                  <div class="cat-list-item-r">
-                    <div class="cat-list-item-rb">
-                      <div class="cat-list-item-p">
-                        <div class="cat-list-content">
-                          <div class="cat-list-content-a">
-                            <div class="cat-list-content-l">
-                              <div class="cat-list-content-lb">
-                                <div class="cat-list-content-lpadding">
-                                  <div class="offer-slider-link"><a href="#">Pink Hotel</a></div>
-                                  <div class="offer-slider-location">Austria</div>
-                                  <p>Voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui. Nemo enim ipsam voluptatem quia voluptas.</p>
-                                  <div class="cat-icons">
-                                    <span class="cat-icon-01"></span>
-                                    <span class="cat-icon-02"></span>
-                                    <span class="cat-icon-03"></span>
-                                    <span class="cat-icon-04"></span>
-                                    <span class="cat-icon-05"></span>
-                                    <span class="cat-icon-06"></span>
-                                    <div class="clear"></div>
-                                  </div>
-                                </div>
-                              </div>
-                              <br class="clear" />
-                            </div>
-                          </div>
-                          <div class="cat-list-content-r">
-                            <div class="cat-list-content-p">
-                              <nav class="stars">
-            										<ul>
-            											<li><a href="#"><img alt="" src="assets/star-b.png" /></a></li>
-            											<li><a href="#"><img alt="" src="assets/star-b.png" /></a></li>
-            											<li><a href="#"><img alt="" src="assets/star-b.png" /></a></li>
-            											<li><a href="#"><img alt="" src="assets/star-b.png" /></a></li>
-            											<li><a href="#"><img alt="" src="assets/star-a.png" /></a></li>
-            										</ul>
-            										<div class="clear"></div>
-            									</nav>
-                              <div class="cat-list-review">270 reviews</div>
-                              <div class="offer-slider-r">
-              									<b>400$</b>
-              									<span>avg/night</span>
-              								</div>           
-                              <a href="#" class="cat-list-btn">Select</a>   
-                            </div>
-                          </div>
-                          <div class="clear"></div>
-                        </div>
-                      </div>
-                    </div>
-                    <br class="clear" />
-                  </div>
-                  <div class="clear"></div>
-                </div>
-              <!-- \\ -->
-              <!-- // -->
-                <div class="cat-list-item fly-in">
-                  <div class="cat-list-item-l">
-                      <a href="#"><img alt="" src="assets/lit-i-05.jpg"></a>
-                  </div>
-                  <div class="cat-list-item-r">
-                    <div class="cat-list-item-rb">
-                      <div class="cat-list-item-p">
-                        <div class="cat-list-content">
-                          <div class="cat-list-content-a">
-                            <div class="cat-list-content-l">
-                              <div class="cat-list-content-lb">
-                                <div class="cat-list-content-lpadding">
-                                  <div class="offer-slider-link"><a href="#">Best Western Bretagne</a></div>
-                                  <div class="offer-slider-location">England</div>
-                                  <p>Voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui. Nemo enim ipsam voluptatem quia voluptas.</p>
-                                  <div class="cat-icons">
-                                    <span class="cat-icon-01"></span>
-                                    <span class="cat-icon-02 active"></span>
-                                    <span class="cat-icon-03 active"></span>
-                                    <span class="cat-icon-04 active"></span>
-                                    <span class="cat-icon-05 active"></span>
-                                    <span class="cat-icon-06"></span>
-                                    <div class="clear"></div>
-                                  </div>
-                                </div>
-                              </div>
-                              <br class="clear" />
-                            </div>
-                          </div>
-                          <div class="cat-list-content-r">
-                            <div class="cat-list-content-p">
-                              <nav class="stars">
-            										<ul>
-            											<li><a href="#"><img alt="" src="assets/star-b.png" /></a></li>
-            											<li><a href="#"><img alt="" src="assets/star-b.png" /></a></li>
-            											<li><a href="#"><img alt="" src="assets/star-b.png" /></a></li>
-            											<li><a href="#"><img alt="" src="assets/star-b.png" /></a></li>
-            											<li><a href="#"><img alt="" src="assets/star-a.png" /></a></li>
-            										</ul>
-            										<div class="clear"></div>
-            									</nav>
-                              <div class="cat-list-review">270 reviews</div>
-                              <div class="offer-slider-r">
-              									<b>400$</b>
-              									<span>avg/night</span>
-              								</div>           
-                              <a href="#" class="cat-list-btn">Select</a>   
-                            </div>
-                          </div>
-                          <div class="clear"></div>
-                        </div>
-                      </div>
-                    </div>
-                    <br class="clear" />
-                  </div>
-                  <div class="clear"></div>
-                </div>
-              <!-- \\ -->
-              <!-- // -->
-                <div class="cat-list-item fly-in">
-                  <div class="cat-list-item-l">
-                      <a href="#"><img alt="" src="assets/lit-i-06.jpg"></a>
-                  </div>
-                  <div class="cat-list-item-r">
-                    <div class="cat-list-item-rb">
-                      <div class="cat-list-item-p">
-                        <div class="cat-list-content">
-                          <div class="cat-list-content-a">
-                            <div class="cat-list-content-l">
-                              <div class="cat-list-content-lb">
-                                <div class="cat-list-content-lpadding">
-                                  <div class="offer-slider-link"><a href="#">Campanile Cracovie</a></div>
-                                  <div class="offer-slider-location">Thailand</div>
-                                  <p>Voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui. Nemo enim ipsam voluptatem quia voluptas.</p>
-                                  <div class="cat-icons">
-                                    <span class="cat-icon-01 active"></span>
-                                    <span class="cat-icon-02"></span>
-                                    <span class="cat-icon-03 active"></span>
-                                    <span class="cat-icon-04"></span>
-                                    <span class="cat-icon-05"></span>
-                                    <span class="cat-icon-06"></span>
-                                    <div class="clear"></div>
-                                  </div>
-                                </div>
-                              </div>
-                              <br class="clear" />
-                            </div>
-                          </div>
-                          <div class="cat-list-content-r">
-                            <div class="cat-list-content-p">
-                              <nav class="stars">
-            										<ul>
-            											<li><a href="#"><img alt="" src="assets/star-b.png" /></a></li>
-            											<li><a href="#"><img alt="" src="assets/star-b.png" /></a></li>
-            											<li><a href="#"><img alt="" src="assets/star-b.png" /></a></li>
-            											<li><a href="#"><img alt="" src="assets/star-b.png" /></a></li>
-            											<li><a href="#"><img alt="" src="assets/star-a.png" /></a></li>
-            										</ul>
-            										<div class="clear"></div>
-            									</nav>
-                              <div class="cat-list-review">270 reviews</div>
-                              <div class="offer-slider-r">
-              									<b>600$</b>
-              									<span>avg/night</span>
-              								</div>           
-                              <a href="#" class="cat-list-btn">Select</a>   
-                            </div>
-                          </div>
-                          <div class="clear"></div>
-                        </div>
-                      </div>
-                    </div>
-                    <br class="clear" />
-                  </div>
-                  <div class="clear"></div>
-                </div>
-              <!-- \\ -->
-              <!-- // -->
-                <div class="cat-list-item fly-in">
-                  <div class="cat-list-item-l">
-                      <a href="#"><img alt="" src="assets/lit-i-07.jpg"></a>
-                  </div>
-                  <div class="cat-list-item-r">
-                    <div class="cat-list-item-rb">
-                      <div class="cat-list-item-p">
-                        <div class="cat-list-content">
-                          <div class="cat-list-content-a">
-                            <div class="cat-list-content-l">
-                              <div class="cat-list-content-lb">
-                                <div class="cat-list-content-lpadding">
-                                  <div class="offer-slider-link"><a href="#">Park Plaza Westminster</a></div>
-                                  <div class="offer-slider-location">Romania</div>
-                                  <p>Voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui. Nemo enim ipsam voluptatem quia voluptas.</p>
-                                  <div class="cat-icons">
-                                    <span class="cat-icon-01"></span>
-                                    <span class="cat-icon-02"></span>
-                                    <span class="cat-icon-03"></span>
-                                    <span class="cat-icon-04"></span>
-                                    <span class="cat-icon-05"></span>
-                                    <span class="cat-icon-06"></span>
-                                    <div class="clear"></div>
-                                  </div>
-                                </div>
-                              </div>
-                              <br class="clear" />
-                            </div>
-                          </div>
-                          <div class="cat-list-content-r">
-                            <div class="cat-list-content-p">
-                              <nav class="stars">
-            										<ul>
-            											<li><a href="#"><img alt="" src="assets/star-b.png" /></a></li>
-            											<li><a href="#"><img alt="" src="assets/star-b.png" /></a></li>
-            											<li><a href="#"><img alt="" src="assets/star-b.png" /></a></li>
-            											<li><a href="#"><img alt="" src="assets/star-b.png" /></a></li>
-            											<li><a href="#"><img alt="" src="assets/star-a.png" /></a></li>
-            										</ul>
-            										<div class="clear"></div>
-            									</nav>
-                              <div class="cat-list-review">270 reviews</div>
-                              <div class="offer-slider-r">
-              									<b>230$</b>
-              									<span>avg/night</span>
-              								</div>           
-                              <a href="#" class="cat-list-btn">Select</a>   
-                            </div>
-                          </div>
-                          <div class="clear"></div>
-                        </div>
-                      </div>
-                    </div>
-                    <br class="clear" />
-                  </div>
-                  <div class="clear"></div>
-                </div>
-              <!-- \\ -->
-              
+            <% end %>
+            <% end %>
             </div>
-            
             <div class="clear"></div>
-            
+          
             <div class="pagination">
               <a class="active" href="#">1</a>
               <a href="#">2</a>
               <a href="#">3</a>
               <div class="clear"></div>
-            </div>            
+            </div>
+
           </div>
         </div>
         <br class="clear" />

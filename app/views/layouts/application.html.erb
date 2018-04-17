@@ -36,36 +36,69 @@
 			<div class="clear"></div>
 		</div>
 		<section class="autorize-tab-content">
-			<div class="autorize-padding">
-				<h6 class="autorize-lbl">Welcome! Login in to Your Accont</h6>
-				<input type="text" value="" placeholder="Name">
-				<input type="text" value="" placeholder="Password">
-				<footer class="autorize-bottom">
-					<button class="authorize-btn">Login</button>
-					<a href="#" class="authorize-forget-pass">Forgot your password?</a>
-					<div class="clear"></div>
-				</footer>
-			</div>
-		</section>
-		<section class="autorize-tab-content">
-			<div class="autorize-padding">
-				<h6 class="autorize-lbl">Register for Your Account</h6>
-				<input type="text" value="" placeholder="Name">
-				<input type="text" value="" placeholder="Password">
-				<footer class="autorize-bottom">
-					<button class="authorize-btn">Registration</button>
-					<div class="clear"></div>
-				</footer>
-			</div>
-		</section>
-	</div>
-<!-- \\ authorize \\-->
 
+<% if !user_signed_in? %>
+	<div class="autorize-padding">
+	<h6 class="autorize-lbl">Welcome! Login in to Your Accont</h6>
+	<%= form_for(:user, :url => session_path(:user)) do |f| %>
+	<div class="field">
+    	<%= f.label :email %><br />
+    	<%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+	</div>
+	<div class="field">
+		<%= f.label :password %><br />
+		<%= f.password_field :password, autocomplete: "off" %>
+	</div>
+	<footer class="autorize-bottom">
+	<%= f.check_box :remember_me %>
+	<%= f.label :remember_me %>
+	<%= f.submit 'Sign in' , class: 'authorize-btn' %>
+	<%= link_to "Forgot your password?", new_password_path(:user), class: 'authorize-forget-pass' %>
+	<div class="clear"></div>
+	</footer> 
+	</div>
+	<% end %>
+<% end %>
+
+
+</section>
+<section class="autorize-tab-content">
+<div class="autorize-padding">
+<%= form_for(:user, :url => registration_path(:user)) do |f| %>
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+  <div class="field">
+    <%= f.label :password %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "off" %>
+  </div>
+  <div class="field">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Sign up", class: 'authorize-btn' %>
+  </div>
+<% end %>
+	</div>
+</section>
+</div>
+
+<!-- \\ authorize \\-->
 <header id="top">
 	<div class="header-a">
 		<div class="wrapper-padding">			
 			<div class="header-account">
-				<a href="#">My account</a>
+			<% if !user_signed_in? %>
+				<a href="#" >My account</a>
+			<% end %>
+			<% if user_signed_in? %>
+				<%= button_to('Logout', destroy_user_session_path, method: :delete, class: 'authorize-btn') %>
+			<% end %>
 			</div>
 			<div class="header-viewed">
 				<a href="#" class="header-viewed-btn">recently viewed</a>
@@ -120,10 +153,8 @@
 	</div>
 	<div class="header-b">
 		<div class="wrapper-padding">
-
 			<!-- THIS IS THE MAIN LOGO ON THE TOP LEFT CORNER -->
 			<div class="header-logo"><a href="#"><img alt="" src="assets/logo.png" /></a></div>
-
 			<div class="header-right">
 				<div class="hdr-srch">
 					<a href="#" class="hdr-srch-btn"></a>
@@ -157,15 +188,16 @@
 		</div>
 	</div>	
 </header>
-   <%= yield %>
+<div></div>
+<%= yield %>
 <footer class="footer-a">
 	<div class="wrapper-padding">
 		<div class="section">
 			<div class="footer-lbl">Get In Touch</div>
-			<div class="footer-adress">Address: 58911 Lepzig Hore,<br />85000 Vienna, Austria</div>
-			<div class="footer-phones">Telephones: +1 777 55-32-21</div>
-			<div class="footer-email">E-mail: contacts@miracle.com</div>
-			<div class="footer-skype">Skype: angelotours</div>
+			<div class="footer-adress">Address: 1 Washington Sq,<br /> San Jose, CA 95192</div>
+			<div class="footer-phones">Telephones: +1 888 888-8888</div>
+			<div class="footer-email">E-mail: likehome@hotel.com</div>
+			<div class="footer-skype">Skype: likehome</div>
 		</div>
 
 		<div class="section">
@@ -183,7 +215,7 @@
     
 <footer class="footer-b">
 	<div class="wrapper-padding">
-		<div class="footer-left">© Copyright 2018 by Whose Code is it Anyways?. All rights reserved.</div>
+		<div class="footer-left"> © Copyright 2018 by Whose Code is it Anyways?. All rights reserved.</div>
 		<div class="footer-social">
 			<a href="#" class="footer-twitter"></a>
 			<a href="#" class="footer-facebook"></a>

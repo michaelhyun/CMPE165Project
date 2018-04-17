@@ -5,6 +5,12 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+# 4/13 Install faraday gem to do HTTP GET/POST to retrieve home searches.
+gem 'faraday', '~> 0.14.0'
+# 4/13 
+gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
+gem 'jquery-ui-rails'
+gem 'devise'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
