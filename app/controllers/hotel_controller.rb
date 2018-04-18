@@ -11,14 +11,46 @@ class HotelController < ApplicationController
 	end
 
 	def hotel_detail
-
 	end
 
+    # GET payment form
+    # NOTE: is NOT currently accessed
 	def hotel_booking
-	end
+    end
 
+    # POST for submitting payment info
+    # NOTE: is NOT currently accessed
+    def book_hotel
+        """
+        # TODO: change hard-coded price to price of specific hotel room
+        @amount=500
+
+        begin
+            # for now, creates a new customer and (transparently) unique customer id per transaction
+            # TODO: store customer id in User model (this associates user with payment credentials stored by stripe)
+            customer = Stripe::Customer.create(
+                :email => params[:stripeEmail],
+                :source  => params[:stripeToken]
+            )
+
+            # creates one-time charge for hotel booking
+            charge = Stripe::Charge.create(
+                :customer    => customer.id,
+                :amount      => @amount,
+                :description => 'Rails Stripe customer',
+                :currency    => 'usd'
+            )
+            redirect_to booking_complete_path
+
+        rescue Stripe::CardError => e
+            flash[:error] = e.message
+            redirect_to hotel_booking_path
+        end
+        """
+    end
+
+    # GET payment confirmation page
 	def booking_complete
-
 	end
 
 	def google_place_search(where)
@@ -29,7 +61,7 @@ class HotelController < ApplicationController
 		query.gsub(" ", "+")
 		url = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=hotel+in+#{query}&key=#{api_key}"
 		response = Faraday.get url
-		results = JSON.parse(response.body)		
+		results = JSON.parse(response.body)
 		results = results['results']
 	end
 
