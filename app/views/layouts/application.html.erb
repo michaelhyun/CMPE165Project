@@ -11,7 +11,7 @@
 	  <meta charset="utf-8" />
 	  <!-- THIS IS THE LOGO IN THE TAB -->
 	  <link rel="icon" href="assets/favicon.png" />
-	  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" /> 
+	  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
 	  <link href="assets/jquery-ui.css" rel="stylesheet"/>
 	  <link href="assets/owl.carousel.css" rel="stylesheet"/>
 	  <link rel="stylesheet" href="assets/idangerous.swiper.css" />
@@ -55,7 +55,7 @@
 	<%= f.submit 'Sign in' , class: 'authorize-btn' %>
 	<%= link_to "Forgot your password?", new_password_path(:user), class: 'authorize-forget-pass' %>
 	<div class="clear"></div>
-	</footer> 
+	</footer>
 	</div>
 	<% end %>
 <% end %>
@@ -91,7 +91,7 @@
 <!-- \\ authorize \\-->
 <header id="top">
 	<div class="header-a">
-		<div class="wrapper-padding">			
+		<div class="wrapper-padding">
 			<div class="header-account">
 			<% if !user_signed_in? %>
 				<a href="#" >My account</a>
@@ -110,7 +110,7 @@
 							<!-- // -->
 							<div class="viewed-item">
 								<div class="viewed-item-r">
-									<div class="viewed-item-lbl"><a href="#">My Bookings</a></div>
+									<div class="viewed-item-lbl"><a><%= link_to 'My Booking', my_booking_path %></a></div>
 								</div>
 								<div class="clear"></div>
 							</div>
@@ -118,7 +118,7 @@
 							<!-- // -->
 							<div class="viewed-item">
 								<div class="viewed-item-r">
-									<div class="viewed-item-lbl"><a href="#">My Reservations </a></div>
+									<div class="viewed-item-lbl"><a><%= link_to 'My Reservation', my_reservation_path %></a></div>
 								</div>
 								<div class="clear"></div>
 							</div>
@@ -145,7 +145,7 @@
 						<a href="#" class="srch-close"></a>
 						<div class="clear"></div>
 					</div>
-				</div>	
+				</div>
 				<div class="hdr-srch-devider"></div>
 				<a href="#" class="menu-btn"></a>
 				<nav class="header-nav">
@@ -166,7 +166,7 @@
 			</div>
 			<div class="clear"></div>
 		</div>
-	</div>	
+	</div>
 </header>
 <div></div>
 <%= yield %>
@@ -192,7 +192,7 @@
 	</div>
 	<div class="clear"></div>
 </footer>
-    
+
 <footer class="footer-b">
 	<div class="wrapper-padding">
 		<div class="footer-left"> © Copyright 2018 by Whose Code is it Anyways?. All rights reserved.</div>
@@ -210,9 +210,9 @@
 
 <!-- // scripts // -->
   <script src="assets/jquery.min.js"></script>
-  <script src="assets/jqeury.appear.js"></script>  
-  <script src="assets/jquery-ui.min.js"></script> 
-  <script src="assets/jquery.formstyler.js"></script>  
+  <script src="assets/jqeury.appear.js"></script>
+  <script src="assets/jquery-ui.min.js"></script>
+  <script src="assets/jquery.formstyler.js"></script>
   <script src="assets/owl.carousel.min.js"></script>
   <script src="assets/bxSlider.js"></script>
   <script src="assets/custom.select.js"></script>
@@ -228,11 +228,11 @@
 				});
 			});
 		})(jQuery);
-		
+
 		var slider_range = $("#slider-range");
 		var ammount_from = $("#ammount-from");
 		var ammount_to = $("#ammount-to");
-		
+
 		$(function() {
 			slider_range.slider({
 			  range: true,
@@ -249,6 +249,6 @@
 		});
   	});
   </script>
-<!-- \\ scripts \\ --> 
+<!-- \\ scripts \\ -->
   </body>
 </html>
