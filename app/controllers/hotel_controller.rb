@@ -19,9 +19,7 @@ class HotelController < ApplicationController
     end
 
     # POST for submitting payment info
-    # NOTE: is NOT currently accessed
     def book_hotel
-        """
         # TODO: change hard-coded price to price of specific hotel room
         @amount=500
 
@@ -46,7 +44,6 @@ class HotelController < ApplicationController
             flash[:error] = e.message
             redirect_to hotel_booking_path
         end
-        """
     end
 
     # GET payment confirmation page

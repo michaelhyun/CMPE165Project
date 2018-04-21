@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 
-</head>  
-<body>  
+</head>
+<body>
 
 <!-- main-cont -->
 <div class="main-cont">
@@ -55,11 +55,11 @@
                   						<input type="checkbox" value="" />
                   							I want to receive Sparrow news in the future
                 					</label>
-              					</div> 		
-              					<div class="booking-devider"></div>						
+              					</div>
+              					<div class="booking-devider"></div>
 							</div>
 							<h2>How would you like to pay?</h2>
-							
+
 							<div class="payment-wrapper">
 								<div class="payment-tabs">
 									<a href="#" class="active">Credit Card <span></span></a>
@@ -142,7 +142,8 @@
                   								<input type="checkbox" value="" />
                   								Im accept the rules <a href="#">Terms & Conditions</a>
                 							</label>
-              							</div> 
+              							</div>
+                                        <%= render partial: 'payment_form' %>
 									</div>
 									<!-- \\ -->
 									<!-- // -->
@@ -158,10 +159,10 @@
 							</div>
 							<div class="booking-complete">
 								<h2>Review and book your trip</h2>
-								<p>Voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui voluptatem sequi nesciunt. </p>	
+								<p>Voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui voluptatem sequi nesciunt. </p>
 								<button class="booking-complete-btn"><%= link_to 'COMPLETE BOOKING', booking_complete_path %></button>
 							</div>
-							
+
 						</div>
   					</div>
   				</div>
@@ -170,7 +171,7 @@
 		</div>
 
 		<div class="sp-page-r">
-			
+
 			<div class="checkout-coll">
 				<div class="checkout-head">
 					<div class="checkout-headl">
@@ -192,7 +193,7 @@
     									</ul>
     									<div class="clear"></div>
     								</nav>
-    								
+
     							</div>
     							<div class="chk-right">
     								<a href="#"><img alt="" src="assets/chk-edit.png"></a>
@@ -213,7 +214,7 @@
 						1 STANDARD FAMILY ROOM FOR <span class="chk-persons">3 PERSONS</span>
 					</div>
 				</div>
-				
+
 				<div class="chk-details">
 					<h2>Details</h2>
 					<div class="chk-detais-row">
@@ -242,24 +243,24 @@
 						<div class="chk-total-l">Total Price</div>
 						<div class="chk-total-r">$603.52</div>
 						<div class="clear"></div>
-					</div>					
+					</div>
 				</div>
-				
+
 			</div>
-			
+
 			<div class="h-help">
 				<div class="h-help-lbl">Need LikeHome Help?</div>
 				<div class="h-help-lbl-a">We would be happy to help you!</div>
 				<div class="h-help-phone">1-800-777-7777</div>
 				<div class="h-help-email">likehome@mail.com</div>
 			</div>
-			
+
 		</div>
 		<div class="clear"></div>
 	</div>
 
-    </div>	
-  </div>  
+    </div>
+  </div>
 </div>
 <!-- /main-cont -->
 
@@ -277,7 +278,7 @@
 		})(jQuery);
   	});
   </script>
-<!-- \\ scripts \\ --> 
- 
-</body>  
-</html> 
+<!-- \\ scripts \\ -->
+
+</body>
+</html>
