@@ -1,22 +1,47 @@
 <%= form_tag hotel_booking_path, :id => 'payment-form' do %>
-    <div class="form-row">
-        <label for="card-element">
-            Credit or debit card
+<div class="form-row">
+    <div class="field">
+        <label for="card-number">
+            Card Number
         </label>
-        <div id="card-element" class="input">
+        <div id="card-number" class="input">
             <!-- A Stripe Element will be inserted here. -->
         </div>
-
-        <!-- Used to display form errors. -->
-        <div id="card-errors" role="alert"></div>
     </div>
-    <button>Submit Payment</button>
+    <br />
+</div>
+<div class="form-row">
+    <div class="field half-width" style="float:left; width: 47.5%;">
+        <label for="card-exp">
+            Expiration Date
+        </label>
+        <div id="card-exp" class="input">
+            <!-- A Stripe Element will be inserted here. -->
+        </div>
+    </div>
+
+    <div class="field half-width" style="float:right; width: 47.5%;">
+        <label for="card-cvc">
+            CVC/Identification Number
+        </label>
+        <div id="card-cvc" class="input">
+            <!-- A Stripe Element will be inserted here. -->
+        </div>
+    </div>
+</div>
+<!-- Used to display form errors. -->
+<div class="form-row">
+    <div id="card-errors" role="alert" style="float:right; width: 100%; margin-top:5px;">
+        <span id="error-msg" style="color: #fa755a;"></span>
+    </div>
+</div>
+<button style="margin-top:10px">Submit Payment</button>
 <% end %>
 
 <style>
 .StripeElement {
     background-color: white;
-    height: 40px;
+    /*height: 40px;*/
     padding: 10px 12px;
     border-radius: 4px;
     border: 1px solid transparent;
@@ -66,19 +91,44 @@ var style = {
 };
 
 // create an instance of the card element
-var card = elements.create('card', {style: style});
+var card = elements.create('cardNumber', {style: style});
+var exp = elements.create('cardExpiry', {style: style});
+var cvc = elements.create('cardCvc', {style: style});
+var elements = [card, exp, cvc]
 
 // add an instance of the card element into the `card-element` <div>
-card.mount('#card-element');
+card.mount('#card-number');
+exp.mount('#card-exp');
+cvc.mount('#card-cvc');
 
-// handle real-time validation errors from the card element.
-card.addEventListener('change', function(event) {
-    const displayError = document.getElementById('card-errors');
-    if (event.error) {
-        displayError.textContent = event.error.message;
-    } else {
-        displayError.textContent = '';
-    }
+// listen for errors from each element, and display error messages in the UI
+var error = document.getElementById('card-errors')
+var errorMessage = document.getElementById('error-msg');
+var savedErrors = {};
+elements.forEach(function(element, index) {
+    element.addEventListener('change', function(event) {
+        if (event.error) {
+            savedErrors[index] = event.error.message;
+            errorMessage.innerText = event.error.message;
+        } else {
+            savedErrors[index] = null;
+
+            // loop over the saved errors and find the first one, if any
+            var nextError = Object.keys(savedErrors)
+            .sort()
+            .reduce(function(maybeFoundError, key) {
+                return maybeFoundError || savedErrors[key];
+            }, null);
+
+            if (nextError) {
+                // now that they've fixed the current error, show another one
+                errorMessage.innerText = nextError;
+            } else {
+                // the user fixed the last error - there are no more errors
+                errorMessage.innerText = "";
+            }
+        }
+    });
 });
 
 // handle form submission
@@ -94,7 +144,7 @@ form.addEventListener('submit', function(event) {
             console.log(result.error.message);
         } else {
             // send the token to your server
-            //alert(JSON.stringify(result.token));
+            alert(JSON.stringify(result.token));
             console.log(JSON.stringify(result.token));
 
             // insert the token ID into the form so it gets submitted to the server
