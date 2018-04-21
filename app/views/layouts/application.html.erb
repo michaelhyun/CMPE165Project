@@ -6,7 +6,7 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <script src="https://js.stripe.com/v3/"></script>
-    <%= tag :meta, :name => "stripe-key", :content => 'pk_test_6pRNASCoBOKtIshFeQd4XMUh' %>
+    <%= tag :meta, :name => "stripe-key", :content => Rails.configuration.stripe[:publishable_key] %>
       <title>LikeHome</title>
 	  <meta name="description" content="" />
 	  <meta name="keywords" content="" />
