@@ -287,6 +287,9 @@
                                   <div class="offer-slider-location"><%= result['formatted_address'] %></div>
                                   <p> 
                                   Description
+                                  <% @joined_results.each do |k,v| %>
+                                  <%= v %>                                  
+                                  <% end %>
                                   </p>
                                   <div class="cat-icons">
                                     <span class="cat-icon-01 active"></span>

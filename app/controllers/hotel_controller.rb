@@ -6,7 +6,21 @@ class HotelController < ApplicationController
 		default_loc = ''
 		if !params[:location].nil?
 			default_loc = "#{params[:location]}"
-			@results = google_place_search(default_loc)
+			@results = google_place_search(default_loc)			
+			lat = @results.at(0)['geometry']['location']['lat']
+			lng = @results.at(0)['geometry']['location']['lng']
+			@amadeus_results = amadeus_search(lng, lat)			
+			@joined_results = Hash.new	
+
+			
+			@results.each do |r|
+				rname = r['name']
+				raddr = r['formatted_address']
+#				@matched = find_matching_hotel(rname, raddr, @amadeus_results)
+#				puts @matched
+			end
+			puts @results.at(0)
+
 		end
 	end
 
@@ -21,19 +35,26 @@ class HotelController < ApplicationController
 
 	end
 
-	def amadeus_search(name, long, lat)
-		API_KEY = '5G4EwbqGRnRI0AS52AzcvP52Jn3MwdkY'
-		radius = 50
-		check_in_date = '2018-05-06'
-		check_out_date = '2018-05-07'
-		url = "http://api.sandbox.amadeus.com/v1.2/hotels/search-circle?latitude=#{lat}&longitude=#{long}&radius=#{radius}&check_in=#{check_in_date}&check_out=#{check_out_date}&chain=RT¤cy=EUR&number_of_results=50&apikey=#{API_KEY}"
-		res = Faraday.get url
-		hotels_list = JSON.parse(res.body)
-		hotels_list = hotels_list['results']
-
+	def find_matching_hotel(name, address, results)
 		table = Hash.new
-		hotels_list["results"].each do |hotel|
-			if hotel["property_name"] == name
+		cleaned_name = name.downcase().strip()
+		cleaned_address = address.gsub(", USA", "")
+
+		results["results"].each do |hotel|
+			result_name = hotel['property_name'].downcase().strip()	
+			result_zip = hotel["address"]["postal_code"]
+
+			unless !result_zip.nil?
+				next
+			end
+
+			if cleaned_address.include? result_zip
+				puts result_name
+			end
+
+			puts "#{cleaned_address} #{hotel["address"]["line1"]}"
+
+			if result_name.include? cleaned_name
 				table['property_name'] = hotel["property_name"]
 				table['price'] = hotel["total_price"]["amount"]
 				table['phone'] = hotel["contacts"][0]["detail"]
@@ -44,8 +65,17 @@ class HotelController < ApplicationController
 				table['number_of_beds'] = hotel["rooms"][0]["room_type_info"]["number_of_beds"]
 			end
 		end
-
 		return table
+	end
+
+	def amadeus_search(long, lat)
+		ama_api_key = '5G4EwbqGRnRI0AS52AzcvP52Jn3MwdkY'
+		radius = 20
+		check_in_date = '2018-05-06'
+		check_out_date = '2018-05-07'
+		url = "http://api.sandbox.amadeus.com/v1.2/hotels/search-circle?latitude=#{lat}&longitude=#{long}&radius=#{radius}&check_in=#{check_in_date}&check_out=#{check_out_date}&number_of_results=100&apikey=#{ama_api_key}"
+		res = Faraday.get url
+		hotels_list = JSON.parse(res.body)
 	end
 
 	def google_place_search(where)
