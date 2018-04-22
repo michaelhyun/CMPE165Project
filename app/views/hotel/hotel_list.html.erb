@@ -282,7 +282,7 @@
                             <div class="cat-list-content-l">
                               <div class="cat-list-content-lb">
                                 <div class="cat-list-content-lpadding">
-                                  <div class="offer-slider-link"><a href="#"> <%= result.hotel_name%> </a></div>
+                                  <div class="offer-slider-link"><%= link_to result.hotel_name, hotel_path(:hotel => result) %></div>
                                   <div class="offer-slider-location"><%= result.formatted_address %></div>
                                   <p> 
                                   Description
@@ -313,12 +313,12 @@
             										</ul>
             										<div class="clear"></div>
             									</nav>
-                              <div class="cat-list-review">270 reviews</div>
+                              <div class="cat-list-review">NNN reviews</div>
                               <div class="offer-slider-r">
-              									<b>756$</b>
+              									<b>$PRICE</b>
               									<span>avg/night</span>
               								</div>           
-                              <div class="cat-list-btn"><%= link_to 'Select', hotel_path %></div>   
+                              <div class="cat-list-btn"><%= link_to 'Select', hotel_path(:hotel => result) %></div>   
                             </div>
                           </div>
                           <div class="clear"></div>

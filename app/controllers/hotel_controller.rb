@@ -6,6 +6,7 @@ class HotelController < ApplicationController
 		if !params[:location].nil?
 			@results_from_db = Hotel.all.where("city_name LIKE ?", params[:location])						
 			if @results_from_db.nil? or @results_from_db.count == 0
+				puts("Querying from GOOGLE PLACES.")
 				add_results_to_db(params[:location])
 				@results_from_db = Hotel.all.where("city_name LIKE ?", params[:location])				
 			end
@@ -14,36 +15,38 @@ class HotelController < ApplicationController
 	end
 
 	def add_results_to_db(location)
-		results = google_place_search(location)
+		results = google_place_search(location)			
+		results = results['results']
 		results.each do |result|
-			hname = 				result['name']			
-			hotel_exist = Hotel.find(:hotel_name => hname)
-			next if !hotel_exist.nil?
-
-			fmat_address = 			result['formatted_address']
-			google_id = 			result['id']
-			google_place_id = 		result['place_id']
-			google_rating = 		result['rating']
-			longitude = 			result['geometry']['location']['lng']
-			latitude =  			result['geometry']['location']['lat']
-			photoref =				helper_get_google_img(result)
-
-			hotell = Hotel.create(  :hotel_name => hname, 
-									:city_name => location, 
-									:latitude=> latitude, 
-									:longitude => longitude, 
-									:formatted_address => fmat_address, 
-									:google_id => google_id, 
-									:google_place_id => google_place_id, 
-									:google_rating => google_rating, 
-									:photo_reference => photoref )			
-			#store to database
-			hotell.save
+			hname = result['name']					
+			hotel_exist = Hotel.where("hotel_name = ?", hname)		
+			next if hotel_exist.count != 0				
+				fmat_address = 			result['formatted_address']
+				google_id = 			result['id']
+				google_place_id = 		result['place_id']
+				google_rating = 		result['rating']
+				longitude = 			result['geometry']['location']['lng']
+				latitude =  			result['geometry']['location']['lat']
+				photoref =				helper_get_google_img(result)
+				hotell = Hotel.create(  :hotel_name => hname, 
+										:city_name => location, 
+										:latitude=> latitude, 
+										:longitude => longitude, 
+										:formatted_address => fmat_address, 
+										:google_id => google_id, 
+										:google_place_id => google_place_id, 
+										:google_rating => google_rating, 
+										:photo_reference => photoref )			
+				#store to database
+				hotell.save
 		end
 	end
 
 	def hotel_detail
-
+		id = !params[:hotel].nil? ? params[:hotel] : 0
+		@selected_hotel = Hotel.find(id)
+		
+		
 	end
 
 	def hotel_booking
@@ -52,6 +55,57 @@ class HotelController < ApplicationController
 	def booking_complete
 
 	end
+
+	def google_place_next_page(tok)
+		# Need to wait 4 seconds...
+		sleep 4
+		api_key = "AIzaSyAw_tCp8oVeFxIyk7Nb5ZZqKxKnTpiE6yI"
+		url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?pagetoken=#{tok}&key=#{api_key}"
+		respose = Faraday.get url
+		result = JSON.parse(respose.body)
+		return result
+	end
+
+	def google_place_search(where)
+		#https://developers.google.com/places/web-service/search
+		api_key = "AIzaSyAw_tCp8oVeFxIyk7Nb5ZZqKxKnTpiE6yI"
+		query = "#{where}"
+		query.gsub(" ", "+")
+		url = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=hotel+in+#{query}&key=#{api_key}"
+		response = Faraday.get url
+		results = JSON.parse(response.body)
+		return results
+	end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	def find_matching_hotel(name, address, results)
 		table = Hash.new
@@ -94,40 +148,6 @@ class HotelController < ApplicationController
 		url = "http://api.sandbox.amadeus.com/v1.2/hotels/search-circle?latitude=#{lat}&longitude=#{long}&radius=#{radius}&check_in=#{check_in_date}&check_out=#{check_out_date}&number_of_results=100&apikey=#{ama_api_key}"
 		res = Faraday.get url
 		hotels_list = JSON.parse(res.body)
-	end
-
-	def google_place_next_page(tok, api_key)
-		url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?pagetoken=#{tok}&key=#{api_key}"
-		respose = Faraday.get url
-		result = JSON.parse(respose.body)
-		status = result['status']		
-		tries = 0
-		while tries != 10 and !status.nil? and status =='INVALID_REQUEST'			
-			tries = tries+1
-			sleep 1.5
-			respose = Faraday.get url
-			result = JSON.parse(respose.body)
-			puts(url)
-			status = result['status']					
-		end
-		return result
-	end
-
-	def google_place_search(where)
-		#https://developers.google.com/places/web-service/search
-		api_key = "AIzaSyAw_tCp8oVeFxIyk7Nb5ZZqKxKnTpiE6yI"
-		#https://maps.googleapis.com/maps/api/place/textsearch/xml?query=restaurants+in+Sydney&key=YOUR_API_KEY
-		query = "#{where}"
-		query.gsub(" ", "+")
-		url = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=hotel+in+#{query}&key=#{api_key}"
-		response = Faraday.get url
-		results = JSON.parse(response.body)
-		# has_next_page = results['next_page_token']
-		# if !has_next_page.nil?
-		# 	next_page_results = google_place_next_page(has_next_page, api_key)
-		# 	puts(next_page_results)
-		# end
-		results = results['results']
 	end
 
 	def google_get_lat_long(city)
