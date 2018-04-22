@@ -272,8 +272,7 @@
             <% @results.each do |result| %>            
                 <div class="cat-list-item fly-in">
                   <div class="cat-list-item-l">
-                      <% imglink = helper_get_google_img(result) %>
-                      <%= image_tag( imglink ) %>
+                      <%= image_tag( result.photo_reference ) %>                      
                   </div>
                   <div class="cat-list-item-r">
                     <div class="cat-list-item-rb">
@@ -283,13 +282,10 @@
                             <div class="cat-list-content-l">
                               <div class="cat-list-content-lb">
                                 <div class="cat-list-content-lpadding">
-                                  <div class="offer-slider-link"><a href="#"> <%= result['name'] %> </a></div>
-                                  <div class="offer-slider-location"><%= result['formatted_address'] %></div>
+                                  <div class="offer-slider-link"><a href="#"> <%= result.hotel_name%> </a></div>
+                                  <div class="offer-slider-location"><%= result.formatted_address %></div>
                                   <p> 
                                   Description
-                                  <% @joined_results.each do |k,v| %>
-                                  <%= v %>                                  
-                                  <% end %>
                                   </p>
                                   <div class="cat-icons">
                                     <span class="cat-icon-01 active"></span>

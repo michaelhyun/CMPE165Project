@@ -1,9 +1,0 @@
-					
-			@joined_results = Hash.new
-
-			@results.each do |r|
-				rname = r['name']
-				lat = r['geometry']['location']['lat']
-				lng = r['geometry']['location']['lng']
-				@join_results[''] = amadeus_search_long_lat(rname, )
-			end
