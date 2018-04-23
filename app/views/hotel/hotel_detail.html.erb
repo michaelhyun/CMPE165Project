@@ -429,7 +429,7 @@
                                 			<div class="cat-list-content-lpadding">
                                   			<div class="offer-slider-link"><a href="#">Single Room</a></div>
                                   			<div class="offer-slider-location">Max Occupancy: 2 persons</div>
-                                  			<p> consequuntur magni dolores eos.</p>
+                                  			<p> </p>
                                   			<div class="cat-icons">
                                     			<span class="cat-icon-01 active"></span>
                                     			<span class="cat-icon-02"></span>
@@ -483,7 +483,7 @@
                                 			<div class="cat-list-content-lpadding">
                                   			<div class="offer-slider-link"><a href="#">Double Room</a></div>
                                   			<div class="offer-slider-location">Max Occupancy: 2 persons</div>
-                                  			<p> consequuntur magni dolores eos.</p>
+                                  			<p> </p>
                                   			<div class="cat-icons">
                                     			<span class="cat-icon-01 active"></span>
                                     			<span class="cat-icon-02"></span>
@@ -618,7 +618,7 @@
   						<!-- // content-tabs-i // -->
   						<div class="content-tabs-i">
   							<h2>Hotel Facilities</h2>
-  							<p> consequuntur magni dolores eos qui voluptatem sequi nesciunt. </p>
+  							<p>  </p>
   							<ul class="preferences-list">
   								<li class="internet">High-speed Internet</li>
   								<li class="conf-room">Conference room</li>
@@ -642,7 +642,7 @@
   							<div class="clear"></div>
   							<div class="preferences-devider"></div>
   							<h2>Alternative Style</h2>
-  							<p>Quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui voluptatem sequi nesciunt eque porro quisqua.</p>
+  							<p>  </p>
   							<ul class="preferences-list-alt">
   								<li class="internet">High-speed Internet</li>
   								<li class="parking">Free parking</li>
@@ -1237,6 +1237,8 @@
                 </div>
                 <a href="#" class="guest-reviews-more">Load more reviews</a>
               </div>
+
+							
   						<!-- \\ content-tabs-i \\ -->
               <!-- // content-tabs-i // -->
   						<div class="content-tabs-i">
@@ -1350,16 +1352,13 @@
 					<p> </p>
 					<p> </p>
 				</div>
-				<a href="#" class="wishlist-btn">
-					<span class="wishlist-btn-l"><i></i></span>
-					<span class="wishlist-btn-r">ADD TO wish list</span>
-					<div class="clear"></div>
-				</a>
-				<a href="#" class="book-btn">
+				<%= link_to hotel_booking_path(:hotel => @selected_hotel) do %>
+					<div class ="book-btn">
 					<span class="book-btn-l"><i></i></span>
-					<span class="book-btn-r">ADD TO wish list</span>
+					<span class="book-btn-r">Book Now</span>
 					<div class="clear"></div>
-				</a>
+					</div>
+				<% end %>
 			</div>
 			
 			<div class="h-help">
@@ -1543,7 +1542,7 @@
   						<div class="reasons-rb">
 							<div class="reasons-p">
 								<div class="reasons-i-lbl">Awesome design</div>
-								<p> consequunt.</p>
+								<p>  </p>
 							</div>
   						</div>
   						<br class="clear" />

@@ -8,9 +8,9 @@
   <div class="body-wrapper">
     <div class="wrapper-padding">
     <div class="page-head">
-      <div class="page-title">Hotels - <span>list style</span></div>
+      <div class="page-title">Hotels</div>
       <div class="breadcrumbs">
-        <a href="/">Home</a> / <a href="#">Hotel</a> / <span>List style one</span>
+
       </div>
       <div class="clear"></div>
     </div>
@@ -232,47 +232,39 @@
       <div class="two-colls-right">
         <div class="two-colls-right-b">
           <div class="padding">
-          
+
             <div class="catalog-head large fly-in">
-              <label>Sorting results by:</label>
+              <label>Sorting results by:</label>              
               <div class="search-select">
-    							<select>
-    								<option>Name</option>
-    								<option>Name</option>
-    								<option>Name</option>
-    								<option>Name</option>
-    								<option>Name</option>
-    							</select>
+                <%= select_tag :name_order, options_for_select(["Ascending", "Descending"]), :id => "sort_function"%>
     					</div>
               <div class="search-select">
-    							<select>
-    								<option>Price</option>
-    								<option>Price</option>
-    								<option>Price</option>
-    								<option>Price</option>
-    								<option>Price</option>
-    							</select>
-    					</div>
-              <div class="search-select">
-    							<select>
-    								<option>Rating</option>
-    								<option>Rating</option>
-    								<option>Rating</option>
-    								<option>Rating</option>
-    								<option>Rating</option>
-    							</select>
-    					</div>
+                <%= select_tag :days, options_for_select(["Lowest Price", "Highest Price"]), :id => "sort_function"%>
+    					</div>              
               <div class="clear"></div>
             </div>
 
-            <div class="catalog-row list-rows">
+            <div id="results_list" style="display: none;"> 
+              <% @order = 'none' %>
+              <% if @order == 'Ascending' %>
+                <% @results = @results.sort_by{ |e| e[:hotel_name] } %>
+              <% end %>
+              <% if @order == 'Descending' %>
+                <% @results = @results.sort_by{ |e| -e[:hotel_name] } %>
+              <% end %>              
+              
+            </div>
 
+            <div class="catalog-row list-rows">
             <!--  Thao Started HERE:  -->
             <% if !@results.nil? %>
+
+            <%= content_tag "div", id: "myDiv", data: {results: @results} do %>
             <% @results.each do |result| %>            
-                <div class="cat-list-item fly-in">
-                  <div class="cat-list-item-l">
-                      <%= image_tag( result.photo_reference ) %>                      
+                <%= content_tag "div", id: result.hotel_name, class: "cat-list-item fly-in" do %>
+                <div class="cat-list-item fly-in" max-height: "400">
+                <div class="cat-list-item-l">
+                <%= image_tag( result.photo_reference, size: "400x400") %>                      
                   </div>
                   <div class="cat-list-item-r">
                     <div class="cat-list-item-rb">
@@ -285,7 +277,7 @@
                                   <div class="offer-slider-link"><%= link_to result.hotel_name, hotel_path(:hotel => result) %></div>
                                   <div class="offer-slider-location"><%= result.formatted_address %></div>
                                   <p> 
-                                  Description
+
                                   </p>
                                   <div class="cat-icons">
                                     <span class="cat-icon-01 active"></span>
@@ -305,15 +297,26 @@
                             <div class="cat-list-content-p">
                               <nav class="stars">
             										<ul>
-            											<li><a href="#"><img alt="" src="assets/star-b.png" /></a></li>
-            											<li><a href="#"><img alt="" src="assets/star-b.png" /></a></li>
-            											<li><a href="#"><img alt="" src="assets/star-b.png" /></a></li>
-            											<li><a href="#"><img alt="" src="assets/star-b.png" /></a></li>
-            											<li><a href="#"><img alt="" src="assets/star-a.png" /></a></li>
-            										</ul>
+            										<% rating_number = result.google_rating %>
+                                <% if rating_number >= 1 %>
+                                <li><img alt="" src="assets/star-b.png" /></li>
+                                <% end %>
+                                <% if rating_number >= 2 %>
+                                <li><img alt="" src="assets/star-b.png" /></li>
+                                <% end %>
+                                <% if rating_number >= 3 %>
+                                <li><img alt="" src="assets/star-b.png" /></li>
+                                <% end %>
+                                <% if rating_number >= 4 %>
+                                <li><img alt="" src="assets/star-b.png" /></li>
+                                <% end %>
+                                <% if rating_number >= 5 %>
+                                <li><img alt="" src="assets/star-b.png" /></li>
+                                <% end %>
+                                </ul>
             										<div class="clear"></div>
             									</nav>
-                              <div class="cat-list-review">NNN reviews</div>
+                              <div class="cat-list-review"> Rating: <%=result.google_rating %> </div>
                               <div class="offer-slider-r">
               									<b>$PRICE</b>
               									<span>avg/night</span>
@@ -329,17 +332,13 @@
                   </div>
                   <div class="clear"></div>
                 </div>
+                <% end %>
             <% end %>
             <% end %>
             </div>
             <div class="clear"></div>
-          
-            <div class="pagination">
-              <a class="active" href="#">1</a>
-              <a href="#">2</a>
-              <a href="#">3</a>
-              <div class="clear"></div>
-            </div>
+            <% end %>
+
 
           </div>
         </div>
@@ -352,8 +351,42 @@
   </div>  
 </div>
 <!-- /main-cont -->
-
-
- 
 </body>  
+<script>
+  var myData = $('#myDiv').data("results") 
+  var currentOrder = '';
+
+  $(document).ready(function(){
+    'use strict';
+     
+    /*THAO'S CUSTOM SORTING FUNCTION DO NOT TOUCH.*/
+    $('#sort_function').change(function() {
+        if( myData !== 'undefined' ){          
+        var order = $(this).val();
+        currentOrder = order;
+        var p = document.getElementById('myDiv');
+        Array.prototype.slice.call(p.children)
+          .map(function (x) { return p.removeChild(x); })
+          .sort(function (x, y) { 
+            if (currentOrder === 'Ascending')
+              return x.id > y.id;
+            else
+              return x.id < y.id; 
+          })
+          .forEach(function (x) { p.appendChild(x); });
+        }
+    });
+
+  $('[data-js-search]').change(function(event) {
+			var vall = "";
+			try {				
+				vall = $(this).val();
+				alert('You are searching for ' + this.value);
+			} catch (error) {
+				console.log("Exception thrown in javascript function 278.");
+			}
+		});
+
+  });
+</script>
 </html> 
