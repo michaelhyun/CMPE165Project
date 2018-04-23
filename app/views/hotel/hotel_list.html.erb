@@ -313,7 +313,7 @@
               									<b> $<%= result.hotel_price %></b>
               									<span>avg/night</span>
               								</div>           
-                              <div class="cat-list-btn"><%= link_to 'Select', hotel_path(:hotel => result) %></div>   
+                              <div class="cat-list-btn"><%= link_to 'Select', hotel_path(:hotel => result), :class=>'select_btn', :id => 'select_btn' %></div>   
                             </div>
                           </div>
                           <div class="clear"></div>
@@ -352,6 +352,43 @@
   $(document).ready( function(){
     'use strict';   
 
+		var slider_range = $("#slider-range");
+		var ammount_from = $("#ammount-from");
+		var ammount_to = $("#ammount-to");
+		
+    /**Function to filter out all hotels that price is not within the desired range.*/
+		$(function() {
+			slider_range.slider({
+			  range: true,
+			  min: 0,
+			  max: 500,
+			  values: [ 0, 500 ],
+			  slide: function( event, ui ) {
+				ammount_from.val(ui.values[0]+'$');
+				ammount_to.val(ui.values[1]+'$');        
+        var minV = parseFloat(slider_range.slider("values",0),10);
+        var maxV = parseFloat(slider_range.slider("values",1),10);
+        var p = document.getElementById('myDiv');
+        Array.prototype.slice
+            .call(p.children)
+            .forEach(function(x) {
+              for( var i = 0; i < myData.length; i++){
+                var curData = myData[i];
+                if( curData.hotel_name === x.id ){                
+                    var xpricing = parseFloat(curData.hotel_price);
+                    if( xpricing < minV || xpricing > maxV )
+                      x.hidden = true;
+                    else
+                      x.hidden = false;
+                }
+              }
+        });
+        }
+			});
+			ammount_from.val(slider_range.slider("values",0)+'$');
+			ammount_to.val(slider_range.slider("values",1)+'$');
+		});
+    
     $('#sort_function').change(function() {
         if( myData !== 'undefined' ){          
         currentOrder = $(this).val();   
@@ -379,9 +416,6 @@
             var yrating = 0;
             for( var i = 0; i < myData.length; i++){
               var curData = myData[i];
-              /**
-               * TODO: replace google_rating with price
-              */
               if( curData.hotel_name === x.id )
                 xrating = parseFloat(curData.hotel_price);
               else if( curData.hotel_name === y.id )
