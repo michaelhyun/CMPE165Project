@@ -239,20 +239,12 @@
                 <%= select_tag :name_order, options_for_select(["Ascending", "Descending"]), :id => "sort_function"%>
     					</div>
               <div class="search-select">
-                <%= select_tag :days, options_for_select(["Lowest Price", "Highest Price"]), :id => "sort_function"%>
-    					</div>              
+                <%= select_tag :price_order, options_for_select(["Lowest Price", "Highest Price"]), :id => "sort_by_price"%>
+    					</div>
+              <div class="search-select">
+                <%= select_tag :rating_order, options_for_select(["Lowest Rating", "Highest Rating"]), :id => "sort_by_rating"%>
+    					</div>
               <div class="clear"></div>
-            </div>
-
-            <div id="results_list" style="display: none;"> 
-              <% @order = 'none' %>
-              <% if @order == 'Ascending' %>
-                <% @results = @results.sort_by{ |e| e[:hotel_name] } %>
-              <% end %>
-              <% if @order == 'Descending' %>
-                <% @results = @results.sort_by{ |e| -e[:hotel_name] } %>
-              <% end %>              
-              
             </div>
 
             <div class="catalog-row list-rows">
@@ -353,40 +345,84 @@
 <!-- /main-cont -->
 </body>  
 <script>
+   /*THAO'S CUSTOM SORTING FUNCTIONS DO NOT TOUCH.*/
   var myData = $('#myDiv').data("results") 
   var currentOrder = '';
 
-  $(document).ready(function(){
-    'use strict';
-     
-    /*THAO'S CUSTOM SORTING FUNCTION DO NOT TOUCH.*/
+  $(document).ready( function(){
+    'use strict';   
+
     $('#sort_function').change(function() {
         if( myData !== 'undefined' ){          
-        var order = $(this).val();
-        currentOrder = order;
+        currentOrder = $(this).val();   
         var p = document.getElementById('myDiv');
         Array.prototype.slice.call(p.children)
           .map(function (x) { return p.removeChild(x); })
-          .sort(function (x, y) { 
+          .sort(function (x, y) {            
             if (currentOrder === 'Ascending')
               return x.id > y.id;
-            else
-              return x.id < y.id; 
+            else if (currentOrder === 'Descending')
+              return x.id < y.id;
           })
           .forEach(function (x) { p.appendChild(x); });
         }
     });
 
-  $('[data-js-search]').change(function(event) {
-			var vall = "";
-			try {				
-				vall = $(this).val();
-				alert('You are searching for ' + this.value);
-			} catch (error) {
-				console.log("Exception thrown in javascript function 278.");
-			}
-		});
+    $('#sort_by_price').change(function() {
+      if( myData !== 'undefined' ){          
+        currentOrder = $(this).val();   
+        var p = document.getElementById('myDiv');
+        Array.prototype.slice.call(p.children)
+          .map(function (x) { return p.removeChild(x); })
+          .sort(function (x, y) {            
+            var xrating = 0;
+            var yrating = 0;
+            for( var i = 0; i < myData.length; i++){
+              var curData = myData[i];
+              /**
+               * TODO: replace google_rating with price
+              */
+              if( curData.hotel_name === x.id )
+                xrating = parseFloat(curData.google_rating);
+              else if( curData.hotel_name === y.id )
+                yrating = parseFloat(curData.google_rating);
+            }
+            if (currentOrder === 'Lowest Rating')
+              return xrating > yrating;
+            else if (currentOrder === 'Highest Rating')
+              return xrating < yrating;
+          })
+          .forEach(function (x) { p.appendChild(x); });
+        }
+    });
 
-  });
+    $('#sort_by_rating').change(function() {
+      if( myData !== 'undefined' ){          
+        currentOrder = $(this).val();   
+        var p = document.getElementById('myDiv');
+        Array.prototype.slice.call(p.children)
+          .map(function (x) { return p.removeChild(x); })
+          .sort(function (x, y) {            
+            var xrating = 0;
+            var yrating = 0;
+            for( var i = 0; i < myData.length; i++){
+              var curData = myData[i];
+              if( curData.hotel_name === x.id )
+                xrating = parseFloat(curData.google_rating);
+              else if( curData.hotel_name === y.id )
+                yrating = parseFloat(curData.google_rating);
+
+              if( xrating > 0 && yrating > 0)
+                break;
+            }
+            if (currentOrder === 'Lowest Rating')
+              return xrating > yrating;
+            else if (currentOrder === 'Highest Rating')
+              return xrating < yrating;
+          })
+          .forEach(function (x) { p.appendChild(x); });
+        }
+    });
+    });
 </script>
 </html> 
