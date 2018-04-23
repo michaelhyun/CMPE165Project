@@ -40,7 +40,7 @@
 <% if !user_signed_in? %>
 	<div class="autorize-padding">
 	<h6 class="autorize-lbl">Welcome! Login in to Your Accont</h6>
-	<%= form_for(:user, :url => session_path(:user)) do |f| %>
+	<%= form_for(:user,:url => session_path(:user), :remote => true) do |f| %>
 	<div class="field">
     	<%= f.label :email %><br />
     	<%= f.email_field :email, autofocus: true, autocomplete: "email" %>
@@ -50,12 +50,12 @@
 		<%= f.password_field :password, autocomplete: "off" %>
 	</div>
 	<footer class="autorize-bottom">
-	<%= f.check_box :remember_me %>
-	<%= f.label :remember_me %>
 	<%= f.submit 'Sign in' , class: 'authorize-btn' %>
 	<%= link_to "Forgot your password?", new_password_path(:user), class: 'authorize-forget-pass' %>
 	<div class="clear"></div>
 	</footer> 
+	<%= f.check_box :remember_me %>
+	<%= f.label :remember_me %>
 	</div>
 	<% end %>
 <% end %>

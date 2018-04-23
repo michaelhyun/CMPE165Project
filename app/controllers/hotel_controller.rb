@@ -28,6 +28,7 @@ class HotelController < ApplicationController
 				longitude = 			result['geometry']['location']['lng']
 				latitude =  			result['geometry']['location']['lat']
 				photoref =				helper_get_google_img(result)
+				hprice = rand(50..199)
 				hotell = Hotel.create(  :hotel_name => hname, 
 										:city_name => location, 
 										:latitude=> latitude, 
@@ -36,7 +37,8 @@ class HotelController < ApplicationController
 										:google_id => google_id, 
 										:google_place_id => google_place_id, 
 										:google_rating => google_rating, 
-										:photo_reference => photoref )			
+										:photo_reference => photoref,
+										:hotel_price => hprice )			
 				#store to database
 				hotell.save
 		end

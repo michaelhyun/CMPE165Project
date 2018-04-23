@@ -310,7 +310,7 @@
             									</nav>
                               <div class="cat-list-review"> Rating: <%=result.google_rating %> </div>
                               <div class="offer-slider-r">
-              									<b>$PRICE</b>
+              									<b> $<%= result.hotel_price %></b>
               									<span>avg/night</span>
               								</div>           
                               <div class="cat-list-btn"><%= link_to 'Select', hotel_path(:hotel => result) %></div>   
@@ -383,13 +383,13 @@
                * TODO: replace google_rating with price
               */
               if( curData.hotel_name === x.id )
-                xrating = parseFloat(curData.google_rating);
+                xrating = parseFloat(curData.hotel_price);
               else if( curData.hotel_name === y.id )
-                yrating = parseFloat(curData.google_rating);
+                yrating = parseFloat(curData.hotel_price);
             }
-            if (currentOrder === 'Lowest Rating')
+            if (currentOrder === 'Lowest Price')
               return xrating > yrating;
-            else if (currentOrder === 'Highest Rating')
+            else if (currentOrder === 'Highest Price')
               return xrating < yrating;
           })
           .forEach(function (x) { p.appendChild(x); });
@@ -411,7 +411,6 @@
                 xrating = parseFloat(curData.google_rating);
               else if( curData.hotel_name === y.id )
                 yrating = parseFloat(curData.google_rating);
-
               if( xrating > 0 && yrating > 0)
                 break;
             }
