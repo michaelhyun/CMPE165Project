@@ -14,21 +14,21 @@ class HotelController < ApplicationController
 	end
 
     # GET payment form
-    # NOTE: is NOT currently accessed
 	def hotel_booking
     end
 
     # POST for submitting payment info
     def book_hotel
+        # prices in stripe are defined in cents, hence 500 => $5.00
         # TODO: change hard-coded price to price of specific hotel room
         @amount=500
 
         begin
             # for now, creates a new customer and (transparently) unique customer id per transaction
-            # TODO: store customer id in User model (this associates user with payment credentials stored by stripe)
+            # TODO: store customer.id in User model (this associates user with payment credentials stored by stripe)
             customer = Stripe::Customer.create(
-                :email => params[:stripeEmail],
-                :source  => params[:stripeToken]
+                :email   => params[:stripeEmail],
+                :source  => params[:stripeToken] # this token corresponds to the entered card details
             )
 
             # creates one-time charge for hotel booking
