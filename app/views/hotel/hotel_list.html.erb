@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-</head>  
-<body>  
+</head>
+<body>
 <!-- main-cont -->
 <div class="main-cont">
   <div class="body-wrapper">
@@ -16,16 +16,16 @@
     </div>
     <div class="two-colls">
       <div class="two-colls-left">
-        
+
         <div class="srch-results-lbl fly-in">
           <span>
-          Search Result : 
+          Search Result :
           <% if !@results.nil? %>
             <%= @results.count %>
           <% end %>
           </span>
         </div>
-        
+
       <form method="get">
         <div class="side-block fly-in">
           <div class="side-block-search">
@@ -40,14 +40,14 @@
 						<div class="srch-tab-line">
 							<div class="srch-tab-left">
 								<label>Check in</label>
-								<div class="input-a"><input type="text" value="" class="date-inpt" placeholder="mm/dd/yy"> <span class="date-icon"></span></div>	
+								<div class="input-a"><input type="text" value="" class="date-inpt" placeholder="mm/dd/yy"> <span class="date-icon"></span></div>
 							</div>
 							<div class="srch-tab-right">
 								<label>Check out</label>
-								<div class="input-a"><input type="text" value="" class="date-inpt" placeholder="mm/dd/yy"> <span class="date-icon"></span></div>	
+								<div class="input-a"><input type="text" value="" class="date-inpt" placeholder="mm/dd/yy"> <span class="date-icon"></span></div>
 							</div>
 							<div class="clear"></div>
-						</div>            
+						</div>
 						<!-- \\ -->
 						<!-- // -->
 						<div class="srch-tab-line no-margin-bottom">
@@ -90,11 +90,11 @@
 							<div class="clear"></div>
 						</div>
 						<!-- \\ -->
-              <button type="submit" class="srch-btn">Search</button> 
-    				</div>       
-          </div>          
+              <button type="submit" class="srch-btn">Search</button>
+    				</div>
+          </div>
         </div>
-      </form>        
+      </form>
 
         <!-- // side // -->
         <div class="side-block fly-in">
@@ -102,22 +102,22 @@
             <div class="side-padding">
               <div class="side-lbl">Price</div>
               <div class="price-ranger">
-                <div id="slider-range"></div>              
+                <div id="slider-range"></div>
               </div>
               <div class="price-ammounts">
                 <input type="text" id="ammount-from" readonly>
                 <input type="text" id="ammount-to" readonly>
                 <div class="clear"></div>
-              </div>              
+              </div>
             </div>
-          </div>  
+          </div>
         </div>
         <!-- \\ side \\ -->
         <!-- // side // -->
         <div class="side-block fly-in">
           <div class="side-stars">
             <div class="side-padding">
-              <div class="side-lbl">Star rating</div>  
+              <div class="side-lbl">Star rating</div>
               <div class="star-rating-l">Choose Rating</div>
               <div class="star-rating-r">
                 <a href="#"><img alt="" src="assets/rating-b.png"></a>
@@ -126,28 +126,28 @@
                 <a href="#"><img alt="" src="assets/rating-b.png"></a>
                 <a href="#"><img alt="" src="assets/rating-a.png"></a>
               </div>
-              <div class="clear"></div>            
+              <div class="clear"></div>
             </div>
-          </div>  
+          </div>
         </div>
         <!-- \\ side \\ -->
         <!-- // side // -->
         <div class="side-block fly-in">
           <div class="side-stars">
             <div class="side-padding">
-              <div class="side-lbl">Accomodation type</div>  
+              <div class="side-lbl">Accomodation type</div>
               <div class="checkbox">
                 <label>
                   <input type="checkbox" value="" />
                   All (823)
                 </label>
-              </div> 
+              </div>
               <div class="checkbox">
                 <label>
                   <input type="checkbox" value="" />
                   Hotel (326)
                 </label>
-              </div> 
+              </div>
               <div class="checkbox">
                 <label>
                   <input type="checkbox" value="" />
@@ -171,28 +171,28 @@
                   <input type="checkbox" value="" />
                   Apartment (214)
                 </label>
-              </div>           
+              </div>
             </div>
-          </div>  
+          </div>
         </div>
         <!-- \\ side \\ -->
         <!-- // side // -->
         <div class="side-block fly-in">
           <div class="side-stars">
             <div class="side-padding">
-              <div class="side-lbl">Preferences</div>  
+              <div class="side-lbl">Preferences</div>
               <div class="checkbox">
                 <label>
                   <input type="checkbox" value="" />
                   Bathroom (823)
                 </label>
-              </div> 
+              </div>
               <div class="checkbox">
                 <label>
                   <input type="checkbox" value="" />
                   Cable TV (326)
                 </label>
-              </div> 
+              </div>
               <div class="checkbox">
                 <label>
                   <input type="checkbox" value="" />
@@ -222,19 +222,19 @@
                   <input type="checkbox" value="" />
                   Pets allowed (64)
                 </label>
-              </div>           
+              </div>
             </div>
-          </div>  
+          </div>
         </div>
         <!-- \\ side \\ -->
-        
+
       </div>
       <div class="two-colls-right">
         <div class="two-colls-right-b">
           <div class="padding">
 
             <div class="catalog-head large fly-in">
-              <label>Sorting results by:</label>              
+              <label>Sorting results by:</label>
               <div class="search-select">
                 <%= select_tag :name_order, options_for_select(["Ascending", "Descending"]), :id => "sort_function"%>
     					</div>
@@ -252,11 +252,11 @@
             <% if !@results.nil? %>
 
             <%= content_tag "div", id: "myDiv", data: {results: @results} do %>
-            <% @results.each do |result| %>            
+            <% @results.each do |result| %>
                 <%= content_tag "div", id: result.hotel_name, class: "cat-list-item fly-in" do %>
                 <div class="cat-list-item fly-in" max-height: "400">
                 <div class="cat-list-item-l">
-                <%= image_tag( result.photo_reference, size: "400x400") %>                      
+                <%= image_tag( result.photo_reference, size: "400x400") %>
                   </div>
                   <div class="cat-list-item-r">
                     <div class="cat-list-item-rb">
@@ -268,7 +268,7 @@
                                 <div class="cat-list-content-lpadding">
                                   <div class="offer-slider-link"><%= link_to result.hotel_name, hotel_path(:hotel => result) %></div>
                                   <div class="offer-slider-location"><%= result.formatted_address %></div>
-                                  <p> 
+                                  <p>
 
                                   </p>
                                   <div class="cat-icons">
@@ -312,8 +312,8 @@
                               <div class="offer-slider-r">
               									<b> $<%= result.hotel_price %></b>
               									<span>avg/night</span>
-              								</div>           
-                              <div class="cat-list-btn"><%= link_to 'Select', hotel_path(:hotel => result), :class=>'select_btn', :id => 'select_btn' %></div>   
+              								</div>
+                              <div class="cat-list-btn"><%= link_to 'book now', hotel_path(:hotel => result), :class=>'select_btn', :id => 'select_btn' %></div>   
                             </div>
                           </div>
                           <div class="clear"></div>
@@ -338,24 +338,24 @@
       </div>
     </div>
     <div class="clear"></div>
-    
-    </div>	
-  </div>  
+
+    </div>
+  </div>
 </div>
 <!-- /main-cont -->
-</body>  
+</body>
 <script>
    /*THAO'S CUSTOM SORTING FUNCTIONS DO NOT TOUCH.*/
-  var myData = $('#myDiv').data("results") 
+  var myData = $('#myDiv').data("results")
   var currentOrder = '';
 
   $(document).ready( function(){
-    'use strict';   
+    'use strict';
 
 		var slider_range = $("#slider-range");
 		var ammount_from = $("#ammount-from");
 		var ammount_to = $("#ammount-to");
-		
+
     /**Function to filter out all hotels that price is not within the desired range.*/
 		$(function() {
 			slider_range.slider({
@@ -365,7 +365,7 @@
 			  values: [ 0, 500 ],
 			  slide: function( event, ui ) {
 				ammount_from.val(ui.values[0]+'$');
-				ammount_to.val(ui.values[1]+'$');        
+				ammount_to.val(ui.values[1]+'$');
         var minV = parseFloat(slider_range.slider("values",0),10);
         var maxV = parseFloat(slider_range.slider("values",1),10);
         var p = document.getElementById('myDiv');
@@ -374,7 +374,7 @@
             .forEach(function(x) {
               for( var i = 0; i < myData.length; i++){
                 var curData = myData[i];
-                if( curData.hotel_name === x.id ){                
+                if( curData.hotel_name === x.id ){
                     var xpricing = parseFloat(curData.hotel_price);
                     if( xpricing < minV || xpricing > maxV )
                       x.hidden = true;
@@ -388,14 +388,14 @@
 			ammount_from.val(slider_range.slider("values",0)+'$');
 			ammount_to.val(slider_range.slider("values",1)+'$');
 		});
-    
+
     $('#sort_function').change(function() {
-        if( myData !== 'undefined' ){          
-        currentOrder = $(this).val();   
+        if( myData !== 'undefined' ){
+        currentOrder = $(this).val();
         var p = document.getElementById('myDiv');
         Array.prototype.slice.call(p.children)
           .map(function (x) { return p.removeChild(x); })
-          .sort(function (x, y) {            
+          .sort(function (x, y) {
             if (currentOrder === 'Ascending')
               return x.id > y.id;
             else if (currentOrder === 'Descending')
@@ -406,12 +406,12 @@
     });
 
     $('#sort_by_price').change(function() {
-      if( myData !== 'undefined' ){          
-        currentOrder = $(this).val();   
+      if( myData !== 'undefined' ){
+        currentOrder = $(this).val();
         var p = document.getElementById('myDiv');
         Array.prototype.slice.call(p.children)
           .map(function (x) { return p.removeChild(x); })
-          .sort(function (x, y) {            
+          .sort(function (x, y) {
             var xrating = 0;
             var yrating = 0;
             for( var i = 0; i < myData.length; i++){
@@ -431,12 +431,12 @@
     });
 
     $('#sort_by_rating').change(function() {
-      if( myData !== 'undefined' ){          
-        currentOrder = $(this).val();   
+      if( myData !== 'undefined' ){
+        currentOrder = $(this).val();
         var p = document.getElementById('myDiv');
         Array.prototype.slice.call(p.children)
           .map(function (x) { return p.removeChild(x); })
-          .sort(function (x, y) {            
+          .sort(function (x, y) {
             var xrating = 0;
             var yrating = 0;
             for( var i = 0; i < myData.length; i++){
@@ -458,4 +458,4 @@
     });
     });
 </script>
-</html> 
+</html>
