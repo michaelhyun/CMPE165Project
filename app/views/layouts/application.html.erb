@@ -73,7 +73,7 @@
     <%= f.label :password %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
+    <% end %><br/>
     <%= f.password_field :password, autocomplete: "off" %>
   </div>
   <div class="field">
@@ -172,7 +172,7 @@
 					<ul>
 						<li><a><%= link_to 'Home', root_path %></a>
 						</li>
-						<li><a><%= link_to 'Hotels', hotel_listing_path %></a>
+						<li><a><%= link_to 'Hotels', hotel_listing_path(:location => 'San Jose') %></a>
 						</li>
 						<li><a>Pages</a>
 							<ul>
