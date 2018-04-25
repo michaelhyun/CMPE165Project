@@ -10,7 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180414070941) do
+ActiveRecord::Schema.define(version: 20180423063629) do
+
+  create_table "hotels", force: :cascade do |t|
+    t.string "hotel_name"
+    t.decimal "latitude"
+    t.decimal "longitude"
+    t.string "google_id"
+    t.string "google_place_id"
+    t.string "photo_reference"
+    t.decimal "google_rating"
+    t.string "formatted_address"
+    t.string "city_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "reserved_by"
+    t.decimal "hotel_price", default: "0.0"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false

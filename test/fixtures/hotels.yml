@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  hotel_name: MyString
+  latitude: 9.99
+  longitude: 9.99
+  google_id: MyString
+  google_place_id: MyString
+  photo_reference: MyString
+  google_rating: 9.99
+  formatted_address: MyString
+  city_name: MyString
+
+two:
+  hotel_name: MyString
+  latitude: 9.99
+  longitude: 9.99
+  google_id: MyString
+  google_place_id: MyString
+  photo_reference: MyString
+  google_rating: 9.99
+  formatted_address: MyString
+  city_name: MyString

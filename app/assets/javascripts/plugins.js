@@ -436,8 +436,8 @@
             } else {
                 $pp_pic_holder.find(".pp_description").hide()
             }
-            movie_width = parseFloat(i("width", pp_images[set_position])) ? i("width", pp_images[set_position]) : settings.default_width.toString();
-            movie_height = parseFloat(i("height", pp_images[set_position])) ? i("height", pp_images[set_position]) : settings.default_height.toString();
+            movie_width = parseFloat(i("width", pp_images[set_position])) ? i("width", pp_images[set_position]) : "400";
+            movie_height = parseFloat(i("height", pp_images[set_position])) ? i("height", pp_images[set_position]) : "400";
             u = false;
             if (movie_height.indexOf("%") != -1) {
                 movie_height = parseFloat(e(window).height() * parseFloat(movie_height) / 100 - 150);
