@@ -176,6 +176,9 @@
 						</li>
 						<li><a><%= link_to 'Hotels', hotel_listing_path %></a>
 						</li>
+						<% if user_signed_in? %>
+						<li><a><%= link_to 'Rewards', rewards_path %></a>
+						<% end %>
 						<li><a>Pages</a>
 							<ul>
 								<li><a><%= link_to 'About Us', aboutus_path %></a></li>

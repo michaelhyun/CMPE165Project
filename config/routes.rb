@@ -11,6 +11,8 @@ get 'hotel' => 'hotel#hotel_detail'
 get 'hotel_booking' => 'hotel#hotel_booking'        # payment page
 post 'hotel_booking' => 'hotel#book_hotel'          # submitting payment info
 get 'booking_complete' => 'hotel#booking_complete'  # confirmation page
+get 'rewards' => 'hotel#_rewards_card'                    # rewards page
+
 
 get 'aboutus' => 'admin#about_us'
 get 'contactus' => 'admin#contact_us'
