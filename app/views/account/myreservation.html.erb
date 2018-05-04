@@ -58,12 +58,12 @@
 
                                                                 </p>
                                                                 <div class="cat-icons">
-                                                                    <span class="cat-icon-01 active"></span>
-                                                                    <span class="cat-icon-02"></span>
-                                                                    <span class="cat-icon-03"></span>
-                                                                    <span class="cat-icon-04"></span>
-                                                                    <span class="cat-icon-05"></span>
-                                                                    <span class="cat-icon-06"></span>
+                                                                    <div class="check-in-date"> Check in date: <%= result.check_in %> </div>
+                                                                    <div class="check-in-date"> Check out date: <%= result.check_out %> </div>
+                                                                    <div class="check-in-date"> Number of adult: <%= result.num_adults %> </div>
+                                                                    <div class="check-in-date"> Number of child: <%= result.num_child %> </div>
+                                                                    <div class="check-in-date"> Room Type: <%= result.room_type %> </div>
+
                                                                     <div class="clear"></div>
                                                                 </div>
                                                             </div>
@@ -99,7 +99,10 @@
                                                             <b> $<%= hotel.hotel_price %></b>
                                                             <span>avg/night</span>
                                                         </div>
-                                                        <div class="cat-list-btn"><%= link_to 'book now', hotel_path(:hotel => hotel), :class=>'select_btn', :id => 'select_btn' %></div>
+
+                                                        <!-- FIX THIS -->
+                                                        <div class="cat-list-btn"><%= link_to 'update', hotel_path(:hotel => hotel), :class=>'select_btn', :id => 'select_btn' %></div>
+                                                        <div class="cat-list-btn"><%= link_to 'delete', hotel_path(:hotel => hotel), :class=>'select_btn', :id => 'select_btn' %></div>
                                                     </div>
                                                 </div>
                                                 <div class="clear"></div>
