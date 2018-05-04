@@ -80,7 +80,6 @@
               <div class="star-rating-l">Choose Rating</div>
               
               <div class="star-rating-r">                
-
                 <%= link_to "#", :id => 'stars_link_1' do %>
                     <img src="assets/rating-a.png">
                 <% end %>
@@ -234,22 +233,56 @@
   var myData = $('#myDiv').data("results")
   var currentOrder = '';
 
-    function toggleStars(star, index){
-          var starShown = false;
+    function toggleStarsOn(star, index){  
           var currentImgSrc = star.children[0].src;
           //Toggle the star to OFF.
           if(currentImgSrc.includes("rating-a.png")){
-            starShown = false;
             star.children[0].src = currentImgSrc.replace("rating-a.png", "rating-b.png");
-          }else{
-            starShown = true;
-            star.children[0].src = currentImgSrc.replace("rating-b.png", "rating-a.png");
           }
       }
+    function toggleStarsOff(star){
+      var currentImgSrc = star.children[0].src;
+      if(currentImgSrc.includes("rating-b.png")){
+        star.children[0].src = currentImgSrc.replace("rating-b.png", "rating-a.png");
+      }
+    }
+
+   
 
 
   $(document).ready( function(){
     'use strict';
+
+    function sortForStars(a, b){
+      if( myData !== 'undefined' ){
+        currentOrder = $(this).val();
+        var p = document.getElementById('myDiv');
+        Array.prototype.slice.call(p.children)
+          .map(function (x) { return p.removeChild(x); })
+          .sort(function (x, y) {
+            var temprating = 0;
+            var rating = 0;
+            for( var i = 0; i < myData.length; i++){
+              var curData = myData[i];
+              if( curData.hotel_name === x.id || curData.hotel_name === y.id)
+              {
+                temprating = parseFloat(curData.google_rating);
+                x.hidden = true;
+              }
+              if(temprating >= a && temprating < b)
+              {
+                rating = parseFloat(curData.google_rating);
+                x.hidden = false;
+              }
+              if(rating > 0)
+                break;
+            }  
+            if(rating >= a && rating < b) 
+              return rating;
+          })
+          .forEach(function (x) { p.appendChild(x); });
+        } 
+    }
 
 		var slider_range = $("#slider-range");
 		var ammount_from = $("#ammount-from");
@@ -357,34 +390,85 @@
     });
 
     $('#stars_link_1').click(function(event){
+      for(var i = 1; i <= 5; i++)
+      {
+        var p = document.getElementById('stars_link_'+i);
+        toggleStarsOff(p);
+      }
+
       var p = document.getElementById('stars_link_1');
-      toggleStars(p, "1");
+      toggleStarsOn(p);
+
+      sortForStars(1,2);
       event.preventDefault(); 
     });
 
     $('#stars_link_2').click(function(event){
-      var p = document.getElementById('stars_link_2');
-      toggleStars(p, "2");
+      for(var i = 1; i <= 5; i++)
+      {
+        var p = document.getElementById('stars_link_'+i);
+        toggleStarsOff(p);
+      }
 
+      for(var i = 1; i <= 2; i++)
+      {
+        var p = document.getElementById('stars_link_'+i);
+        toggleStarsOn(p);
+      }
+
+      sortForStars(2,3);
       event.preventDefault(); 
     });
 
     $('#stars_link_3').click(function(event){
-      var p = document.getElementById('stars_link_3');
-      toggleStars(p, "3");
+      
+      for(var i = 1; i <= 5; i++)
+      {
+        var p = document.getElementById('stars_link_'+i);
+        toggleStarsOff(p);
+      }
 
+      for(var i = 1; i <= 3; i++)
+      {
+        var p = document.getElementById('stars_link_'+i);
+        toggleStarsOn(p);
+      }
+
+      sortForStars(3,4);
       event.preventDefault(); 
     });
 
     $('#stars_link_4').click(function(event){
-      var p = document.getElementById('stars_link_4');
-      toggleStars(p, "4");
-      event.preventDefault(); 
+      for(var i = 1; i <= 5; i++)
+      {
+        var p = document.getElementById('stars_link_'+i);
+        toggleStarsOff(p);
+      }
+
+      for(var i = 1; i <= 4; i++)
+      {
+        var p = document.getElementById('stars_link_'+i);
+        toggleStarsOn(p);
+      }
+      
+      sortForStars(4,5);
+      event.preventDefault();
     });
 
+
     $('#stars_link_5').click(function(event){
-      var p = document.getElementById('stars_link_5');
-      toggleStars(p, "5");    
+      for(var i = 1; i <= 5; i++)
+      {
+        var p = document.getElementById('stars_link_'+i);
+        toggleStarsOff(p);
+      }
+
+      for(var i = 1; i <= 5; i++)
+      {
+        var p = document.getElementById('stars_link_'+i);
+        toggleStarsOn(p);
+      }   
+      sortForStars(5,5);
       event.preventDefault(); 
     });
 
