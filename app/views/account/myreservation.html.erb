@@ -37,10 +37,12 @@
 
                             <%= content_tag "div", id: "myDiv", data: {results: @results} do %>
                             <% @results.each do |result| %>
-                            <%= content_tag "div", id: result.hotel_name, class: "cat-list-item fly-in" do %>
+                            <h1><%= result.id%></h1>
+                            <% hotel = Hotel.find(result.hotel_id) %>
+                            <%= content_tag "div", id: hotel.hotel_name, class: "cat-list-item fly-in" do %>
                             <div class="cat-list-item fly-in" max-height: "400">
                                 <div class="cat-list-item-l">
-                                    <%= image_tag(result.photo_reference, :style => "height: 150px; width: 200px") %>
+                                    <%= image_tag(hotel.photo_reference, :style => "height: 150px; width: 200px") %>
                                 </div>
                                 <div class="cat-list-item-r">
                                     <div class="cat-list-item-rb">
@@ -50,8 +52,8 @@
                                                     <div class="cat-list-content-l">
                                                         <div class="cat-list-content-lb">
                                                             <div class="cat-list-content-lpadding">
-                                                                <div class="offer-slider-link"><%= link_to result.hotel_name, hotel_path(:hotel => result) %></div>
-                                                                <div class="offer-slider-location"><%= result.formatted_address %></div>
+                                                                <div class="offer-slider-link"><%= link_to hotel.hotel_name, hotel_path(:hotel => hotel) %></div>
+                                                                <div class="offer-slider-location"><%= hotel.formatted_address %></div>
                                                                 <p>
 
                                                                 </p>
@@ -73,7 +75,7 @@
                                                     <div class="cat-list-content-p">
                                                         <nav class="stars">
                                                             <ul>
-                                                                <% rating_number = result.google_rating %>
+                                                                <% rating_number = hotel.google_rating %>
                                                                 <% if rating_number >= 1 %>
                                                                 <li><img alt="" src="assets/star-b.png" /></li>
                                                                 <% end %>
@@ -92,12 +94,12 @@
                                                             </ul>
                                                             <div class="clear"></div>
                                                         </nav>
-                                                        <div class="cat-list-review"> Rating: <%=result.google_rating %> </div>
+                                                        <div class="cat-list-review"> Rating: <%=hotel.google_rating %> </div>
                                                         <div class="offer-slider-r">
-                                                            <b> $<%= result.hotel_price %></b>
+                                                            <b> $<%= hotel.hotel_price %></b>
                                                             <span>avg/night</span>
                                                         </div>
-                                                        <div class="cat-list-btn"><%= link_to 'book now', hotel_path(:hotel => result), :class=>'select_btn', :id => 'select_btn' %></div>
+                                                        <div class="cat-list-btn"><%= link_to 'book now', hotel_path(:hotel => hotel), :class=>'select_btn', :id => 'select_btn' %></div>
                                                     </div>
                                                 </div>
                                                 <div class="clear"></div>
