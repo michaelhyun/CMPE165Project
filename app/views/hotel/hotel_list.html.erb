@@ -103,11 +103,23 @@
               <div class="star-rating-l">Choose Rating</div>
               
               <div class="star-rating-r">                
-                <a onclick=""><img alt="" src="assets/rating-b.png"></a>
-                <a onclick=""><img alt="" src="assets/rating-b.png"></a>
-                <a onclick=""><img alt="" src="assets/rating-b.png"></a>
-                <a onclick=""><img alt="" src="assets/rating-b.png"></a>
-                <a onclick=""><img alt="" src="assets/rating-a.png"></a>
+
+                <%= link_to "#", :id => 'stars_link_1' do %>
+                    <img src="assets/rating-a.png">
+                <% end %>
+                <%= link_to "#", :id => 'stars_link_2' do %>
+                    <img src="assets/rating-a.png">
+                <% end %>
+                <%= link_to "#", :id => 'stars_link_3' do %>
+                    <img src="assets/rating-a.png">
+                <% end %>
+                <%= link_to "#", :id => 'stars_link_4' do %>
+                    <img src="assets/rating-a.png">
+                <% end %>
+                <%= link_to "#", :id => 'stars_link_5' do %>
+                    <img src="assets/rating-a.png">
+                <% end %>
+                
               </div>
 
               <div class="clear"></div>
@@ -257,11 +269,19 @@
                                   </p>
                                   <div class="cat-icons">
                                     <span class="cat-icon-01 active"></span>
-                                    <span class="cat-icon-02"></span>
                                     <span class="cat-icon-03"></span>
-                                    <span class="cat-icon-04"></span>
-                                    <span class="cat-icon-05"></span>
-                                    <span class="cat-icon-06"></span>
+                                    <%  has_printing= rand(0..1) %>
+                                    <% if has_printing == 1 %>
+                                      <span class="cat-icon-04 active"></span>
+                                    <% else %>                                    
+                                      <span class="cat-icon-04"></span>                                    
+                                    <% end %>  
+                                    <%  has_airport = rand(0..1) %>
+                                    <% if has_airport == 1 %>
+                                       <span class="cat-icon-05 active"></span>
+                                    <% else %>
+                                       <span class="cat-icon-05"></span>
+                                    <% end %>                                    
                                     <div class="clear"></div>
                                   </div>
                                 </div>
@@ -333,13 +353,26 @@
   var myData = $('#myDiv').data("results")
   var currentOrder = '';
 
+    function toggleStars(star, index){
+          var starShown = false;
+          var currentImgSrc = star.children[0].src;
+          //Toggle the star to OFF.
+          if(currentImgSrc.includes("rating-a.png")){
+            starShown = false;
+            star.children[0].src = currentImgSrc.replace("rating-a.png", "rating-b.png");
+          }else{
+            starShown = true;
+            star.children[0].src = currentImgSrc.replace("rating-b.png", "rating-a.png");
+          }
+      }
+
+
   $(document).ready( function(){
     'use strict';
 
 		var slider_range = $("#slider-range");
 		var ammount_from = $("#ammount-from");
 		var ammount_to = $("#ammount-to");
-
     /**Function to filter out all hotels that price is not within the desired range.*/
 		$(function() {
 			slider_range.slider({
@@ -442,8 +475,37 @@
 
     });
 
+    $('#stars_link_1').click(function(event){
+      var p = document.getElementById('stars_link_1');
+      toggleStars(p, "1");
+      event.preventDefault(); 
+    });
 
+    $('#stars_link_2').click(function(event){
+      var p = document.getElementById('stars_link_2');
+      toggleStars(p, "2");
 
+      event.preventDefault(); 
+    });
+
+    $('#stars_link_3').click(function(event){
+      var p = document.getElementById('stars_link_3');
+      toggleStars(p, "3");
+
+      event.preventDefault(); 
+    });
+
+    $('#stars_link_4').click(function(event){
+      var p = document.getElementById('stars_link_4');
+      toggleStars(p, "4");
+      event.preventDefault(); 
+    });
+
+    $('#stars_link_5').click(function(event){
+      var p = document.getElementById('stars_link_5');
+      toggleStars(p, "5");    
+      event.preventDefault(); 
+    });
 
     $('#select_room').change(function() {
         //todo modify listings based on room selection.
