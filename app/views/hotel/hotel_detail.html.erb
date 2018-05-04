@@ -1,49 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
         <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
-
         <script type="text/javascript">
-            google.maps.event.addDomListener(window, 'load', init);
-
-            function init() {
-                var mylat = '52.569334';
-                var mylong ='13.380216';
-                var mapOptions = {
-                    zoom: 13,
-                    disableDefaultUI: true,
-                    zoomControl: true,
-                    zoomControlOptions: {
-                      style: google.maps.ZoomControlStyle.LARGE,
-                      position: google.maps.ControlPosition.LEFT_CENTER
-                    },
-                    center: new google.maps.LatLng(mylat, mylong), // New York
-              };
-                var mapElement = document.getElementById('map');
-                var map = new google.maps.Map(mapElement, mapOptions);
-                google.maps.event.addDomListener(window, 'resize', init);
-
-			google.maps.event.addListenerOnce(map, 'idle', function(){
-  			setTimeout( function() {
-    			var place = new google.maps.LatLng(52.569334, 13.380216);
-    			var image = new google.maps.MarkerImage('assets/map.png',
-    					new google.maps.Size(19, 29),
-    					new google.maps.Point(0,0),
-    					new google.maps.Point(0, 32));
-     			var marker = new google.maps.Marker({
-        			map:map,
-        			icon: image,
-        			draggable:false,
-        			animation: google.maps.Animation.DROP,
-        			position: place
-      			});
-    			$('.map-contacts').each(function(index){
-          			$(this).delay(141*index).fadeIn();
-    			});
-  			} , 500);
-			});
-            }
-
+        	google.maps.event.addDomListener(window, 'load', init); 
+					function init() {
+					var mylat = document.getElementById("latitude_tag").value;//'52.569334';
+					var mylong =document.getElementById("longitude_tag").value;//'13.380216';                
+					var mapOptions = {
+					zoom: 13,
+					disableDefaultUI: true,
+					zoomControl: true,
+					zoomControlOptions: {
+					style: google.maps.ZoomControlStyle.LARGE,
+					position: google.maps.ControlPosition.LEFT_CENTER
+					},
+					center: new google.maps.LatLng(mylat, mylong), // New York 
+					};
+					var mapElement = document.getElementById('map');
+					var map = new google.maps.Map(mapElement, mapOptions);
+					google.maps.event.addDomListener(window, 'resize', init);
+					google.maps.event.addListenerOnce(map, 'idle', function(){
+					setTimeout( function() { 
+					var place = new google.maps.LatLng(mylat, mylong);   
+					var image = new google.maps.MarkerImage('assets/map.png',      
+					new google.maps.Size(19, 29),      
+					new google.maps.Point(0,0),      
+					new google.maps.Point(0, 32));  
+					var marker = new google.maps.Marker({
+					map:map,
+					icon: image, 
+					draggable:false,
+					animation: google.maps.Animation.DROP,
+					position: place
+					}); 
+					$('.map-contacts').each(function(index){
+					$(this).delay(141*index).fadeIn();     
+					}); 
+					} , 500);
+					});            	
+					}
         </script>
 </head>
 <body>
@@ -61,7 +58,6 @@
     </div>
 
 	<div class="sp-page">
-
 
 		<div class="sp-page-a">
 			<div class="sp-page-l">
@@ -92,7 +88,7 @@
   					<!-- // tab item // -->
   						<div class="tab-item">
   							<div class="tab-gallery-big">
-  								<img alt="" src="assets/tab-photo-01.jpg">
+								<%= image_tag @selected_hotel.photo_reference, size:"724x448"%>							  				
   							</div>
   							<div class="tab-gallery-preview">
   								<div id="gallery">
@@ -277,33 +273,32 @@
   						<!-- // content-tabs-i // -->
   						<div class="content-tabs-i">
   							<h2>Hotel Description</h2>
-  							<p>Voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui. voluptatem sequi nesciunt. Neque porro quisqua. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam</p>
-							<p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.</p>
+								<p> </p>
   							<div class="tab-reasons">
-  								<h2>4 Reasons to Choose Andrassy Rhai Hotel</h2>
+  								<h2>4 Reasons to Choose </h2>
   								<div class="tab-reasons-h">
   									<!-- // -->
   									<div class="tab-reasons-i reasons-01">
   										<b>fully responsive</b>
-  										<p>Voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia.</p>
+  										<p>.</p>
   									</div>
   									<!-- \\ -->
   									<!-- // -->
   									<div class="tab-reasons-i reasons-02">
   										<b>757 verified reviews</b>
-  										<p>Voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia.</p>
+  										<p>.</p>
   									</div>
   									<!-- \\ -->
   									<!-- // -->
   									<div class="tab-reasons-i reasons-03">
   										<b>Manage your bookings online</b>
-  										<p>Voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia.</p>
+  										<p>.</p>
   									</div>
   									<!-- \\ -->
   									<!-- // -->
   									<div class="tab-reasons-i reasons-04">
   										<b>Booking is safe</b>
-  										<p>Voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia.</p>
+  										<p>.</p>
   									</div>
   									<!-- \\ -->
   									<div class="clear"></div>
@@ -411,7 +406,7 @@
 							<!-- START OF ROOM LISTING 1 -->
 							<div class="cat-list-item">
                   			<div class="cat-list-item-l">
-                      			<a href="#"><img alt="" src="assets/available-01.jpg"></a>
+                      			<a href="#"><img alt="" src="assets/single.jpg"></a>
                  			</div>
                   			<div class="cat-list-item-r">
                     			<div class="cat-list-item-rb">
@@ -423,7 +418,7 @@
                                 			<div class="cat-list-content-lpadding">
                                   			<div class="offer-slider-link"><a href="#">Single Room</a></div>
                                   			<div class="offer-slider-location">Max Occupancy: 2 persons</div>
-                                  			<p>Voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos.</p>
+                                  			<p> </p>
                                   			<div class="cat-icons">
                                     			<span class="cat-icon-01 active"></span>
                                     			<span class="cat-icon-02"></span>
@@ -465,7 +460,7 @@
                 			<!-- // -->
 							<div class="cat-list-item">
                   			<div class="cat-list-item-l">
-                      			<a href="#"><img alt="" src="assets/available-02.jpg"></a>
+                      			<a href="#"><img alt="" src="assets/double.jpg"></a>
                  			</div>
                   			<div class="cat-list-item-r">
                     			<div class="cat-list-item-rb">
@@ -477,7 +472,7 @@
                                 			<div class="cat-list-content-lpadding">
                                   			<div class="offer-slider-link"><a href="#">Double Room</a></div>
                                   			<div class="offer-slider-location">Max Occupancy: 2 persons</div>
-                                  			<p>Voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos.</p>
+                                  			<p> </p>
                                   			<div class="cat-icons">
                                     			<span class="cat-icon-01 active"></span>
                                     			<span class="cat-icon-02"></span>
@@ -512,7 +507,7 @@
                 			<!-- // -->
 							<div class="cat-list-item">
                   			<div class="cat-list-item-l">
-                      			<a href="#"><img alt="" src="assets/available-03.jpg"></a>
+                      			<a href="#"><img alt="" src="assets/twin.jpg"></a>
                  			</div>
                   			<div class="cat-list-item-r">
                     			<div class="cat-list-item-rb">
@@ -524,7 +519,7 @@
                                 			<div class="cat-list-content-lpadding">
                                   			<div class="offer-slider-link"><a href="#">Twin Room</a></div>
                                   			<div class="offer-slider-location">Max Occupancy: 2 persons</div>
-                                  			<p>Voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos.</p>
+                                  			<p> consequuntur magni dolores eos.</p>
                                   			<div class="cat-icons">
                                     			<span class="cat-icon-01 active"></span>
                                     			<span class="cat-icon-02"></span>
@@ -559,7 +554,7 @@
                 			<!-- // -->
 							<div class="cat-list-item">
                   			<div class="cat-list-item-l">
-                      			<a href="#"><img alt="" src="assets/available-04.jpg"></a>
+                      			<a href="#"><img alt="" src="assets/family.jpg"></a>
                  			</div>
                   			<div class="cat-list-item-r">
                     			<div class="cat-list-item-rb">
@@ -571,7 +566,7 @@
                                 			<div class="cat-list-content-lpadding">
                                   			<div class="offer-slider-link"><a href="#">Family Suite</a></div>
                                   			<div class="offer-slider-location">Max Occupancy: 2 persons</div>
-                                  			<p>Voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos.</p>
+                                  			<p> consequuntur magni dolores eos.</p>
                                   			<div class="cat-icons">
                                     			<span class="cat-icon-01 active"></span>
                                     			<span class="cat-icon-02"></span>
@@ -611,7 +606,7 @@
   						<!-- // content-tabs-i // -->
   						<div class="content-tabs-i">
   							<h2>Hotel Facilities</h2>
-  							<p>Voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui voluptatem sequi nesciunt. </p>
+  							<p>  </p>
   							<ul class="preferences-list">
   								<li class="internet">High-speed Internet</li>
   								<li class="conf-room">Conference room</li>
@@ -635,7 +630,7 @@
   							<div class="clear"></div>
   							<div class="preferences-devider"></div>
   							<h2>Alternative Style</h2>
-  							<p>Quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui voluptatem sequi nesciunt eque porro quisqua.</p>
+  							<p>  </p>
   							<ul class="preferences-list-alt">
   								<li class="internet">High-speed Internet</li>
   								<li class="parking">Free parking</li>
@@ -691,7 +686,7 @@
 												<div class="guest-reviews-b">
 												<div class="guest-reviews-bl">
   													<div class="guest-reviews-blb">
-														
+
   													<br class="clear" />
 												</div>
 												</div>
@@ -750,6 +745,7 @@
 												<div class="guest-reviews-b">
 												<div class="guest-reviews-bl">
   													<div class="guest-reviews-blb">
+
   													</div>
   													<br class="clear" />
 												</div>
@@ -779,7 +775,6 @@
 											</div>
 											<div class="guest-reviews-r">
   												<div class="guest-reviews-rb">
-												
 												<div class="guest-reviews-br">
   													<div class="guest-reviews-padding">
   												
@@ -794,7 +789,6 @@
 										</div>
 									<!-- \\ -->
 								</div>
-								
 					<select class="custom-select">
 						<option>&nbsp;</option>
 						<option>1</option>
@@ -802,17 +796,15 @@
 						<option>3</option>
 						<option>4</option>
 					</select>
-                  
                 </div>
 							</div>
   						</div>
   						</div>
-  					
   						<!-- \\ content-tabs-i \\ -->
               <!-- // content-tabs-i // -->
   						<div class="content-tabs-i">
                 <h2>FAQ</h2>
-                <p class="small">Voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui voluptatem sequi nesciunt. </p>
+                <p class="small"> consequuntur magni dolores eos qui voluptatem sequi nesciunt. </p>
                 <div class="todo-devider"></div>
                 <div class="faq-row">
                   <!-- // -->
@@ -839,6 +831,7 @@
                       <div class="faq-item-b">
                         <div class="faq-item-p">
                           Voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia aspernatur aut odit aut fugit consequuntur magni dolores eos qui voluptatem sequi nesciunt. aspernatur aut odit aut fugit
+
                         </div>
                       </div>
                     </div>
@@ -902,37 +895,188 @@
 		<div class="sp-page-r">
 			<div class="h-detail-r">
 				<div class="h-detail-lbl">
-					<div class="h-detail-lbl-a">Andrassy Thai Hotel </div>
-					<div class="h-detail-lbl-b">Paris, france</div>
+					<div class="h-detail-lbl-a"> <%= @selected_hotel.hotel_name %> </div>
+					<div class="h-detail-lbl-b"> <%= @selected_hotel.formatted_address %> </div>
+					<%= hidden_field_tag :longitude_tag, @selected_hotel.longitude %>
+					<%= hidden_field_tag :latitude_tag,  @selected_hotel.latitude %>
 				</div>
 				<div class="h-detail-stars">
 					<ul class="h-stars-list">
-						<li><a href="#"><img alt="" src="assets/hd-star-b.png"></a></li>
-						<li><a href="#"><img alt="" src="assets/hd-star-b.png"></a></li>
-						<li><a href="#"><img alt="" src="assets/hd-star-b.png"></a></li>
-						<li><a href="#"><img alt="" src="assets/hd-star-b.png"></a></li>
-						<li><a href="#"><img alt="" src="assets/hd-star-a.png"></a></li>
+						<% if @selected_hotel.google_rating > 0 %>
+							<li><img alt="" src="assets/hd-star-b.png"></li>
+						<% end %>						
+						<% if @selected_hotel.google_rating > 1 %>
+							<li><img alt="" src="assets/hd-star-b.png"></li>
+						<% end %>						
+						<% if @selected_hotel.google_rating > 2 %>
+							<li><img alt="" src="assets/hd-star-b.png"></li>
+						<% end %>						
+						<% if @selected_hotel.google_rating > 3 %>
+							<li><img alt="" src="assets/hd-star-b.png"></li>
+						<% end %>
+						<% if @selected_hotel.google_rating > 4 %>
+							<li><img alt="" src="assets/hd-star-b.png"></li>
+						<% end %>
 					</ul>
+					<div class="h-stars-lbl"> Rating: <%=@selected_hotel.google_rating%></div>
+					<a href="#" class="h-add-review">add review</a>
 
 					<div class="clear"></div>
 				</div>
 				<div class="h-details-text">
-					<p>Voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui voluptatem sequi nesciunt. </p>
-					<p>Neque porro quisqua. Sed ut perspiciatis unde omnis ste natus error sit voluptatem.</p>
+					<p> </p>
+					<p> </p>
 				</div>
-
-				<a href="#" class="book-btn">
+				<% if user_signed_in? %>		
+				<%= link_to hotel_booking_path(:hotel => @selected_hotel) do %>
+					<div class ="book-btn">
 					<span class="book-btn-l"><i></i></span>
-					<span class="book-btn-r">BOOK NOW</span>
+					<span class="book-btn-r">Book Now</span>
 					<div class="clear"></div>
-				</a>
+					</div>
+				<% end %>
+				<% else %>
+
+				<%= link_to user_session_path(:hotel => @selected_hotel) do %>
+					<div class ="book-btn">
+					<span class="book-btn-l"><i></i></span>
+					<span class="book-btn-r">Sign in to Book Now!</span>
+					<div class="clear"></div>
+					</div>
+				<% end %>
+				<% end %>				
 			</div>
 
+			<div class="h-help">
+				<div class="h-help-lbl"> </div>
+				<div class="h-help-lbl-a"> </div>
+				<div class="h-help-phone"> </div>
+				<div class="h-help-email"> </div>
+			</div>
+
+			<div class="reasons-rating">
+				<div id="reasons-slider">
+          <!-- // -->
+  				<div class="reasons-rating-i">
+  					<div class="reasons-rating-txt"> </div>
+  					<div class="reasons-rating-user">
+  						<div class="reasons-rating-user-l">
+  							<img alt="" src="assets/r-user.png">
+  							<span>5.0</span>
+  						</div>
+  						<div class="reasons-rating-user-r">
+  							<b>Gabriela King</b>
+  							<span>from United Kingdom</span>
+  						</div>
+  						<div class="clear"></div>
+  					</div>
+  				</div>
+  				<!-- \\ -->
+          <!-- // -->
+  				<div class="reasons-rating-i">
+  					<div class="reasons-rating-txt">Sed ut perspiciatis unde omnis iste natus sit voluptatem accusantium doloremque laudantium, totam.</div>
+  					<div class="reasons-rating-user">
+  						<div class="reasons-rating-user-l">
+  							<img alt="" src="assets/r-user.png">
+  							<span>5.0</span>
+  						</div>
+  						<div class="reasons-rating-user-r">
+  							<b>Robert Dowson</b>
+  							<span>from Austria</span>
+  						</div>
+  						<div class="clear"></div>
+  					</div>
+  				</div>
+  				<!-- \\ -->
+          <!-- // -->
+  				<div class="reasons-rating-i">
+  					<div class="reasons-rating-txt">Sed ut perspiciatis unde omnis iste natus sit voluptatem accusantium doloremque laudantium, totam.</div>
+  					<div class="reasons-rating-user">
+  						<div class="reasons-rating-user-l">
+  							<img alt="" src="assets/r-user.png">
+  							<span>5.0</span>
+  						</div>
+  						<div class="reasons-rating-user-r">
+  							<b>Mike Tyson</b>
+  							<span>from France</span>
+  						</div>
+  						<div class="clear"></div>
+  					</div>
+  				</div>
+  				<!-- \\ -->
         </div>
 			</div>
-					
-					</div>
-					</div>
-					<div class="clear"></div>
-					</div>
-					
+
+		</div>
+		<div class="clear"></div>
+	</div>
+
+    </div>
+  </div>
+</div>
+<!-- /main-cont -->
+
+
+<!-- // scripts // -->
+  <script>
+  	$(document).ready(function(){
+		'use strict';
+		$('.review-ranger').each(function(){
+		  var $this = $(this);
+		  var $index = $(this).index();
+		  if ( $index=='0' ) {
+			var $val = '3.0'
+		  } else if ( $index=='1' ) {
+			var $val = '3.8'
+		  } else if ( $index=='2' ) {
+			var $val = '2.8'
+		  } else if ( $index=='3' ) {
+			var $val = '4.8'
+		  } else if ( $index=='4' ) {
+			var $val = '4.3'
+		  } else if ( $index=='5' ) {
+			var $val = '5.0'
+		  }
+		  $this.find('.slider-range-min').slider({
+			range: "min",
+			step: 0.1,
+			value: $val,
+			min: 0.1,
+			max: 5.1,
+			create: function( event, ui ) {
+			  $this.find('.ui-slider-handle').append('<span class="range-holder"><i></i></span>');
+			},
+			slide: function( event, ui ) {
+			  $this.find(".range-holder i").text(ui.value);
+			}
+		  });
+		  $this.find(".range-holder i").text($val);
+		});
+
+    	$('#reasons-slider').bxSlider({
+        	infiniteLoop: true,
+        	speed: 500,
+          mode:'fade',
+        	minSlides: 1,
+        	maxSlides: 1,
+        	moveSlides: 1,
+        	auto: true,
+        	slideMargin: 0
+    	});
+
+      $('#gallery').bxSlider({
+        	infiniteLoop: true,
+        	speed: 500,
+        	slideWidth: 108,
+        	minSlides: 1,
+        	maxSlides: 6,
+        	moveSlides: 1,
+        	auto: false,
+        	slideMargin: 7
+    	});
+  	});
+  </script>
+<!-- \\ scripts \\ -->
+
+</body>
+</html>

@@ -13,6 +13,7 @@ get 'booking_complete' => 'hotel#booking_complete'
 
 get 'my_booking'=>'account#mybooking'
 get 'my_reservation'=>'account#myreservation'
+post 'hotel_booking' => 'hotel#book_hotel'          # submitting payment info
 
 
 get 'aboutus' => 'admin#about_us'

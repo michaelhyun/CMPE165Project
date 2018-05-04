@@ -1,0 +1,136 @@
+<%= form_tag dest_path, :id => 'payment-form' do %>
+<div class="form-row">
+    <div class="field">
+        <label for="card-number">
+            Card Number
+        </label>
+        <div id="card-number" class="input">
+            <!-- stripe element for card number field will be inserted here -->
+        </div>
+    </div>
+    <br />
+</div>
+<div class="form-row">
+    <div class="field half-width" style="float:left; width: 47.5%;">
+        <label for="card-exp">
+            Expiration Date
+        </label>
+        <div id="card-exp" class="input">
+            <!-- stripe element for expiration date will be inserted here -->
+        </div>
+    </div>
+
+    <div class="field half-width" style="float:right; width: 47.5%;">
+        <label for="card-cvc">
+            CVC/Identification Number
+        </label>
+        <div id="card-cvc" class="input">
+            <!-- stripe element for cvc code will be inserted here -->
+        </div>
+    </div>
+</div>
+<div class="form-row">
+    <!-- used to display form errors -->
+    <div id="card-errors" role="alert" style="float:right; width: 100%; margin-top:5px;">
+        <span id="error-msg" style="color: #fa755a;"></span>
+    </div>
+</div>
+<button style="margin-top:10px">Submit Payment</button>
+<% end %>
+
+<script type="text/javascript">
+
+// create a stripe client
+var stripe = Stripe($('meta[name="stripe-key"]').attr('content'));
+
+// create an instance of stripe elements generator
+var elements = stripe.elements();
+
+// custom styling can be passed to options when creating an element
+var style = {
+    base: {
+        color: '#32325d',
+        lineHeight: '24px',
+        /*fontFamily: 'Helvetica Neue',*/
+        fontSmoothing: 'antialiased',
+        fontSize: '16px',
+        '::placeholder': {
+            color: '#aab7c4'
+        }
+    },
+    invalid: {
+        color: '#fa755a',
+        iconColor: '#fa755a'
+    }
+};
+
+// create instances of card, exp date, and cvc code element
+var card = elements.create('cardNumber', {style: style});
+var exp = elements.create('cardExpiry', {style: style});
+var cvc = elements.create('cardCvc', {style: style});
+var elements = [card, exp, cvc]
+
+// add instances of stripe elements into each corresponding <div>
+card.mount('#card-number');
+exp.mount('#card-exp');
+cvc.mount('#card-cvc');
+
+// listen for errors from each element, and display error messages in the UI
+var errorMessage = $('#error-msg');
+var savedErrors = {};
+elements.forEach((element, index) => {
+    element.addEventListener('change', (event) => {
+        if (event.error) {
+            savedErrors[index] = event.error.message;
+            errorMessage.text(event.error.message);
+        } else {
+            savedErrors[index] = null;
+
+            // loop over the saved errors and find the first one, if any
+            var nextError = Object.keys(savedErrors)
+            .sort()
+            .reduce((maybeFoundError, key) => {
+                return maybeFoundError || savedErrors[key];
+            }, null);
+
+            if (nextError) {
+                // now that they've fixed the current error, show another one
+                errorMessage.text(nextError);
+            } else {
+                // the user fixed the last error - there are no more errors
+                errorMessage.text("");
+            }
+        }
+    });
+});
+
+// handle form submission
+$('#payment-form').submit((event) => {
+    event.preventDefault();
+
+    // createToken() only needs one stripe element, it will find the others
+    stripe.createToken(card).then((result) => {
+        if (result.error) {
+            // inform the user if there was an error
+            var errorElement = $('#card-errors');
+            errorElement.textContent = result.error.message;
+            console.log(result.error.message);
+        } else {
+            // send the token to server
+            //alert(JSON.stringify(result.token));
+            console.log(JSON.stringify(result.token));
+
+            // insert the token ID into the form so it gets submitted to server
+            var form = $('#payment-form');
+            $('<input type="hidden" />').attr({
+                'name': 'stripeToken',
+                'value': result.token.id
+            }).appendTo(form);
+            //alert(result.token.id);
+            alert('Your payment details have been processed.');
+            // submit the form
+            form.submit();
+        }
+    });
+});
+</script>
