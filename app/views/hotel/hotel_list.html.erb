@@ -33,7 +33,7 @@
 						<!-- // -->
 						<div class="srch-tab-line">
 							<label>Location</label>
-              <%= text_field_tag :location, '', class:'input-a', placeholder: 'Location' %>
+              <%= text_field_tag :location, '', class:'input-a', placeholder: !params[:location].nil? ? params[:location] : 'Location' %>
 						</div>
 						<!-- // -->
 						<!-- // -->
@@ -54,38 +54,20 @@
 							<div class="srch-tab-3c">
 								<label>Rooms</label>
 								<div class="select-wrapper">
-								<select class="custom-select">
-									<option>--</option>
-									<option>1</option>
-									<option>2</option>
-									<option>3</option>
-									<option>4</option>
-								</select>
+                <%= select_tag :name_order, options_for_select(["1", "2", "3","4", "5", "6", "7","8","9+"]), :id => "select_room" %>
 								</div>
 							</div>
 							<div class="srch-tab-3c">
 								<label>adult</label>
 								<div class="select-wrapper">
-								<select class="custom-select">
-									<option>--</option>
-									<option>1</option>
-									<option>2</option>
-									<option>3</option>
-									<option>4</option>
-								</select>
+                <%= select_tag :name_order, options_for_select(["1", "2", "3","4", "5", "6", "7","8","9+"]), :id => "select_adult" %>
 								</div>
 							</div>
 							<div class="srch-tab-3c">
 								<label>Child</label>
 								<div class="select-wrapper">
-								<select class="custom-select">
-									<option>--</option>
-									<option>1</option>
-									<option>2</option>
-									<option>3</option>
-									<option>4</option>
-								</select>
-								</div>
+                <%= select_tag :name_order, options_for_select(["1", "2", "3","4", "5", "6", "7","8","9+"]), :id => "select_child" %>  
+              </div>
 							</div>
 							<div class="clear"></div>
 						</div>
@@ -119,13 +101,15 @@
             <div class="side-padding">
               <div class="side-lbl">Star rating</div>
               <div class="star-rating-l">Choose Rating</div>
-              <div class="star-rating-r">
-                <a href="#"><img alt="" src="assets/rating-b.png"></a>
-                <a href="#"><img alt="" src="assets/rating-b.png"></a>
-                <a href="#"><img alt="" src="assets/rating-b.png"></a>
-                <a href="#"><img alt="" src="assets/rating-b.png"></a>
-                <a href="#"><img alt="" src="assets/rating-a.png"></a>
+              
+              <div class="star-rating-r">                
+                <a onclick=""><img alt="" src="assets/rating-b.png"></a>
+                <a onclick=""><img alt="" src="assets/rating-b.png"></a>
+                <a onclick=""><img alt="" src="assets/rating-b.png"></a>
+                <a onclick=""><img alt="" src="assets/rating-b.png"></a>
+                <a onclick=""><img alt="" src="assets/rating-a.png"></a>
               </div>
+
               <div class="clear"></div>
             </div>
           </div>
@@ -288,7 +272,7 @@
                           <div class="cat-list-content-r">
                             <div class="cat-list-content-p">
                               <nav class="stars">
-            										<ul>
+            										<ul>                                
             										<% rating_number = result.google_rating %>
                                 <% if rating_number >= 1 %>
                                 <li><img alt="" src="assets/star-b.png" /></li>
@@ -455,7 +439,25 @@
           })
           .forEach(function (x) { p.appendChild(x); });
         }
+
     });
+
+
+
+
+    $('#select_room').change(function() {
+        //todo modify listings based on room selection.
+    });
+
+    $('#select_adult').change(function() {
+        //todo modify listings based on adult selection.
+    });
+
+    $('#select_child').change(function() {
+        //todo modify listings based on  selection.
+    });
+
+
     });
 </script>
 </html>

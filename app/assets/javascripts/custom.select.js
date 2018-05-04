@@ -89,7 +89,9 @@
                         }
                     }
                 }).on("mousedown.customSelect", function() {
+                    
                     h.removeClass(b("Changed"))
+                
                 }).on("mouseup.customSelect", function(j) {
                     if (!h.hasClass(b("Open"))) {
                         if (a("." + b("Open")).not(h).length > 0 && typeof InstallTrigger !== "undefined") {
