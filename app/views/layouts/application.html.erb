@@ -96,7 +96,7 @@
 		<div class="wrapper-padding">
 			<div class="header-account">
 			<% if !user_signed_in? %>
-				<a href="#" >My account</a>
+				<a href="#" >My Account</a>
 			<% end %>
 			<% if user_signed_in? %>
 				<%= button_to('Logout', destroy_user_session_path, method: :delete, class: 'authorize-btn') %>
@@ -111,17 +111,11 @@
 						<div class="viewed-drop-a">
 							<!-- // -->
 							<div class="viewed-item">
-								<div class="viewed-item-r">
-									<div class="viewed-item-lbl"><a><%= link_to 'My Booking', my_booking_path %></a></div>
-								</div>
-								<div class="clear"></div>
-							</div>
-							<!-- \\ -->
-							<!-- // -->
-							<div class="viewed-item">
 									<div class="viewed-item-lbl"><a><%= link_to 'My Reservation', my_reservation_path %></a></div>
+									<br>
+									<div class="viewed-item-lbl"><a><%= link_to 'Rewards', rewards_path %></a></div>
 								</div>
-								<div class="clear"></div>
+
 							</div>
 							<!-- \\ -->
 						</div>
@@ -154,16 +148,6 @@
 						<li><a><%= link_to 'Home', root_path %></a>
 						</li>
 						<li><a><%= link_to 'Hotels', hotel_listing_path(:location => 'San Jose') %></a>
-						</li>
-						<% if user_signed_in? %>
-						<li><a><%= link_to 'Rewards', rewards_path %></a>
-						<% end %>
-						<li><a>Pages</a>
-							<ul>
-								<li><a><%= link_to 'About Us', aboutus_path %></a></li>
-								<li><a><%= link_to 'Contact Us', contactus_path %><</a></li>
-								<li><a><%= link_to 'Services', services_path %></a></li>
-							</ul>
 						</li>
 					</ul>
 				</nav>
