@@ -11072,7 +11072,7 @@ preferences-list-alt li {
     display: block;
   }
 }
-<<<<<<< HEAD
+
 @media screen and (max-width:910px) {
   .header-social {display:none;}
 
@@ -11138,8 +11138,6 @@ preferences-list-alt li {
 	.fancybox-prev span {left:10px;}
 	.fancybox-next span {right:10px;}
 	
-=======
->>>>>>> 5a8f7fb0c375dbfcce7063413b11f17ee36d65fb
 
 @media screen and (max-width:910px) {
   .header-social {
