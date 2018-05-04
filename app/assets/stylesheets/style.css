@@ -11072,6 +11072,74 @@ preferences-list-alt li {
     display: block;
   }
 }
+<<<<<<< HEAD
+@media screen and (max-width:910px) {
+  .header-social {display:none;}
+
+  .reasons-item-a,.reasons-item-b,.reasons-item-c,.reasons-item-d {width:40.5%;}
+  .footer-a .section {width:26%; margin-right: 10%;}
+  .footer-a .section:nth-child(3) {margin:0px; width:170px;}
+  .tweet {width:auto;}
+  .t-experience-i:first-child,.t-experience-i:last-child,.t-experience-i {margin-left:0px; margin-bottom:20px; margin-right:0px; width:100%;}
+  .t-experience-i:last-child {margin-bottom:0px;}
+  .theme-teaser-r {display:none;}
+  .theme-teaser-l {width:100%; padding-right:0px; text-align:center;}
+  .two-colls-left {width:100%; margin:0px; padding:0px; float:none;}
+  .two-colls-right {width:100%; margin:0px; padding:0px; float:none;}
+  .two-colls-right .padding {padding-left:0px;}
+  .two-colls-left .srch-tab-left {width:48%;}
+  .two-colls-left .srch-tab-right {width:48%;}
+  .team-row-i {width:49%; float: left; margin: 0px 0px 20px 0px;}
+  .team-row-i:nth-child(2n) {width:49%; float: right; margin: 0px 0px 20px 0px;}
+  .blog-masonry-i { margin-bottom: 38px; opacity:0; margin-left: 1.64%; margin-right: 1.64%; width: 46.5%;}
+  .blog-sidebar-l {width:100%; float: none; margin:0px 0px 0px 0px;}
+  .blog-sidebar-r {width: 100%; float: none; margin: 0px;}
+  .blog-sidebar-p {padding: 0px ;}
+  .blog-post-p {padding-right: 0px;}
+  .tweeter-item-r {width:97%;}
+  .blog-pagination {margin-left: 0px; margin-bottom: 60px;}
+  .blog-sidebar {float: none;}
+  .search-widget input[type="text"] {width:97%;}
+  .sp-page-l {margin-right: 100%; float: none; margin: 0px 0px 20px 0px;}
+  .sp-page-r {width: 100%; margin: 0px;}
+  .sp-page-p {padding-right: 0px;}
+  .alt-flight-lr .padding {padding-left: 15px;}
+  .alt-departure {width:auto; float: left; margin-bottom: 0px; margin-right: 17px;}
+  .alt-arrival {width:auto; float: left; margin-bottom: 0px; margin-right: 17px;}
+  .alt-time {width:auto; float: left; margin-bottom: 0px; margin-top: 0px; margin-right: 0px;}
+  .tab-calendar-colls table tbody td {height:72px;} 
+  .flight-d-depart {float: left; margin-bottom: 20px;}
+  .flight-d-time {float: left; margin-bottom: 20px;}
+  .flight-d-arrival {float: left;}
+  .flight-d-left {float: left; margin-right: 35px;} 
+  .flight-d-right {float: left;}
+  .book-btn-l {display: none;}
+  .book-btn-r {width:100%;}
+  .tab-calendar-collsl {width:100%; float: none; margin: 0px;}
+  .tab-calendar-collsr {width:100%; float: none; margin: 0px;}
+  .map-symbol {float: left; margin-right: 20px;}
+  .tab-calendar-s {padding-left: 0px;}
+  .wishlist-btn-l {display: none;}
+  .wishlist-btn-r {width: 100%;}
+  .counters-five-colls {text-align: center;}
+  .counters-five-colls .counters-row-i,.counters-five-colls .counters-row-i:last-child {float: none; vertical-align: top; width:150px; display: inline-block; margin:0px 20px 25px 20px;}
+  .p-item-page-l {width:100%; float: none; margin: 0px;}
+  .p-item-page-r {width:100%; float: none; margin: 0px 0px 40px 0px;}
+  .p-item-padding {margin-right: 0px ;}
+  .p-item-page {float: none;}
+  .with-text .offer-slider-txt,.offer-slider-txt {min-height: auto;}
+}
+  
+@media screen and (max-width:860px)  {
+    .shortcodes-left,.shortcodes-right {width:100%; float: none; margin: 0px 0px 60px 0px;}
+    .about-content .about-slider-txt {width:100%}
+    .offer-slider header p {width:100%;}
+    .mp-popular header p, .page-lbl p {width:100%;}
+	.fancybox-prev span {left:10px;}
+	.fancybox-next span {right:10px;}
+	
+=======
+>>>>>>> 5a8f7fb0c375dbfcce7063413b11f17ee36d65fb
 
 @media screen and (max-width:910px) {
   .header-social {

@@ -102,52 +102,31 @@
 				<%= button_to('Logout', destroy_user_session_path, method: :delete, class: 'authorize-btn') %>
 			<% end %>
 			</div>
+
 			<div class="header-viewed">
-				<a href="#" class="header-viewed-btn">recently viewed</a>
+			<%if user_signed_in? %>
+				<a href="#" class="header-viewed-btn">My Account</a>
 				<!-- // viewed drop // -->
 					<div class="viewed-drop">
 						<div class="viewed-drop-a">
 							<!-- // -->
 							<div class="viewed-item">
-								<div class="viewed-item-l">
-									<a href="#"><img alt="" src="assets/v-item-01.jpg" /></a>
-								</div>
 								<div class="viewed-item-r">
-									<div class="viewed-item-lbl"><a href="#">Andrassy Thai Hotel</a></div>
-									<div class="viewed-item-cat">location: thailand</div>
-									<div class="viewed-price">152$</div>
+									<div class="viewed-item-lbl"><a><%= link_to 'My Booking', my_booking_path %></a></div>
 								</div>
 								<div class="clear"></div>
 							</div>
 							<!-- \\ -->
 							<!-- // -->
 							<div class="viewed-item">
-								<div class="viewed-item-l">
-									<a href="#"><img alt="" src="assets/v-item-02.jpg" /></a>
-								</div>
-								<div class="viewed-item-r">
-									<div class="viewed-item-lbl"><a href="#">Ermins Hotel</a></div>
-									<div class="viewed-item-cat">location: dubai</div>
-									<div class="viewed-price">300$</div>
-								</div>
-								<div class="clear"></div>
-							</div>
-							<!-- \\ -->
-							<!-- // -->
-							<div class="viewed-item">
-								<div class="viewed-item-l">
-									<a href="#"><img alt="" src="assets/v-item-03.jpg" /></a>
-								</div>
-								<div class="viewed-item-r">
-									<div class="viewed-item-lbl"><a href="#">Best Western Hotel Reither</a></div>
-									<div class="viewed-item-cat">location: berlin</div>
-									<div class="viewed-price">2300$</div>
+									<div class="viewed-item-lbl"><a><%= link_to 'My Reservation', my_reservation_path %></a></div>
 								</div>
 								<div class="clear"></div>
 							</div>
 							<!-- \\ -->
 						</div>
 					</div>
+				<<% end -%>
 				<!-- \\ viewed drop \\ -->
 			</div>
 			<div class="clear"></div>
@@ -249,7 +228,26 @@
 					selectSearch: true
 				});
 			});
-		})(jQuery);		
+		})(jQuery);
+
+		var slider_range = $("#slider-range");
+		var ammount_from = $("#ammount-from");
+		var ammount_to = $("#ammount-to");
+
+		$(function() {
+			slider_range.slider({
+			  range: true,
+			  min: 0,
+			  max: 1500,
+			  values: [ 275, 1100 ],
+			  slide: function( event, ui ) {
+				ammount_from.val(ui.values[0]+'$');
+				ammount_to.val(ui.values[1]+'$');
+			  }
+			});
+			ammount_from.val(slider_range.slider("values",0)+'$');
+			ammount_to.val(slider_range.slider("values",1)+'$');
+		});
   	});
   </script>
 <!-- \\ scripts \\ -->
