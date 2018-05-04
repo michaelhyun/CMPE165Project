@@ -15,113 +15,109 @@
                     <div class="clear"></div>
                 </div>
                 <div class="two-colls">
-                    <div class="two-colls-right">
-                        <div class="two-colls-right-b">
-                            <div class="padding">
+                    <div class="padding">
 
-                                <div class="catalog-head large fly-in">
-                                    <label>Sorting results by:</label>
-                                    <div class="search-select">
-                                        <%= select_tag :name_order, options_for_select(["Ascending", "Descending"]), :id => "sort_function"%>
-                                    </div>
-                                    <div class="search-select">
-                                        <%= select_tag :price_order, options_for_select(["Lowest Price", "Highest Price"]), :id => "sort_by_price"%>
-                                    </div>
-                                    <div class="search-select">
-                                        <%= select_tag :rating_order, options_for_select(["Lowest Rating", "Highest Rating"]), :id => "sort_by_rating"%>
-                                    </div>
-                                    <div class="clear"></div>
+                        <div class="catalog-head large fly-in">
+                            <label>Sorting results by:</label>
+                            <div class="search-select">
+                                <%= select_tag :name_order, options_for_select(["Ascending", "Descending"]), :id => "sort_function"%>
+                            </div>
+                            <div class="search-select">
+                                <%= select_tag :price_order, options_for_select(["Lowest Price", "Highest Price"]), :id => "sort_by_price"%>
+                            </div>
+                            <div class="search-select">
+                                <%= select_tag :rating_order, options_for_select(["Lowest Rating", "Highest Rating"]), :id => "sort_by_rating"%>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+
+                        <div class="catalog-row list-rows">
+                            <!--  Thao Started HERE:  -->
+                            <% if !@results.nil? %>
+
+                            <%= content_tag "div", id: "myDiv", data: {results: @results} do %>
+                            <% @results.each do |result| %>
+                            <%= content_tag "div", id: result.hotel_name, class: "cat-list-item fly-in" do %>
+                            <div class="cat-list-item fly-in" max-height: "400">
+                                <div class="cat-list-item-l">
+                                    <%= image_tag(result.photo_reference, :style => "height: 150px; width: 200px") %>
                                 </div>
+                                <div class="cat-list-item-r">
+                                    <div class="cat-list-item-rb">
+                                        <div class="cat-list-item-p">
+                                            <div class="cat-list-content">
+                                                <div class="cat-list-content-a">
+                                                    <div class="cat-list-content-l">
+                                                        <div class="cat-list-content-lb">
+                                                            <div class="cat-list-content-lpadding">
+                                                                <div class="offer-slider-link"><%= link_to result.hotel_name, hotel_path(:hotel => result) %></div>
+                                                                <div class="offer-slider-location"><%= result.formatted_address %></div>
+                                                                <p>
 
-                                <div class="catalog-row list-rows">
-                                    <!--  Thao Started HERE:  -->
-                                    <% if !@results.nil? %>
-
-                                    <%= content_tag "div", id: "myDiv", data: {results: @results} do %>
-                                    <% @results.each do |result| %>
-                                    <%= content_tag "div", id: result.hotel_name, class: "cat-list-item fly-in" do %>
-                                    <div class="cat-list-item fly-in" max-height: "400">
-                                        <div class="cat-list-item-l">
-                                            <%= image_tag(result.photo_reference, :style => "height: 150px; width: 200px") %>
-                                        </div>
-                                        <div class="cat-list-item-r">
-                                            <div class="cat-list-item-rb">
-                                                <div class="cat-list-item-p">
-                                                    <div class="cat-list-content">
-                                                        <div class="cat-list-content-a">
-                                                            <div class="cat-list-content-l">
-                                                                <div class="cat-list-content-lb">
-                                                                    <div class="cat-list-content-lpadding">
-                                                                        <div class="offer-slider-link"><%= link_to result.hotel_name, hotel_path(:hotel => result) %></div>
-                                                                        <div class="offer-slider-location"><%= result.formatted_address %></div>
-                                                                        <p>
-
-                                                                        </p>
-                                                                        <div class="cat-icons">
-                                                                            <span class="cat-icon-01 active"></span>
-                                                                            <span class="cat-icon-02"></span>
-                                                                            <span class="cat-icon-03"></span>
-                                                                            <span class="cat-icon-04"></span>
-                                                                            <span class="cat-icon-05"></span>
-                                                                            <span class="cat-icon-06"></span>
-                                                                            <div class="clear"></div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <br class="clear" />
-                                                            </div>
-                                                        </div>
-                                                        <div class="cat-list-content-r">
-                                                            <div class="cat-list-content-p">
-                                                                <nav class="stars">
-                                                                    <ul>
-                                                                        <% rating_number = result.google_rating %>
-                                                                        <% if rating_number >= 1 %>
-                                                                        <li><img alt="" src="assets/star-b.png" /></li>
-                                                                        <% end %>
-                                                                        <% if rating_number >= 2 %>
-                                                                        <li><img alt="" src="assets/star-b.png" /></li>
-                                                                        <% end %>
-                                                                        <% if rating_number >= 3 %>
-                                                                        <li><img alt="" src="assets/star-b.png" /></li>
-                                                                        <% end %>
-                                                                        <% if rating_number >= 4 %>
-                                                                        <li><img alt="" src="assets/star-b.png" /></li>
-                                                                        <% end %>
-                                                                        <% if rating_number >= 5 %>
-                                                                        <li><img alt="" src="assets/star-b.png" /></li>
-                                                                        <% end %>
-                                                                    </ul>
+                                                                </p>
+                                                                <div class="cat-icons">
+                                                                    <span class="cat-icon-01 active"></span>
+                                                                    <span class="cat-icon-02"></span>
+                                                                    <span class="cat-icon-03"></span>
+                                                                    <span class="cat-icon-04"></span>
+                                                                    <span class="cat-icon-05"></span>
+                                                                    <span class="cat-icon-06"></span>
                                                                     <div class="clear"></div>
-                                                                </nav>
-                                                                <div class="cat-list-review"> Rating: <%=result.google_rating %> </div>
-                                                                <div class="offer-slider-r">
-                                                                    <b> $<%= result.hotel_price %></b>
-                                                                    <span>avg/night</span>
                                                                 </div>
-                                                                <div class="cat-list-btn"><%= link_to 'book now', hotel_path(:hotel => result), :class=>'select_btn', :id => 'select_btn' %></div>
                                                             </div>
                                                         </div>
-                                                        <div class="clear"></div>
+                                                        <br class="clear" />
                                                     </div>
                                                 </div>
+                                                <div class="cat-list-content-r">
+                                                    <div class="cat-list-content-p">
+                                                        <nav class="stars">
+                                                            <ul>
+                                                                <% rating_number = result.google_rating %>
+                                                                <% if rating_number >= 1 %>
+                                                                <li><img alt="" src="assets/star-b.png" /></li>
+                                                                <% end %>
+                                                                <% if rating_number >= 2 %>
+                                                                <li><img alt="" src="assets/star-b.png" /></li>
+                                                                <% end %>
+                                                                <% if rating_number >= 3 %>
+                                                                <li><img alt="" src="assets/star-b.png" /></li>
+                                                                <% end %>
+                                                                <% if rating_number >= 4 %>
+                                                                <li><img alt="" src="assets/star-b.png" /></li>
+                                                                <% end %>
+                                                                <% if rating_number >= 5 %>
+                                                                <li><img alt="" src="assets/star-b.png" /></li>
+                                                                <% end %>
+                                                            </ul>
+                                                            <div class="clear"></div>
+                                                        </nav>
+                                                        <div class="cat-list-review"> Rating: <%=result.google_rating %> </div>
+                                                        <div class="offer-slider-r">
+                                                            <b> $<%= result.hotel_price %></b>
+                                                            <span>avg/night</span>
+                                                        </div>
+                                                        <div class="cat-list-btn"><%= link_to 'book now', hotel_path(:hotel => result), :class=>'select_btn', :id => 'select_btn' %></div>
+                                                    </div>
+                                                </div>
+                                                <div class="clear"></div>
                                             </div>
-                                            <br class="clear" />
                                         </div>
-                                        <div class="clear"></div>
                                     </div>
-                                    <% end %>
-                                    <% end %>
-                                    <% end %>
+                                    <br class="clear" />
                                 </div>
                                 <div class="clear"></div>
-                                <% end %>
-
-
                             </div>
+                            <% end %>
+                            <% end %>
+                            <% end %>
                         </div>
-                        <br class="clear" />
+                        <div class="clear"></div>
+                        <% end %>
+
+
                     </div>
+                    <br class="clear" />
                 </div>
                 <div class="clear"></div>
 
