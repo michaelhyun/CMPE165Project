@@ -7,11 +7,10 @@
 
 <!-- main-cont -->
 <div class="main-cont">
-<div class="body-padding">
-	<div class="mp-slider">
-		<!-- // slider // -->
+<div class="body-padding" id="top-body-padding">
+	<div class="mp-slider" id="mp-slider-swipe">
 		<div class="mp-slider-row">
-			<div class="swiper-container">
+			<div class="swiper-container" id="slide-swiper-container">
 			    <div class="swiper-preloader-bg"></div>
 			    <div id="preloader">
 			    	<div id="spinner"></div>
@@ -45,7 +44,6 @@
   				</div>
 			</div>
 		</div>
-		<!-- \\ slider \\ -->
 	</div>
 
 	<div class="wrapper-a-holder">
@@ -66,7 +64,7 @@
 					<div class="page-search-p">
 								<!-- // -->
 								<div class="srch-tab-line">
-									<label>Location</label>
+									<label>Hotel</label>
 									<%= text_field_tag :hotel_name, '', class:'input-a', placeholder: 'Hotel Name' %>
 								</div>
 								<div class="srch-tab-line">
@@ -88,7 +86,7 @@
 								</div>
 								<!-- \\ -->
 								<!-- // -->
-								<div class="srch-tab-line no-margin-bottom">
+								<div class="srch-tab-line no-margin-bottom" style="display: none;">
 									<div class="srch-tab-3c">
 										<label>Rooms</label>
 										<div class="select-wrapper">
@@ -523,8 +521,63 @@
 
 </div>
 <!-- /main-cont -->
+  <script>
+	  $(document).ready(function(){
+		'use strict';
+		
+		var $slideInit = function () {
+			$('.mp-slider-lbl,.mp-slider-lbl-a,.mp-slider-lbl-b,.btn-a').css('opacity', '0');
+			$('.mp-slider-lbl,.mp-slider-lbl-a,.mp-slider-lbl-b,.btn-a').css('top', '20px');
+			var $slide = $('.swiper-slide-active');
+			$slide.find('.mp-slider-lbl').animate({
+				opacity: 1,
+				top: '0'
+			}, 360);
+			$slide.find('.mp-slider-lbl-a').delay(110).animate({
+				opacity: 1,
+				top: '0'
+			}, 360);
+			$slide.find('.mp-slider-lbl-b').delay(150).animate({
+				opacity: 1,
+				top: '0'
+			}, 360);
+			$slide.find('.btn-a').delay(200).animate({
+				opacity: 1,
+				top: '0'
+			}, 360);
+		}
+		var mySwiper = new Swiper('.swiper-container', {
+			mode: 'horizontal',
+			loop: true,
+			autoplay: 7000,
+			speed: 1000,
+			paginationClickable: true,
+			speed: 1000,
+			createPagination: true,
+			pagination: '.swiper-pagination',
+			onSwiperCreated: function (swiper) {
+				try {
+					$slideInit();
+				} catch (err) {
 
-
+				}
+				$('.swiper-preloader-bg').fadeOut();
+				$('#preloader').remove();
+			},
+			onSlideChangeEnd: function (swiper) {
+				$slideInit();
+			}
+		});
+			$('.arrow-left').on('click', function (e) {
+				e.preventDefault()
+				mySwiper.swipePrev()
+			});
+			$('.arrow-right').on('click', function (e) {
+				e.preventDefault()
+				mySwiper.swipeNext()
+			});
+	  });
+  </script>
 
 </body>
 </html>
