@@ -256,6 +256,7 @@
 
    
 
+
   $(document).ready( function(){
     'use strict';
 
@@ -270,21 +271,29 @@
             var rating = 0;
             for( var i = 0; i < myData.length; i++){
               var curData = myData[i];
-              if( curData.hotel_name === x.id || curData.hotel_name === y.id)
+              if( curData.hotel_name === x.id)
               {
                 temprating = parseFloat(curData.google_rating);
                 x.hidden = true;
+                if(temprating >= a && temprating < b)
+                {
+                  rating = parseFloat(curData.google_rating);
+                  x.hidden = false;
+                  return x;
+                }
               }
-              if(temprating >= a && temprating < b)
+              else if (curData.hotel_name === y.id)
               {
-                rating = parseFloat(curData.google_rating);
-                x.hidden = false;
+                temprating = parseFloat(curData.google_rating);
+                y.hidden = true;
+                if(temprating >= a && temprating < b)
+                {
+                  rating = parseFloat(curData.google_rating);
+                  y.hidden = false;
+                  return rating;
+                }
               }
-              if(rating > 0)
-                break;
-            }  
-            if(rating >= a && rating < b) 
-              return rating;
+            }   
           })
           .forEach(function (x) { p.appendChild(x); });
         } 
@@ -347,7 +356,6 @@
     $('#sort_by_price').change(function() {
       document.getElementById('sort_function').value = "---";
       document.getElementById('sort_by_rating').value = "---";
-
       if( myData !== 'undefined' ){
         currentOrder = $(this).val();
         var p = document.getElementById('myDiv');
@@ -375,7 +383,6 @@
     $('#sort_by_rating').change(function() {
       document.getElementById('sort_function').value = "---";
       document.getElementById('sort_by_price').value = "---";
-
       if( myData !== 'undefined' ){
         currentOrder = $(this).val();
         var p = document.getElementById('myDiv');
