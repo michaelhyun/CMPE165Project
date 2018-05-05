@@ -452,7 +452,7 @@
 											<!-- // content-tabs-i // -->
 
 											<div class="content-tabs-i">
-												<%= form_tag( hotel_booking_path) do |f| %>
+												<%= form_tag( hotel_booking_path, method: :get) do |f| %>
 													<h2>Your Travel Rates</h2>
 													<div class="rates-search">
 														<div class="rates-line">
@@ -539,7 +539,7 @@
 																						<div class="available-price-a">avg/night</div>
 																						<div class="available-price-c">9 available</div>
 																						<!-- THIS IS WHERE IT LINKS TO THE BOOKINGS PAGE -->
-																						<%= submit_tag 'SELECT SINGLE', class: 'available-btn' %>																						
+																						<%= submit_tag 'SELECT SINGLE', :id => 'single', class: 'available-btn' %>																						
 																					</div>
 																				</div>
 																				<div class="clear"></div>
