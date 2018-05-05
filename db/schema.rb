@@ -15,6 +15,8 @@ ActiveRecord::Schema.define(version: 20180504213113) do
   create_table "bookings", force: :cascade do |t|
     t.date "check_in"
     t.date "check_out"
+    t.decimal "total_price"
+    t.string "transaction_id"
     t.string "room_type"
     t.integer "num_adults"
     t.integer "num_child"
