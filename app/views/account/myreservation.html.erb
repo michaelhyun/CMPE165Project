@@ -1,39 +1,266 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 </head>
-<body class="inner-body">
+<body>
+    <!-- main-cont -->
+    <div class="main-cont">
+        <div class="body-wrapper">
+            <div class="wrapper-padding">
+                <div class="page-head">
+                    <div class="page-title">Reservation</div>
+                    <div class="breadcrumbs">
 
-<!-- main-cont -->
-<div class="main-cont">
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="two-colls">
+                    <div class="padding">
 
-	<div class="inner-page">
-		<div class="inner-breadcrumbs">
-			<div class="content-wrapper">
-				<div class="page-title">My Reservation</div>
-				<div class="breadcrumbs">
-        			<a href="#">Account</a> / <span>My Reservation</span>
-      			</div>
-      			<div class="clear"></div>
-      		</div>
-		</div>
-			<div class="clear"></div>
-			</div>
-		</div>
-	</div>
-</div>
-<!-- /main-cont -->
-<div class="card">
-<center><h1>Reservation</h1></center>
-<img src="assets/2-5.jpg" alt="picture" style="width:100%">
-<p><a href="#"class="Name">Hotel Name: </a></p>
-<p><a href="#"class="date">Date Booking: </a></p>
-<p><a href="#"class="cost">Cost: </a></p>
-<p><a href="#"class="decrip">Decription: </a></p>
-<p><button>View Detail</button></p>
-<p><button>Book Now</button></p>
-</div>
+                        <div class="catalog-head large fly-in">
+                            <label>Sorting results by:</label>
+                            <div class="search-select">
+                                <%= select_tag :name_order, options_for_select(["Ascending", "Descending"]), :id => "sort_function"%>
+                            </div>
+                            <div class="search-select">
+                                <%= select_tag :price_order, options_for_select(["Lowest Price", "Highest Price"]), :id => "sort_by_price"%>
+                            </div>
+                            <div class="search-select">
+                                <%= select_tag :rating_order, options_for_select(["Lowest Rating", "Highest Rating"]), :id => "sort_by_rating"%>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
 
+                        <div class="catalog-row list-rows">
+                            <!--  Thao Started HERE:  -->
+                            <% if !@results.nil? %>
+
+                            <%= content_tag "div", id: "myDiv", data: {results: @results} do %>
+                            <% @results.each do |result| %>
+                            <h1><%= result.id%></h1>
+                            <% hotel = Hotel.find(result.hotel_id) %>
+                            <%= content_tag "div", id: hotel.hotel_name, class: "cat-list-item fly-in" do %>
+                            <div class="cat-list-item fly-in" max-height: "400">
+                                <div class="cat-list-item-l">
+                                    <%= image_tag(hotel.photo_reference, :style => "height: 150px; width: 200px") %>
+                                </div>
+                                <div class="cat-list-item-r">
+                                    <div class="cat-list-item-rb">
+                                        <div class="cat-list-item-p">
+                                            <div class="cat-list-content">
+                                                <div class="cat-list-content-a">
+                                                    <div class="cat-list-content-l">
+                                                        <div class="cat-list-content-lb">
+                                                            <div class="cat-list-content-lpadding">
+                                                                <div class="offer-slider-link"><%= link_to hotel.hotel_name, hotel_path(:hotel => hotel) %></div>
+                                                                <div class="offer-slider-location"><%= hotel.formatted_address %></div>
+                                                                <p>
+
+                                                                </p>
+                                                                <div class="cat-icons">
+                                                                    <div class="check-in-date"> Check in date: <%= result.check_in %> </div>
+                                                                    <div class="check-in-date"> Check out date: <%= result.check_out %> </div>
+                                                                    <div class="check-in-date"> Number of adults: <%= result.num_adults %> </div>
+                                                                    <div class="check-in-date"> Number of children: <%= result.num_child %> </div>
+                                                                    <div class="check-in-date"> Room Type: <%= result.room_type %> </div>
+
+                                                                    <div class="clear"></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <br class="clear" />
+                                                    </div>
+                                                </div>
+                                                <div class="cat-list-content-r">
+                                                    <div class="cat-list-content-p">
+                                                        <nav class="stars">
+                                                            <ul>
+                                                                <% rating_number = hotel.google_rating %>
+                                                                <% if rating_number >= 1 %>
+                                                                <li><img alt="" src="assets/star-b.png" /></li>
+                                                                <% end %>
+                                                                <% if rating_number >= 2 %>
+                                                                <li><img alt="" src="assets/star-b.png" /></li>
+                                                                <% end %>
+                                                                <% if rating_number >= 3 %>
+                                                                <li><img alt="" src="assets/star-b.png" /></li>
+                                                                <% end %>
+                                                                <% if rating_number >= 4 %>
+                                                                <li><img alt="" src="assets/star-b.png" /></li>
+                                                                <% end %>
+                                                                <% if rating_number >= 5 %>
+                                                                <li><img alt="" src="assets/star-b.png" /></li>
+                                                                <% end %>
+                                                            </ul>
+                                                            <div class="clear"></div>
+                                                        </nav>
+                                                        <div class="cat-list-review"> Rating: <%=hotel.google_rating %> </div>
+                                                        <div class="offer-slider-r">
+                                                            <b> $<%= hotel.hotel_price %></b>
+                                                            <span>avg/night</span>
+                                                        </div>
+
+                                                        <!-- FIX THIS -->
+                                                        <div class="cat-list-btn"><%= link_to 'update', booking_update_path(:hotel => hotel), :class=>'select_btn', :id => 'select_btn' %></div>
+                                                        <div class="cat-list-btn"><%= link_to 'delete', booking_delete_path(:hotel => hotel), :class=>'select_btn', :id => 'select_btn' %></div>
+                                                    </div>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br class="clear" />
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                            <% end %>
+                            <% end %>
+                            <% end %>
+                        </div>
+                        <div class="clear"></div>
+                        <% end %>
+
+
+                    </div>
+                    <br class="clear" />
+                </div>
+                <div class="clear"></div>
+
+            </div>
+        </div>
+    </div>
+    <!-- /main-cont -->
 </body>
+<script>
+/*THAO'S CUSTOM SORTING FUNCTIONS DO NOT TOUCH.*/
+var myData = $('#myDiv').data("results")
+var currentOrder = '';
+
+$(document).ready( function(){
+    'use strict';
+
+    var slider_range = $("#slider-range");
+    var ammount_from = $("#ammount-from");
+    var ammount_to = $("#ammount-to");
+
+    /**Function to filter out all hotels that price is not within the desired range.*/
+    $(function() {
+        slider_range.slider({
+            range: true,
+            min: 0,
+            max: 500,
+            values: [ 0, 500 ],
+            slide: function( event, ui ) {
+                ammount_from.val(ui.values[0]+'$');
+                ammount_to.val(ui.values[1]+'$');
+                var minV = parseFloat(slider_range.slider("values",0),10);
+                var maxV = parseFloat(slider_range.slider("values",1),10);
+                var p = document.getElementById('myDiv');
+                Array.prototype.slice
+                .call(p.children)
+                .forEach(function(x) {
+                    for( var i = 0; i < myData.length; i++){
+                        var curData = myData[i];
+                        if( curData.hotel_name === x.id ){
+                            var xpricing = parseFloat(curData.hotel_price);
+                            if( xpricing < minV || xpricing > maxV )
+                            x.hidden = true;
+                            else
+                            x.hidden = false;
+                        }
+                    }
+                });
+            }
+        });
+        ammount_from.val(slider_range.slider("values",0)+'$');
+        ammount_to.val(slider_range.slider("values",1)+'$');
+    });
+
+    $('#sort_function').change(function() {
+        if( myData !== 'undefined' ){
+            currentOrder = $(this).val();
+            var p = document.getElementById('myDiv');
+            Array.prototype.slice.call(p.children)
+            .map(function (x) { return p.removeChild(x); })
+            .sort(function (x, y) {
+                if (currentOrder === 'Ascending')
+                return x.id > y.id;
+                else if (currentOrder === 'Descending')
+                return x.id < y.id;
+            })
+            .forEach(function (x) { p.appendChild(x); });
+        }
+    });
+
+    $('#sort_by_price').change(function() {
+        if( myData !== 'undefined' ){
+            currentOrder = $(this).val();
+            var p = document.getElementById('myDiv');
+            Array.prototype.slice.call(p.children)
+            .map(function (x) { return p.removeChild(x); })
+            .sort(function (x, y) {
+                var xrating = 0;
+                var yrating = 0;
+                for( var i = 0; i < myData.length; i++){
+                    var curData = myData[i];
+                    if( curData.hotel_name === x.id )
+                    xrating = parseFloat(curData.hotel_price);
+                    else if( curData.hotel_name === y.id )
+                    yrating = parseFloat(curData.hotel_price);
+                }
+                if (currentOrder === 'Lowest Price')
+                return xrating > yrating;
+                else if (currentOrder === 'Highest Price')
+                return xrating < yrating;
+            })
+            .forEach(function (x) { p.appendChild(x); });
+        }
+    });
+
+    $('#sort_by_rating').change(function() {
+        if( myData !== 'undefined' ){
+            currentOrder = $(this).val();
+            var p = document.getElementById('myDiv');
+            Array.prototype.slice.call(p.children)
+            .map(function (x) { return p.removeChild(x); })
+            .sort(function (x, y) {
+                var xrating = 0;
+                var yrating = 0;
+                for( var i = 0; i < myData.length; i++){
+                    var curData = myData[i];
+                    if( curData.hotel_name === x.id )
+                    xrating = parseFloat(curData.google_rating);
+                    else if( curData.hotel_name === y.id )
+                    yrating = parseFloat(curData.google_rating);
+                    if( xrating > 0 && yrating > 0)
+                    break;
+                }
+                if (currentOrder === 'Lowest Rating')
+                return xrating > yrating;
+                else if (currentOrder === 'Highest Rating')
+                return xrating < yrating;
+            })
+            .forEach(function (x) { p.appendChild(x); });
+        }
+
+    });
+
+
+
+
+    $('#select_room').change(function() {
+        //todo modify listings based on room selection.
+    });
+
+    $('#select_adult').change(function() {
+        //todo modify listings based on adult selection.
+    });
+
+    $('#select_child').change(function() {
+        //todo modify listings based on  selection.
+    });
+
+
+});
+</script>
 </html>

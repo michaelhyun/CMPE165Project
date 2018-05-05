@@ -245,8 +245,10 @@ $(document).ready(function(){
 	 $('.tab-map').css('opacity','0');
 	 $('#preloader').show();
 	 $('.tab-item').hide().eq($index).fadeIn(function(){
-		var mylat = '52.569334';
-		var mylong ='13.380216';                
+		var mylat = document.getElementById("latitude_tag").value != null ? 
+					document.getElementById("latitude_tag").value : "";
+		var mylong = document.getElementById("longitude_tag").value != null ? 
+					 document.getElementById("longitude_tag").value : "";              
 		var mapOptions = {
 			zoom: 13,
 			disableDefaultUI: true,
@@ -261,7 +263,7 @@ $(document).ready(function(){
 		var map = new google.maps.Map(mapElement, mapOptions);
 		google.maps.event.addDomListener(window, 'resize', init);
 		google.maps.event.addListenerOnce(map, 'idle', function(){
-			var place = new google.maps.LatLng(52.569334, 13.380216);   
+			var place = new google.maps.LatLng(mylat, mylong);   
 			var image = new google.maps.MarkerImage('assets/map.png',      
 			new google.maps.Size(19, 29),      
 			new google.maps.Point(0,0),      
