@@ -37,7 +37,6 @@
 
                             <%= content_tag "div", id: "myDiv", data: {results: @results} do %>
                             <% @results.each do |result| %>
-                            <h1><%= result.id%></h1>
                             <% hotel = Hotel.find(result.hotel_id) %>
                             <%= content_tag "div", id: hotel.hotel_name, class: "cat-list-item fly-in" do %>
                             <div class="cat-list-item fly-in" max-height: "400">
@@ -101,8 +100,8 @@
                                                             <span>avg/night</span>
                                                         </div>
 
-                                                        <div class="cat-list-btn"><%= link_to 'update', booking_update_path(:hotel => hotel), :class=>'select_btn', :id => 'select_btn' %></div>
-                                                        <div class="cat-list-btn"><%= link_to 'delete', booking_delete_path(:hotel => hotel), :class=>'select_btn', :id => 'select_btn' %></div>
+                                                        <div class="cat-list-btn"><%= link_to 'update', booking_update_path(:booking => result.id), :class=>'select_btn', :id => 'select_btn' %></div>
+                                                        <div class="cat-list-btn"><%= link_to 'delete', booking_delete_path(:booking => result.id), :class=>'select_btn', :id => 'select_btn' %></div>
                                                     </div>
                                                 </div>
                                                 <div class="clear"></div>
