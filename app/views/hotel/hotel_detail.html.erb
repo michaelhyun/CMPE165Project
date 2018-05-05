@@ -226,7 +226,9 @@
   						<nav>
   							<ul>
   								<li><a class="active" href="#">DESCRIPTION</a></li>
-  								<li><a href="#">AVAILABILITY</a></li>
+  								<% if user_signed_in? %>
+                  <li><a href="#">AVAILABILITY</a></li>
+                  <% end %>
   								<li><a href="#">Preferences</a></li>
   							  <li></li>
                 </ul>
