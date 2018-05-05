@@ -11,6 +11,9 @@ get 'hotel' => 'hotel#hotel_detail'
 
 get 'hotel_booking' => 'hotel#hotel_booking'
 get 'booking_complete' => 'hotel#booking_complete'
+get 'booking_delete' => 'hotel#booking_delete'
+get 'booking_update' => 'hotel#booking_update'
+
 
 get 'my_booking'=>'account#mybooking'
 get 'my_reservation'=>'account#myreservation'
