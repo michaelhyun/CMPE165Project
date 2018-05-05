@@ -59,11 +59,12 @@
                                                                 </p>
                                                                 <div class="cat-icons">
                                                                     <div class="check-in-date"> Check in date: <%= result.check_in %> </div>
-                                                                    <div class="check-in-date"> Check out date: <%= result.check_out %> </div>
-                                                                    <div class="check-in-date"> Number of adults: <%= result.num_adults %> </div>
-                                                                    <div class="check-in-date"> Number of children: <%= result.num_child %> </div>
-                                                                    <div class="check-in-date"> Room Type: <%= result.room_type %> </div>
-
+                                                                    <div class="check-out-date"> Check out date: <%= result.check_out %> </div>
+                                                                    <div class="num-of-adults"> Number of adults: <%= result.num_adults %> </div>
+                                                                    <div class="num-of-children"> Number of children: <%= result.num_child %> </div>
+                                                                    <div class="room-type"> Room Type: <%= result.room_type %> </div>
+                                                                    <div class="total-price"> Total Price: <%= result.total_price %> </div> 
+                                                                    <div class="transaction-id"> Transaction ID: <%= result.transaction_id %> </div> 
                                                                     <div class="clear"></div>
                                                                 </div>
                                                             </div>
@@ -100,7 +101,6 @@
                                                             <span>avg/night</span>
                                                         </div>
 
-                                                        <!-- FIX THIS -->
                                                         <div class="cat-list-btn"><%= link_to 'update', booking_update_path(:hotel => hotel), :class=>'select_btn', :id => 'select_btn' %></div>
                                                         <div class="cat-list-btn"><%= link_to 'delete', booking_delete_path(:hotel => hotel), :class=>'select_btn', :id => 'select_btn' %></div>
                                                     </div>
