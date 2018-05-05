@@ -5,13 +5,15 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://js.stripe.com/v3/"></script>
+    <%= tag :meta, :name => "stripe-key", :content => Rails.configuration.stripe[:publishable_key] %>
       <title>LikeHome</title>
 	  <meta name="description" content="" />
 	  <meta name="keywords" content="" />
 	  <meta charset="utf-8" />
 	  <!-- THIS IS THE LOGO IN THE TAB -->
 	  <link rel="icon" href="assets/favicon.png" />
-	  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" /> 
+	  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
 	  <link href="assets/jquery-ui.css" rel="stylesheet"/>
 	  <link href="assets/owl.carousel.css" rel="stylesheet"/>
 	  <link rel="stylesheet" href="assets/idangerous.swiper.css" />
@@ -40,7 +42,7 @@
 <% if !user_signed_in? %>
 	<div class="autorize-padding">
 	<h6 class="autorize-lbl">Welcome! Login in to Your Accont</h6>
-	<%= form_for(:user, :url => session_path(:user)) do |f| %>
+	<%= form_for(:user,:url => session_path(:user), :remote => true) do |f| %>
 	<div class="field">
     	<%= f.label :email %><br />
     	<%= f.email_field :email, autofocus: true, autocomplete: "email" %>
@@ -50,12 +52,12 @@
 		<%= f.password_field :password, autocomplete: "off" %>
 	</div>
 	<footer class="autorize-bottom">
-	<%= f.check_box :remember_me %>
-	<%= f.label :remember_me %>
 	<%= f.submit 'Sign in' , class: 'authorize-btn' %>
 	<%= link_to "Forgot your password?", new_password_path(:user), class: 'authorize-forget-pass' %>
 	<div class="clear"></div>
 	</footer> 
+	<%= f.check_box :remember_me %>
+	<%= f.label :remember_me %>
 	</div>
 	<% end %>
 <% end %>
@@ -73,7 +75,7 @@
     <%= f.label :password %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
+    <% end %><br/>
     <%= f.password_field :password, autocomplete: "off" %>
   </div>
   <div class="field">
@@ -91,61 +93,34 @@
 <!-- \\ authorize \\-->
 <header id="top">
 	<div class="header-a">
-		<div class="wrapper-padding">			
+		<div class="wrapper-padding">
 			<div class="header-account">
 			<% if !user_signed_in? %>
-				<a href="#" >My account</a>
+				<a href="#" >My Account</a>
 			<% end %>
 			<% if user_signed_in? %>
 				<%= button_to('Logout', destroy_user_session_path, method: :delete, class: 'authorize-btn') %>
 			<% end %>
 			</div>
+
 			<div class="header-viewed">
-				<a href="#" class="header-viewed-btn">recently viewed</a>
+			<%if user_signed_in? %>
+				<a href="#" class="header-viewed-btn">My Account</a>
 				<!-- // viewed drop // -->
 					<div class="viewed-drop">
 						<div class="viewed-drop-a">
 							<!-- // -->
 							<div class="viewed-item">
-								<div class="viewed-item-l">
-									<a href="#"><img alt="" src="assets/v-item-01.jpg" /></a>
+									<div class="viewed-item-lbl"><a><%= link_to 'My Reservation', my_reservation_path %></a></div>
+									<br>
+									<div class="viewed-item-lbl"><a><%= link_to 'Rewards', rewards_path %></a></div>
 								</div>
-								<div class="viewed-item-r">
-									<div class="viewed-item-lbl"><a href="#">Andrassy Thai Hotel</a></div>
-									<div class="viewed-item-cat">location: thailand</div>
-									<div class="viewed-price">152$</div>
-								</div>
-								<div class="clear"></div>
-							</div>
-							<!-- \\ -->
-							<!-- // -->
-							<div class="viewed-item">
-								<div class="viewed-item-l">
-									<a href="#"><img alt="" src="assets/v-item-02.jpg" /></a>
-								</div>
-								<div class="viewed-item-r">
-									<div class="viewed-item-lbl"><a href="#">Ermin's Hotel</a></div>
-									<div class="viewed-item-cat">location: dubai</div>
-									<div class="viewed-price">300$</div>
-								</div>
-								<div class="clear"></div>
-							</div>
-							<!-- \\ -->
-							<!-- // -->
-							<div class="viewed-item">
-								<div class="viewed-item-l">
-									<a href="#"><img alt="" src="assets/v-item-03.jpg" /></a>
-								</div>
-								<div class="viewed-item-r">
-									<div class="viewed-item-lbl"><a href="#">Best Western Hotel Reither</a></div>
-									<div class="viewed-item-cat">location: berlin</div>
-									<div class="viewed-price">2300$</div>
-								</div>
-								<div class="clear"></div>
+
 							</div>
 							<!-- \\ -->
 						</div>
 					</div>
+				<<% end -%>
 				<!-- \\ viewed drop \\ -->
 			</div>
 			<div class="clear"></div>
@@ -154,7 +129,8 @@
 	<div class="header-b">
 		<div class="wrapper-padding">
 			<!-- THIS IS THE MAIN LOGO ON THE TOP LEFT CORNER -->
-			<div class="header-logo"><a href="#"><img alt="" src="assets/logo.png" /></a></div>
+			<div class="header-logo"><a href="#">
+				<img alt="" src="assets/logo.png" style="max-height: 45px" /></a></div>
 			<div class="header-right">
 				<div class="hdr-srch">
 					<a href="#" class="hdr-srch-btn"></a>
@@ -165,28 +141,21 @@
 						<a href="#" class="srch-close"></a>
 						<div class="clear"></div>
 					</div>
-				</div>	
+				</div>
 				<div class="hdr-srch-devider"></div>
 				<a href="#" class="menu-btn"></a>
 				<nav class="header-nav">
 					<ul>
 						<li><a><%= link_to 'Home', root_path %></a>
 						</li>
-						<li><a><%= link_to 'Hotels', hotel_listing_path %></a>
-						</li>
-						<li><a>Pages</a>
-							<ul>
-								<li><a><%= link_to 'About Us', aboutus_path %></a></li>
-								<li><a><%= link_to 'Contact Us', contactus_path %><</a></li>
-								<li><a><%= link_to 'Services', services_path %></a></li>
-							</ul>
+						<li><a><%= link_to 'Hotels', hotel_listing_path(:location => 'San Jose') %></a>
 						</li>
 					</ul>
 				</nav>
 			</div>
 			<div class="clear"></div>
 		</div>
-	</div>	
+	</div>
 </header>
 <div></div>
 <%= yield %>
@@ -212,16 +181,14 @@
 	</div>
 	<div class="clear"></div>
 </footer>
-    
+
 <footer class="footer-b">
 	<div class="wrapper-padding">
 		<div class="footer-left"> © Copyright 2018 by Whose Code is it Anyways?. All rights reserved.</div>
 		<div class="footer-social">
-			<a href="#" class="footer-twitter"></a>
-			<a href="#" class="footer-facebook"></a>
-			<a href="#" class="footer-vimeo"></a>
-			<a href="#" class="footer-pinterest"></a>
-			<a href="#" class="footer-instagram"></a>
+			<a href="https://twitter.com/whosecode" class="footer-twitter"></a>
+			<a href="https://www.facebook.com/whosecode" class="footer-facebook"></a>
+			<a href="https://www.pinterest.com/whosecode" class="footer-pinterest"></a>
 		</div>
 		<div class="clear"></div>
 	</div>
@@ -230,9 +197,9 @@
 
 <!-- // scripts // -->
   <script src="assets/jquery.min.js"></script>
-  <script src="assets/jqeury.appear.js"></script>  
-  <script src="assets/jquery-ui.min.js"></script> 
-  <script src="assets/jquery.formstyler.js"></script>  
+  <script src="assets/jqeury.appear.js"></script>
+  <script src="assets/jquery-ui.min.js"></script>
+  <script src="assets/jquery.formstyler.js"></script>
   <script src="assets/owl.carousel.min.js"></script>
   <script src="assets/bxSlider.js"></script>
   <script src="assets/custom.select.js"></script>
@@ -248,27 +215,8 @@
 				});
 			});
 		})(jQuery);
-		
-		var slider_range = $("#slider-range");
-		var ammount_from = $("#ammount-from");
-		var ammount_to = $("#ammount-to");
-		
-		$(function() {
-			slider_range.slider({
-			  range: true,
-			  min: 0,
-			  max: 1500,
-			  values: [ 275, 1100 ],
-			  slide: function( event, ui ) {
-				ammount_from.val(ui.values[0]+'$');
-				ammount_to.val(ui.values[1]+'$');
-			  }
-			});
-			ammount_from.val(slider_range.slider("values",0)+'$');
-			ammount_to.val(slider_range.slider("values",1)+'$');
-		});
   	});
   </script>
-<!-- \\ scripts \\ --> 
+<!-- \\ scripts \\ -->
   </body>
 </html>

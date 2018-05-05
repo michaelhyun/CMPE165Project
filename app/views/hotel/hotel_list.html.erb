@@ -1,100 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-</head>  
-<body>  
+</head>
+<body>
 <!-- main-cont -->
 <div class="main-cont">
   <div class="body-wrapper">
     <div class="wrapper-padding">
     <div class="page-head">
-      <div class="page-title">Hotels - <span>list style</span></div>
+      <div class="page-title">Hotels</div>
       <div class="breadcrumbs">
-        <a href="/">Home</a> / <a href="#">Hotel</a> / <span>List style one</span>
+
       </div>
       <div class="clear"></div>
     </div>
     <div class="two-colls">
       <div class="two-colls-left">
-        
+
         <div class="srch-results-lbl fly-in">
           <span>
-          Search Result : 
+          Search Result :
           <% if !@results.nil? %>
             <%= @results.count %>
           <% end %>
           </span>
         </div>
-        
+
       <form method="get">
         <div class="side-block fly-in">
           <div class="side-block-search">
             <div class="page-search-p">
 						<!-- // -->
+            <% hname_to_field = !params[:hotel_name].nil? ? params[:hotel_name] : 'Hotel Name' %>
+            <% location_to_field = !params[:location].nil? ? params[:location] : 'Location' %>
+
+            <div class="srch-tab-line">							
+              <label>Hotel Name</label>
+              <%= text_field_tag :hotel_name, hname_to_field, class:'input-a', placeholder: 'Hotel Name' %>
+						</div>
+						      
 						<div class="srch-tab-line">
 							<label>Location</label>
-              <%= text_field_tag :location, '', class:'input-a', placeholder: 'Location' %>
+              <%= text_field_tag :location, location_to_field, class:'input-a', placeholder: 'Location' %>
 						</div>
-						<!-- // -->
-						<!-- // -->
-						<div class="srch-tab-line">
+						
+            <div class="srch-tab-line">
 							<div class="srch-tab-left">
 								<label>Check in</label>
-								<div class="input-a"><input type="text" value="" class="date-inpt" placeholder="mm/dd/yy"> <span class="date-icon"></span></div>	
+								<div class="input-a"><input type="text" value="" class="date-inpt" placeholder="mm/dd/yy"> <span class="date-icon"></span></div>
 							</div>
 							<div class="srch-tab-right">
 								<label>Check out</label>
-								<div class="input-a"><input type="text" value="" class="date-inpt" placeholder="mm/dd/yy"> <span class="date-icon"></span></div>	
-							</div>
-							<div class="clear"></div>
-						</div>            
-						<!-- \\ -->
-						<!-- // -->
-						<div class="srch-tab-line no-margin-bottom">
-							<div class="srch-tab-3c">
-								<label>Rooms</label>
-								<div class="select-wrapper">
-								<select class="custom-select">
-									<option>--</option>
-									<option>1</option>
-									<option>2</option>
-									<option>3</option>
-									<option>4</option>
-								</select>
-								</div>
-							</div>
-							<div class="srch-tab-3c">
-								<label>adult</label>
-								<div class="select-wrapper">
-								<select class="custom-select">
-									<option>--</option>
-									<option>1</option>
-									<option>2</option>
-									<option>3</option>
-									<option>4</option>
-								</select>
-								</div>
-							</div>
-							<div class="srch-tab-3c">
-								<label>Child</label>
-								<div class="select-wrapper">
-								<select class="custom-select">
-									<option>--</option>
-									<option>1</option>
-									<option>2</option>
-									<option>3</option>
-									<option>4</option>
-								</select>
-								</div>
+								<div class="input-a"><input type="text" value="" class="date-inpt" placeholder="mm/dd/yy"> <span class="date-icon"></span></div>
 							</div>
 							<div class="clear"></div>
 						</div>
 						<!-- \\ -->
-              <button type="submit" class="srch-btn">Search</button> 
-    				</div>       
-          </div>          
+              <button type="submit" class="srch-btn">Search</button>
+    				</div>
+          </div>
         </div>
-      </form>        
+      </form>
 
         <!-- // side // -->
         <div class="side-block fly-in">
@@ -102,178 +68,77 @@
             <div class="side-padding">
               <div class="side-lbl">Price</div>
               <div class="price-ranger">
-                <div id="slider-range"></div>              
+                <div id="slider-range"></div>
               </div>
               <div class="price-ammounts">
                 <input type="text" id="ammount-from" readonly>
                 <input type="text" id="ammount-to" readonly>
                 <div class="clear"></div>
-              </div>              
+              </div>
             </div>
-          </div>  
+          </div>
         </div>
         <!-- \\ side \\ -->
         <!-- // side // -->
         <div class="side-block fly-in">
           <div class="side-stars">
             <div class="side-padding">
-              <div class="side-lbl">Star rating</div>  
+              <div class="side-lbl">Star rating</div>
               <div class="star-rating-l">Choose Rating</div>
-              <div class="star-rating-r">
-                <a href="#"><img alt="" src="assets/rating-b.png"></a>
-                <a href="#"><img alt="" src="assets/rating-b.png"></a>
-                <a href="#"><img alt="" src="assets/rating-b.png"></a>
-                <a href="#"><img alt="" src="assets/rating-b.png"></a>
-                <a href="#"><img alt="" src="assets/rating-a.png"></a>
+              
+              <div class="star-rating-r">                
+                <%= link_to "#", :id => 'stars_link_1' do %>
+                    <img src="assets/rating-a.png">
+                <% end %>
+                <%= link_to "#", :id => 'stars_link_2' do %>
+                    <img src="assets/rating-a.png">
+                <% end %>
+                <%= link_to "#", :id => 'stars_link_3' do %>
+                    <img src="assets/rating-a.png">
+                <% end %>
+                <%= link_to "#", :id => 'stars_link_4' do %>
+                    <img src="assets/rating-a.png">
+                <% end %>
+                <%= link_to "#", :id => 'stars_link_5' do %>
+                    <img src="assets/rating-a.png">
+                <% end %>
+                
               </div>
-              <div class="clear"></div>            
+
+              <div class="clear"></div>
             </div>
-          </div>  
+          </div>
         </div>
         <!-- \\ side \\ -->
-        <!-- // side // -->
-        <div class="side-block fly-in">
-          <div class="side-stars">
-            <div class="side-padding">
-              <div class="side-lbl">Accomodation type</div>  
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox" value="" />
-                  All (823)
-                </label>
-              </div> 
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox" value="" />
-                  Hotel (326)
-                </label>
-              </div> 
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox" value="" />
-                  Resort (141)
-                </label>
-              </div>
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox" value="" />
-                  Residence (241)
-                </label>
-              </div>
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox" value="" />
-                  Villas (324)
-                </label>
-              </div>
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox" value="" />
-                  Apartment (214)
-                </label>
-              </div>           
-            </div>
-          </div>  
-        </div>
-        <!-- \\ side \\ -->
-        <!-- // side // -->
-        <div class="side-block fly-in">
-          <div class="side-stars">
-            <div class="side-padding">
-              <div class="side-lbl">Preferences</div>  
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox" value="" />
-                  Bathroom (823)
-                </label>
-              </div> 
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox" value="" />
-                  Cable TV (326)
-                </label>
-              </div> 
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox" value="" />
-                  Bed & breakfast (141)
-                </label>
-              </div>
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox" value="" />
-                  Apartment (241)
-                </label>
-              </div>
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox" value="" />
-                  Mini bar (324)
-                </label>
-              </div>
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox" value="" />
-                  Wi - fi (214)
-                </label>
-              </div>
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox" value="" />
-                  Pets allowed (64)
-                </label>
-              </div>           
-            </div>
-          </div>  
-        </div>
-        <!-- \\ side \\ -->
-        
+
       </div>
       <div class="two-colls-right">
         <div class="two-colls-right-b">
           <div class="padding">
-          
+
             <div class="catalog-head large fly-in">
               <label>Sorting results by:</label>
               <div class="search-select">
-    							<select>
-    								<option>Name</option>
-    								<option>Name</option>
-    								<option>Name</option>
-    								<option>Name</option>
-    								<option>Name</option>
-    							</select>
+                <%= select_tag :name_order, options_for_select(["---","Ascending", "Descending"]), :id => "sort_function"%>
     					</div>
               <div class="search-select">
-    							<select>
-    								<option>Price</option>
-    								<option>Price</option>
-    								<option>Price</option>
-    								<option>Price</option>
-    								<option>Price</option>
-    							</select>
+                <%= select_tag :price_order, options_for_select(["---","Lowest Price", "Highest Price"]), :id => "sort_by_price"%>
     					</div>
               <div class="search-select">
-    							<select>
-    								<option>Rating</option>
-    								<option>Rating</option>
-    								<option>Rating</option>
-    								<option>Rating</option>
-    								<option>Rating</option>
-    							</select>
+                <%= select_tag :rating_order, options_for_select(["---","Lowest Rating", "Highest Rating"]), :id => "sort_by_rating"%>
     					</div>
               <div class="clear"></div>
             </div>
 
             <div class="catalog-row list-rows">
-
             <!--  Thao Started HERE:  -->
             <% if !@results.nil? %>
-            <% @results.each do |result| %>            
-                <div class="cat-list-item fly-in">
-                  <div class="cat-list-item-l">
-                      <% imglink = helper_get_google_img(result) %>
-                      <%= image_tag( imglink ) %>
+            <%= content_tag "div", id: "myDiv", data: {results: @results} do %>
+            <% @results.each do |result| %>
+                <%= content_tag "div", id: result.hotel_name, class: "cat-list-item fly-in" do %>
+                <div class="cat-list-item fly-in" max-height: "400">
+                <div class="cat-list-item-l">
+                <%= image_tag(result.photo_reference, :style => "height: 150px; width: 200px") %>
                   </div>
                   <div class="cat-list-item-r">
                     <div class="cat-list-item-rb">
@@ -283,18 +148,26 @@
                             <div class="cat-list-content-l">
                               <div class="cat-list-content-lb">
                                 <div class="cat-list-content-lpadding">
-                                  <div class="offer-slider-link"><a href="#"> <%= result['name'] %> </a></div>
-                                  <div class="offer-slider-location"><%= result['formatted_address'] %></div>
-                                  <p> 
-                                  Description
+                                  <div class="offer-slider-link"><%= link_to result.hotel_name, hotel_path(:hotel => result) %></div>
+                                  <div class="offer-slider-location"><%= result.formatted_address %></div>
+                                  <p>
+
                                   </p>
                                   <div class="cat-icons">
                                     <span class="cat-icon-01 active"></span>
-                                    <span class="cat-icon-02"></span>
                                     <span class="cat-icon-03"></span>
-                                    <span class="cat-icon-04"></span>
-                                    <span class="cat-icon-05"></span>
-                                    <span class="cat-icon-06"></span>
+                                    <%  has_printing= rand(0..1) %>
+                                    <% if has_printing == 1 %>
+                                      <span class="cat-icon-04 active"></span>
+                                    <% else %>                                    
+                                      <span class="cat-icon-04"></span>                                    
+                                    <% end %>  
+                                    <%  has_airport = rand(0..1) %>
+                                    <% if has_airport == 1 %>
+                                       <span class="cat-icon-05 active"></span>
+                                    <% else %>
+                                       <span class="cat-icon-05"></span>
+                                    <% end %>                                    
                                     <div class="clear"></div>
                                   </div>
                                 </div>
@@ -305,21 +178,32 @@
                           <div class="cat-list-content-r">
                             <div class="cat-list-content-p">
                               <nav class="stars">
-            										<ul>
-            											<li><a href="#"><img alt="" src="assets/star-b.png" /></a></li>
-            											<li><a href="#"><img alt="" src="assets/star-b.png" /></a></li>
-            											<li><a href="#"><img alt="" src="assets/star-b.png" /></a></li>
-            											<li><a href="#"><img alt="" src="assets/star-b.png" /></a></li>
-            											<li><a href="#"><img alt="" src="assets/star-a.png" /></a></li>
-            										</ul>
+            										<ul>                                
+            										<% rating_number = result.google_rating %>
+                                <% if rating_number >= 1 %>
+                                <li><img alt="" src="assets/star-b.png" /></li>
+                                <% end %>
+                                <% if rating_number >= 2 %>
+                                <li><img alt="" src="assets/star-b.png" /></li>
+                                <% end %>
+                                <% if rating_number >= 3 %>
+                                <li><img alt="" src="assets/star-b.png" /></li>
+                                <% end %>
+                                <% if rating_number >= 4 %>
+                                <li><img alt="" src="assets/star-b.png" /></li>
+                                <% end %>
+                                <% if rating_number >= 5 %>
+                                <li><img alt="" src="assets/star-b.png" /></li>
+                                <% end %>
+                                </ul>
             										<div class="clear"></div>
             									</nav>
-                              <div class="cat-list-review">270 reviews</div>
+                              <div class="cat-list-review"> Rating: <%=result.google_rating %> </div>
                               <div class="offer-slider-r">
-              									<b>756$</b>
+              									<b> $<%= result.hotel_price %></b>
               									<span>avg/night</span>
-              								</div>           
-                              <div class="cat-list-btn"><%= link_to 'Select', hotel_path %></div>   
+              								</div>
+                              <div class="cat-list-btn"><%= link_to 'book now', hotel_path(:hotel => result), :class=>'select_btn', :id => 'select_btn' %></div>   
                             </div>
                           </div>
                           <div class="clear"></div>
@@ -330,17 +214,14 @@
                   </div>
                   <div class="clear"></div>
                 </div>
+              <% end %>
+
+              
             <% end %>
             <% end %>
             </div>
             <div class="clear"></div>
-          
-            <div class="pagination">
-              <a class="active" href="#">1</a>
-              <a href="#">2</a>
-              <a href="#">3</a>
-              <div class="clear"></div>
-            </div>
+            <% end %>
 
           </div>
         </div>
@@ -348,13 +229,283 @@
       </div>
     </div>
     <div class="clear"></div>
-    
-    </div>	
-  </div>  
+
+    </div>
+  </div>
 </div>
 <!-- /main-cont -->
+</body>
+<script>
+   /*THAO'S CUSTOM SORTING FUNCTIONS DO NOT TOUCH.*/
+  var myData = $('#myDiv').data("results")
+  var currentOrder = '';
+
+    function toggleStarsOn(star, index){  
+          var currentImgSrc = star.children[0].src;
+          //Toggle the star to OFF.
+          if(currentImgSrc.includes("rating-a.png")){
+            star.children[0].src = currentImgSrc.replace("rating-a.png", "rating-b.png");
+          }
+      }
+    function toggleStarsOff(star){
+      var currentImgSrc = star.children[0].src;
+      if(currentImgSrc.includes("rating-b.png")){
+        star.children[0].src = currentImgSrc.replace("rating-b.png", "rating-a.png");
+      }
+    }
+
+   
 
 
- 
-</body>  
-</html> 
+  $(document).ready( function(){
+    'use strict';
+
+    function sortForStars(a, b){
+      if( myData !== 'undefined' ){
+        currentOrder = $(this).val();
+        var p = document.getElementById('myDiv');
+        Array.prototype.slice.call(p.children)
+          .map(function (x) { return p.removeChild(x); })
+          .sort(function (x, y) {
+            var temprating = 0;
+            var rating = 0;
+            for( var i = 0; i < myData.length; i++){
+              var curData = myData[i];
+              if( curData.hotel_name === x.id)
+              {
+                temprating = parseFloat(curData.google_rating);
+                x.hidden = true;
+                if(temprating >= a && temprating < b)
+                {
+                  rating = parseFloat(curData.google_rating);
+                  x.hidden = false;
+                  return x;
+                }
+              }
+              else if (curData.hotel_name === y.id)
+              {
+                temprating = parseFloat(curData.google_rating);
+                y.hidden = true;
+                if(temprating >= a && temprating < b)
+                {
+                  rating = parseFloat(curData.google_rating);
+                  y.hidden = false;
+                  return rating;
+                }
+              }
+            }   
+          })
+          .forEach(function (x) { p.appendChild(x); });
+        } 
+    }
+
+		var slider_range = $("#slider-range");
+		var ammount_from = $("#ammount-from");
+		var ammount_to = $("#ammount-to");
+    /**Function to filter out all hotels that price is not within the desired range.*/
+		$(function() {
+			slider_range.slider({
+			  range: true,
+			  min: 0,
+			  max: 500,
+			  values: [ 0, 500 ],
+			  slide: function( event, ui ) {
+				ammount_from.val(ui.values[0]+'$');
+				ammount_to.val(ui.values[1]+'$');
+        var minV = parseFloat(slider_range.slider("values",0),10);
+        var maxV = parseFloat(slider_range.slider("values",1),10);
+        var p = document.getElementById('myDiv');
+        Array.prototype.slice
+            .call(p.children)
+            .forEach(function(x) {
+              for( var i = 0; i < myData.length; i++){
+                var curData = myData[i];
+                if( curData.hotel_name === x.id ){
+                    var xpricing = parseFloat(curData.hotel_price);
+                    if( xpricing < minV || xpricing > maxV )
+                      x.hidden = true;
+                    else
+                      x.hidden = false;
+                }
+              }
+        });
+        }
+			});
+			ammount_from.val(slider_range.slider("values",0)+'$');
+			ammount_to.val(slider_range.slider("values",1)+'$');
+		});
+
+    $('#sort_function').change(function() {
+      document.getElementById('sort_by_price').value = "---";
+      document.getElementById('sort_by_rating').value = "---";
+        if( myData !== 'undefined' ){
+        currentOrder = $(this).val();
+        var p = document.getElementById('myDiv');
+        Array.prototype.slice.call(p.children)
+          .map(function (x) { return p.removeChild(x); })
+          .sort(function (x, y) {
+            if (currentOrder === 'Ascending')
+              return x.id > y.id;
+            else if (currentOrder === 'Descending')
+              return x.id < y.id;
+          })
+          .forEach(function (x) { p.appendChild(x); });
+        }
+    });
+
+    $('#sort_by_price').change(function() {
+      document.getElementById('sort_function').value = "---";
+      document.getElementById('sort_by_rating').value = "---";
+      if( myData !== 'undefined' ){
+        currentOrder = $(this).val();
+        var p = document.getElementById('myDiv');
+        Array.prototype.slice.call(p.children)
+          .map(function (x) { return p.removeChild(x); })
+          .sort(function (x, y) {
+            var xrating = 0;
+            var yrating = 0;
+            for( var i = 0; i < myData.length; i++){
+              var curData = myData[i];
+              if( curData.hotel_name === x.id )
+                xrating = parseFloat(curData.hotel_price);
+              else if( curData.hotel_name === y.id )
+                yrating = parseFloat(curData.hotel_price);
+            }
+            if (currentOrder === 'Lowest Price')
+              return xrating > yrating;
+            else if (currentOrder === 'Highest Price')
+              return xrating < yrating;
+          })
+          .forEach(function (x) { p.appendChild(x); });
+        }
+    });
+
+    $('#sort_by_rating').change(function() {
+      document.getElementById('sort_function').value = "---";
+      document.getElementById('sort_by_price').value = "---";
+      if( myData !== 'undefined' ){
+        currentOrder = $(this).val();
+        var p = document.getElementById('myDiv');
+        Array.prototype.slice.call(p.children)
+          .map(function (x) { return p.removeChild(x); })
+          .sort(function (x, y) {
+            var xrating = 0;
+            var yrating = 0;
+            for( var i = 0; i < myData.length; i++){
+              var curData = myData[i];
+              if( curData.hotel_name === x.id )
+                xrating = parseFloat(curData.google_rating);
+              else if( curData.hotel_name === y.id )
+                yrating = parseFloat(curData.google_rating);
+              if( xrating > 0 && yrating > 0)
+                break;
+            }
+            if (currentOrder === 'Lowest Rating')
+              return xrating > yrating;
+            else if (currentOrder === 'Highest Rating')
+              return xrating < yrating;
+          })
+          .forEach(function (x) { p.appendChild(x); });
+        }
+
+    });
+
+    $('#stars_link_1').click(function(event){
+      for(var i = 1; i <= 5; i++)
+      {
+        var p = document.getElementById('stars_link_'+i);
+        toggleStarsOff(p);
+      }
+
+      var p = document.getElementById('stars_link_1');
+      toggleStarsOn(p);
+
+      sortForStars(1,2);
+      event.preventDefault(); 
+    });
+
+    $('#stars_link_2').click(function(event){
+      for(var i = 1; i <= 5; i++)
+      {
+        var p = document.getElementById('stars_link_'+i);
+        toggleStarsOff(p);
+      }
+
+      for(var i = 1; i <= 2; i++)
+      {
+        var p = document.getElementById('stars_link_'+i);
+        toggleStarsOn(p);
+      }
+
+      sortForStars(2,3);
+      event.preventDefault(); 
+    });
+
+    $('#stars_link_3').click(function(event){
+      
+      for(var i = 1; i <= 5; i++)
+      {
+        var p = document.getElementById('stars_link_'+i);
+        toggleStarsOff(p);
+      }
+
+      for(var i = 1; i <= 3; i++)
+      {
+        var p = document.getElementById('stars_link_'+i);
+        toggleStarsOn(p);
+      }
+
+      sortForStars(3,4);
+      event.preventDefault(); 
+    });
+
+    $('#stars_link_4').click(function(event){
+      for(var i = 1; i <= 5; i++)
+      {
+        var p = document.getElementById('stars_link_'+i);
+        toggleStarsOff(p);
+      }
+
+      for(var i = 1; i <= 4; i++)
+      {
+        var p = document.getElementById('stars_link_'+i);
+        toggleStarsOn(p);
+      }
+      
+      sortForStars(4,5);
+      event.preventDefault();
+    });
+
+
+    $('#stars_link_5').click(function(event){
+      for(var i = 1; i <= 5; i++)
+      {
+        var p = document.getElementById('stars_link_'+i);
+        toggleStarsOff(p);
+      }
+
+      for(var i = 1; i <= 5; i++)
+      {
+        var p = document.getElementById('stars_link_'+i);
+        toggleStarsOn(p);
+      }   
+      sortForStars(5,5);
+      event.preventDefault(); 
+    });
+
+    $('#select_room').change(function() {
+        //todo modify listings based on room selection.
+    });
+
+    $('#select_adult').change(function() {
+        //todo modify listings based on adult selection.
+    });
+
+    $('#select_child').change(function() {
+        //todo modify listings based on  selection.
+    });
+
+
+    });
+</script>
+</html>

@@ -1,3 +1,26 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.rewards-card-lbl {
+    font-size: 28px;
+	color: #3a4142; /*#141d1e;*/
+	font-family: 'Montserrat';
+	text-transform: uppercase;
+    font-weight: normal;
+
+    display: block;
+    text-align: center;
+	margin-bottom: 12px;
+	padding: 0px 0px 16px 0px;
+    background:url(../assets/pop-hdr.png) center bottom no-repeat;
+}
+
+.rewards-card-wrapper {
+    max-width: 1190px;
+    margin: 0 auto;
+    padding-top: 32px;
+}
+/* this is required to move the slider lower than the rewards card */
+.mp-offesr {
+    padding-top: 290px !important;
+}
