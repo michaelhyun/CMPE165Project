@@ -56,6 +56,7 @@ class HotelController < ApplicationController
 
     # GET payment form
 	def hotel_booking
+
     end
 
     # POST for submitting payment info
@@ -89,6 +90,12 @@ class HotelController < ApplicationController
 
     # GET payment confirmation page
 	def booking_complete
+	end
+
+	def booking_delete
+	end
+
+	def booking_update
 	end
 
 	def google_place_next_page(tok)
