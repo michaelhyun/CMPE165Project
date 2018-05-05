@@ -9,7 +9,7 @@
 
 		function init() {
 			var mylat = document.getElementById("latitude_tag").value; //'52.569334';
-			var mylong = document.getElementById("longitude_tag").value; //'13.380216';                
+			var mylong = document.getElementById("longitude_tag").value; //'13.380216';
 			var mapOptions = {
 				zoom: 13,
 				disableDefaultUI: true,
@@ -18,7 +18,7 @@
 					style: google.maps.ZoomControlStyle.LARGE,
 					position: google.maps.ControlPosition.LEFT_CENTER
 				},
-				center: new google.maps.LatLng(mylat, mylong), // New York 
+				center: new google.maps.LatLng(mylat, mylong), // New York
 			};
 			var mapElement = document.getElementById('map');
 			var map = new google.maps.Map(mapElement, mapOptions);
@@ -462,16 +462,15 @@
 																	<label>Check in</label>
 																	<%= date_field_tag :checkin_date %>
 																</div>
-																
+
 																<div class="srch-tab-right">
-																	<label>Check out</label>	
+																	<label>Check out</label>
 																	<%= date_field_tag :checkout_date %>
 																</div>
 																<div class="clear"></div>
 															</div>
 															<!-- \\ -->
 														</div>
-
 														<div class="rates-line-right">
 															<!-- // -->
 															<div class="srch-tab-line no-margin-bottom">
@@ -539,7 +538,8 @@
 																						<div class="available-price-a">avg/night</div>
 																						<div class="available-price-c">9 available</div>
 																						<!-- THIS IS WHERE IT LINKS TO THE BOOKINGS PAGE -->
-																						<%= submit_tag 'SELECT SINGLE', :id => 'single', class: 'available-btn' %>																						
+                                                                                            <%= hidden_field_tag 'room_price', '5.00' %>
+																						<%= submit_tag 'SELECT SINGLE', :id => 'single', class: 'available-btn' %>
 																					</div>
 																				</div>
 																				<div class="clear"></div>
@@ -592,7 +592,8 @@
 																						<div class="available-price">450$</div>
 																						<div class="available-price-a">avg/night</div>
 																						<div class="available-price-c">9 available</div>
-																						<%= submit_tag 'SELECT DOUBLE', class: 'available-btn' %>	
+                                                                                            <%= hidden_field_tag 'room_price', '10.00' %>
+                                                                                        <%= submit_tag 'SELECT DOUBLE', class: 'available-btn' %>
 																					</div>
 																				</div>
 																				<div class="clear"></div>
@@ -643,7 +644,8 @@
 																						<div class="available-price">380$</div>
 																						<div class="available-price-a">avg/night</div>
 																						<div class="available-price-c">9 available</div>
-																						<%= submit_tag 'SELECT TWIN', class: 'available-btn' %>	
+                                                                                            <%= hidden_field_tag 'room_price', '15.00' %>
+                                                                                        <%= submit_tag 'SELECT TWIN', class: 'available-btn' %>
 																					</div>
 																				</div>
 																				<div class="clear"></div>
@@ -694,7 +696,8 @@
 																						<div class="available-price">540$</div>
 																						<div class="available-price-a">avg/night</div>
 																						<div class="available-price-c">9 available</div>
-																						<%= submit_tag 'SELECT FAMILY', class: 'available-btn' %>	
+                                                                                            <%= hidden_field_tag 'room_price', '20.00' %>
+																						<%= submit_tag 'SELECT FAMILY', class: 'available-btn' %>
 																					</div>
 																				</div>
 																				<div class="clear"></div>
