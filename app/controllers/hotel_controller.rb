@@ -93,6 +93,8 @@ class HotelController < ApplicationController
 	end
 
 	def booking_delete
+		target = Booking.find(params[:booking])
+		target.destroy()
 	end
 
 	def booking_update
