@@ -112,13 +112,13 @@
             <div class="catalog-head large fly-in">
               <label>Sorting results by:</label>
               <div class="search-select">
-                <%= select_tag :name_order, options_for_select(["Ascending", "Descending"]), :id => "sort_function"%>
+                <%= select_tag :name_order, options_for_select(["---","Ascending", "Descending"]), :id => "sort_function"%>
     					</div>
               <div class="search-select">
-                <%= select_tag :price_order, options_for_select(["Lowest Price", "Highest Price"]), :id => "sort_by_price"%>
+                <%= select_tag :price_order, options_for_select(["---","Lowest Price", "Highest Price"]), :id => "sort_by_price"%>
     					</div>
               <div class="search-select">
-                <%= select_tag :rating_order, options_for_select(["Lowest Rating", "Highest Rating"]), :id => "sort_by_rating"%>
+                <%= select_tag :rating_order, options_for_select(["---","Lowest Rating", "Highest Rating"]), :id => "sort_by_rating"%>
     					</div>
               <div class="clear"></div>
             </div>
@@ -329,6 +329,8 @@
 		});
 
     $('#sort_function').change(function() {
+      document.getElementById('sort_by_price').value = "---";
+      document.getElementById('sort_by_rating').value = "---";
         if( myData !== 'undefined' ){
         currentOrder = $(this).val();
         var p = document.getElementById('myDiv');
@@ -345,6 +347,8 @@
     });
 
     $('#sort_by_price').change(function() {
+      document.getElementById('sort_function').value = "---";
+      document.getElementById('sort_by_rating').value = "---";
       if( myData !== 'undefined' ){
         currentOrder = $(this).val();
         var p = document.getElementById('myDiv');
@@ -370,6 +374,8 @@
     });
 
     $('#sort_by_rating').change(function() {
+      document.getElementById('sort_function').value = "---";
+      document.getElementById('sort_by_price').value = "---";
       if( myData !== 'undefined' ){
         currentOrder = $(this).val();
         var p = document.getElementById('myDiv');
