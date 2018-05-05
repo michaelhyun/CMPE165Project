@@ -31,13 +31,20 @@
           <div class="side-block-search">
             <div class="page-search-p">
 						<!-- // -->
+            <% hname_to_field = !params[:hotel_name].nil? ? params[:hotel_name] : 'Hotel Name' %>
+            <% location_to_field = !params[:location].nil? ? params[:location] : 'Location' %>
+
+            <div class="srch-tab-line">							
+              <label>Hotel Name</label>
+              <%= text_field_tag :hotel_name, hname_to_field, class:'input-a', placeholder: 'Hotel Name' %>
+						</div>
+						      
 						<div class="srch-tab-line">
 							<label>Location</label>
-              <%= text_field_tag :location, '', class:'input-a', placeholder: !params[:location].nil? ? params[:location] : 'Location' %>
+              <%= text_field_tag :location, location_to_field, class:'input-a', placeholder: 'Location' %>
 						</div>
-						<!-- // -->
-						<!-- // -->
-						<div class="srch-tab-line">
+						
+            <div class="srch-tab-line">
 							<div class="srch-tab-left">
 								<label>Check in</label>
 								<div class="input-a"><input type="text" value="" class="date-inpt" placeholder="mm/dd/yy"> <span class="date-icon"></span></div>
@@ -126,7 +133,6 @@
             <div class="catalog-row list-rows">
             <!--  Thao Started HERE:  -->
             <% if !@results.nil? %>
-
             <%= content_tag "div", id: "myDiv", data: {results: @results} do %>
             <% @results.each do |result| %>
                 <%= content_tag "div", id: result.hotel_name, class: "cat-list-item fly-in" do %>
@@ -208,13 +214,14 @@
                   </div>
                   <div class="clear"></div>
                 </div>
-                <% end %>
+              <% end %>
+
+              
             <% end %>
             <% end %>
             </div>
             <div class="clear"></div>
             <% end %>
-
 
           </div>
         </div>
