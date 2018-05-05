@@ -472,7 +472,7 @@
 								</map>
 								<div class="asia"></div>
 								<div class="africa"></div>
-								<div class="austalia"></div>
+								<div class="australia"></div>
 								<div class="europe"></div>
 								<div class="north-america"></div>
 								<div class="south-america"></div>
@@ -481,12 +481,12 @@
 					<!-- // regions // -->
 					<nav class="regions-nav">
 						<ul>
-							<li><a class="europe" href="#">Europe</a></li>
-							<li><a class="asia" href="#">Asia</a></li>
-							<li><a class="north-america" href="#">North america</a></li>
-							<li><a class="south-america" href="#">south america</a></li>
-							<li><a class="africa" href="#">africa</a></li>
-							<li><a class="austalia" href="#">australia</a></li>
+							<li><%= link_to 'Europe', hotel_listing_url(:location => 'Europe'), :class => 'europe', :id => 'europe' %></li>
+							<li><%= link_to 'Aisa', hotel_listing_url(:location => 'Asia'), :class => 'asia', :id => 'asia' %></li>
+							<li><%= link_to 'North America', hotel_listing_url(:location => 'North America'), :class => 'north-america', :id => 'north-america' %></li>
+							<li><%= link_to 'South America', hotel_listing_url(:location => 'South America'), :class => 'south-america', :id => 'south-america' %></li>
+							<li><%= link_to 'Africa', hotel_listing_url(:location => 'Africa'), :class => 'africa', :id => 'africa' %></li>
+							<li><%= link_to 'Australia', hotel_listing_url(:location => 'Australia'), :class => 'australia', :id => 'australia' %></li>
 						</ul>
 					</nav>
 				</div>
