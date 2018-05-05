@@ -2,15 +2,18 @@ class HotelController < ApplicationController
 	skip_before_action :authenticate_user!
 
 	include HotelHelper
-	def hotel_list
+	def hotel_list	
 		if !params[:location].nil?
 			@results_from_db = Hotel.all.where("city_name LIKE ?", params[:location])						
 			if @results_from_db.nil? or @results_from_db.count == 0
-				puts("Querying from GOOGLE PLACES.")
 				add_results_to_db(params[:location])
 				@results_from_db = Hotel.all.where("city_name LIKE ?", params[:location])				
 			end
-			@results = @results_from_db
+			if !params[:hotel_name].nil? 
+				@results = @results_from_db.select { |h| h.hotel_name.include? params[:hotel_name] }						
+			else
+				@results = @results_from_db
+			end
 		end
 	end
 

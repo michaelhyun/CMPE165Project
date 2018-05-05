@@ -135,7 +135,8 @@
 	<div class="header-b">
 		<div class="wrapper-padding">
 			<!-- THIS IS THE MAIN LOGO ON THE TOP LEFT CORNER -->
-			<div class="header-logo"><a href="#"><img alt="" src="assets/logo.png" /></a></div>
+			<div class="header-logo"><a href="#">
+				<img alt="" src="assets/logo.png" style="max-height: 45px" /></a></div>
 			<div class="header-right">
 				<div class="hdr-srch">
 					<a href="#" class="hdr-srch-btn"></a>
@@ -229,25 +230,6 @@
 				});
 			});
 		})(jQuery);
-
-		var slider_range = $("#slider-range");
-		var ammount_from = $("#ammount-from");
-		var ammount_to = $("#ammount-to");
-
-		$(function() {
-			slider_range.slider({
-			  range: true,
-			  min: 0,
-			  max: 1500,
-			  values: [ 275, 1100 ],
-			  slide: function( event, ui ) {
-				ammount_from.val(ui.values[0]+'$');
-				ammount_to.val(ui.values[1]+'$');
-			  }
-			});
-			ammount_from.val(slider_range.slider("values",0)+'$');
-			ammount_to.val(slider_range.slider("values",1)+'$');
-		});
   	});
   </script>
 <!-- \\ scripts \\ -->
