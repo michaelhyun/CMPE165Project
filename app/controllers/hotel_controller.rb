@@ -56,6 +56,26 @@ class HotelController < ApplicationController
 
     # GET payment form
 	def hotel_booking
+#http://localhost:3000/hotel_booking?utf8=%E2%9C%93&checkin_date=&checkout_date=&room_count=1&adult_count=1&child_count=1&hotel_id=3&room_price=5.00&commit=SELECT+SINGLE&room_price=10.00&room_price=15.00&room_price=20.00
+		@hotel_to_book = Hotel.find(params[:hotel_id])
+		
+		@total_price = 0
+		
+		@hotel_id = params[:hotel_id]
+		@checkin_date = !params[:checkin_date].nil? ? Date.parse(params[:checkin_date]) : Date.today
+		@checkout_date = !params[:checkout_date].nil? ? Date.parse(params[:checkout_date]) : 1.day.from_now
+		@number_nights = (@checkout_date.to_date - @checkin_date.to_date).to_i
+		@room_price = params[:room_price].to_i
+		@room_count = params[:room_count]
+		@adult_count = params[:adult_count]
+		@child_count = params[:child_count]
+
+		
+		@total_price = @total_price + (@room_price * @number_nights)
+
+
+
+
 
     end
 

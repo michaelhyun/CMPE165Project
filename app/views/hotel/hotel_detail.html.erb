@@ -452,7 +452,7 @@
 											<!-- // content-tabs-i // -->
 
 											<div class="content-tabs-i">
-												<%= form_tag( hotel_booking_path, method: :get) do |f| %>
+												<%= form_tag( hotel_booking_path, method: :get ) do |f| %>
 													<h2>Your Travel Rates</h2>
 													<div class="rates-search">
 														<div class="rates-line">
@@ -460,12 +460,12 @@
 															<div class="srch-tab-line">
 																<div class="srch-tab-left">
 																	<label>Check in</label>
-																	<%= date_field_tag :checkin_date %>
+																	<%= date_field_tag :checkin_date, Date.today %>
 																</div>
 
 																<div class="srch-tab-right">
 																	<label>Check out</label>
-																	<%= date_field_tag :checkout_date %>
+																	<%= date_field_tag :checkout_date, Date.parse(1.day.from_now.to_s)  %>
 																</div>
 																<div class="clear"></div>
 															</div>
@@ -485,7 +485,7 @@
 																</div>
 																<div class="srch-tab-3c">
 																	<label>Child</label>
-																	<%= select_tag :child_count, options_for_select(["1","2","3","4"]) %>
+																	<%= select_tag :child_count, options_for_select(["0", "1","2","3","4"]) %>
 																</div>
 																<div class="clear"></div>
 															</div>
@@ -538,6 +538,7 @@
 																						<div class="available-price-a">avg/night</div>
 																						<div class="available-price-c">9 available</div>
 																						<!-- THIS IS WHERE IT LINKS TO THE BOOKINGS PAGE -->
+																							<%= hidden_field_tag 'hotel_id', @selected_hotel.id %>
                                                                                             <%= hidden_field_tag 'room_price', '5.00' %>
 																						<%= submit_tag 'SELECT SINGLE', :id => 'single', class: 'available-btn' %>
 																					</div>
