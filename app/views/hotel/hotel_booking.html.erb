@@ -55,7 +55,10 @@
 											<h3>You currently have <%= current_user.reward_points %> Reward Points </h3>
 											
 											<!-- NEED TO ADD FUNCTIONALITY TO THIS BUTTON -->
-											<button class="booking-complete-btn"><%= link_to "Complete Payment", :method => "book_hotel_with_rewards" %> </button>
+											<%= form_tag reward_booking_path remote: true do |f| %>
+												<%= submit_tag 'Complete Payment', class: 'booking-complete-btn' %>
+											<% end %>
+
 										<% end %>
 										<% if current_user.reward_points < 10 %>
 											<span>You do not have enough reward points to complete your payment.</span>
