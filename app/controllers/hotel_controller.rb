@@ -56,15 +56,25 @@ class HotelController < ApplicationController
 
     # GET payment form
 	def hotel_booking
-
     end
+
+    def book_hotel_with_rewards
+    	@user = current_user
+        @user.reward_points = @user.reward_points-10
+        @user.save
+    	redirect_to booking_complete_path
+    end
+    helper_method :book_hotel_with_rewards
+
 
     # POST for submitting payment info
     def book_hotel
         # prices in stripe are defined in cents, hence 500 => $5.00
         # TODO: change hard-coded price to price of specific hotel room
         @amount=500
-
+        @user = current_user
+        @user.reward_points = @user.reward_points+1
+        @user.save
         begin
             # for now, creates a new customer and (transparently) unique customer id per transaction
             # TODO: store customer.id in User model (this associates user with payment credentials stored by stripe)

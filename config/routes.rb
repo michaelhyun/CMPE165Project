@@ -16,7 +16,7 @@ get 'booking_delete' => 'hotel#booking_delete'
 get 'booking_update' => 'hotel#booking_update'
 get 'my_booking'=>'account#mybooking'
 get 'my_reservation'=>'account#myreservation'
-
+# get 'booking_complete' => 'hotel#book_hotel_with_rewards'
 
 get 'aboutus' => 'admin#about_us'
 get 'contactus' => 'admin#contact_us'

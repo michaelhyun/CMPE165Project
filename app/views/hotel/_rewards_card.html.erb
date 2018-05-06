@@ -22,8 +22,14 @@
 		
 		<div class="rewards-card-wrapper">
             <div class="rewards-card-lbl" style="margin-bottom: 250px">
-            User, you have  point(s).<br />
-            You are points away from a free stay!
+            You have <%= current_user.reward_points %> point(s).<br/>
+            <% if current_user.reward_points < 10 %>
+            	You are points away from a free stay!
+            <% end %>
+            <% if current_user.reward_points >= 10 %>
+            	Congrats!, use your points to get a free stay at any hotel!
+            <% end %>
+
 			</div>
 		</div>				
 	</div>
