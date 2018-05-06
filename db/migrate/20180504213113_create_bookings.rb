@@ -3,6 +3,8 @@ class CreateBookings < ActiveRecord::Migration[5.1]
     create_table :bookings do |t|
       t.date :check_in
       t.date :check_out
+      t.decimal :total_price
+      t.string :transaction_id
       t.string :room_type
       t.integer :num_adults
       t.integer :num_child
