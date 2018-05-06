@@ -32,34 +32,22 @@
 								</div>
                             </div>
                             
-                            <div class="complete-devider2"></div>
-								
                             <div class="complete-txt">
                             <div class="complete-txt-link"><%= link_to 'Return to My Reservation', my_reservation_path  %></div>
                             </div>
-                            
-							
+
+							<div class="complete-txt">
+
+							</div>
+
+                            <div class="complete-devider"></div>
+
 							<div class="complete-info">
 								<h2>Your Personal Information</h2>
 								<div class="complete-info-table">
 									<div class="complete-info-i">
-										<div class="complete-info-l">Number:</div>
-										<div class="complete-info-r">521-645-6</div>
-										<div class="clear"></div>
-									</div>
-									<div class="complete-info-i">
-										<div class="complete-info-l">First Name:</div>
-										<div class="complete-info-r">Roman</div>
-										<div class="clear"></div>
-									</div>
-									<div class="complete-info-i">
-										<div class="complete-info-l">Last Name:</div>
-										<div class="complete-info-r">Polyarush</div>
-										<div class="clear"></div>
-									</div>
-									<div class="complete-info-i">
 										<div class="complete-info-l">E-Mail Adress:</div>
-										<div class="complete-info-r">weblionmedia@gmail.com</div>
+										<div class="complete-info-r"><%= current_user.email %> </div>
 										<div class="clear"></div>
 									</div>
 									<div class="complete-info-i">
@@ -85,9 +73,48 @@
 								<div class="complete-devider"></div>
 								
 								<div class="complete-txt final">
-									<h2>Booking Details</h2>
-									<p>Qoluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui voluptatem sequi nesciunt. Que porro quisqua. Sed ut perspiciatis unde omnis ste natus error.</p>
-									<div class="complete-txt-link"><a href="#">Your Hotel Info</a></div>
+									<h2>Update Booking</h2>
+									<div class="rates-search">
+									<div class="rates-line">
+										<!-- // -->
+										<div class="srch-tab-line">
+											<div class="srch-tab-left">
+												<label>Check in</label>
+												<%= date_field_tag :checkin_date, Date.today %>
+											</div>
+	
+											<div class="srch-tab-right">
+												<label>Check out</label>
+												<%= date_field_tag :checkout_date, Date.parse(1.day.from_now.to_s)  %>
+											</div>
+											<div class="clear"></div>
+										</div>
+										<!-- \\ -->
+									</div>
+									<div class="rates-line-right">
+										<!-- // -->
+										<div class="srch-tab-line no-margin-bottom">
+											<div class="srch-tab-3c">
+												<label>Rooms</label>
+												<%= select_tag :room_count, options_for_select(["1","2","3","4"]) %>
+											</div>
+	
+											<div class="srch-tab-3c">
+												<label>Adult</label>
+												<%= select_tag :adult_count, options_for_select(["1","2","3","4"]) %>
+											</div>
+											<div class="srch-tab-3c">
+												<label>Child</label>
+												<%= select_tag :child_count, options_for_select(["0", "1","2","3","4"]) %>
+											</div>
+											<div class="clear"></div>
+										</div>
+										<!-- \\ -->
+									</div>
+									<div class="booking-complete">
+									<h2>Update your trip</h2>
+									<button class="booking-complete-btn"><%= link_to 'COMPLETE BOOKING', booking_complete_path %></button>
+								</div>								</div>
 								</div>
 								
 							</div>

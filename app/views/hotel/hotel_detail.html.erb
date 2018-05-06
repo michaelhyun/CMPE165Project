@@ -534,12 +534,12 @@
 																				</div>
 																				<div class="cat-list-content-r">
 																					<div class="cat-list-content-p">
-																						<div class="available-price">634$</div>
+																						<div class="available-price">634.00$</div>
 																						<div class="available-price-a">avg/night</div>
 																						<div class="available-price-c">9 available</div>
 																						<!-- THIS IS WHERE IT LINKS TO THE BOOKINGS PAGE -->
 																							<%= hidden_field_tag 'hotel_id', @selected_hotel.id %>
-                                                                                            <%= hidden_field_tag 'room_price', '5.00' %>
+                                                                                            <%= hidden_field_tag 'room_price', 634.00 %>
 																						<%= submit_tag 'SELECT SINGLE', :id => 'single', class: 'available-btn' %>
 																					</div>
 																				</div>
@@ -590,10 +590,10 @@
 																				</div>
 																				<div class="cat-list-content-r">
 																					<div class="cat-list-content-p">
-																						<div class="available-price">450$</div>
+																						<div class="available-price">450.00$</div>
 																						<div class="available-price-a">avg/night</div>
 																						<div class="available-price-c">9 available</div>
-                                                                                            <%= hidden_field_tag 'room_price', '10.00' %>
+																						<%= hidden_field_tag 'room_price', 450.00 %>
                                                                                         <%= submit_tag 'SELECT DOUBLE', class: 'available-btn' %>
 																					</div>
 																				</div>
@@ -642,10 +642,10 @@
 																				</div>
 																				<div class="cat-list-content-r">
 																					<div class="cat-list-content-p">
-																						<div class="available-price">380$</div>
+																						<div class="available-price">380.00$</div>
 																						<div class="available-price-a">avg/night</div>
 																						<div class="available-price-c">9 available</div>
-                                                                                            <%= hidden_field_tag 'room_price', '15.00' %>
+																						<%= hidden_field_tag 'room_price', 380.00 %>
                                                                                         <%= submit_tag 'SELECT TWIN', class: 'available-btn' %>
 																					</div>
 																				</div>
@@ -694,10 +694,11 @@
 																				</div>
 																				<div class="cat-list-content-r">
 																					<div class="cat-list-content-p">
-																						<div class="available-price">540$</div>
+																						<div class="available-price">540.00$</div>
 																						<div class="available-price-a">avg/night</div>
 																						<div class="available-price-c">9 available</div>
-                                                                                            <%= hidden_field_tag 'room_price', '20.00' %>
+																						<%= hidden_field_tag 'hotel_id', @selected_hotel.id %>
+																						<%= hidden_field_tag 'room_price', 540.00 %>
 																						<%= submit_tag 'SELECT FAMILY', class: 'available-btn' %>
 																					</div>
 																				</div>
