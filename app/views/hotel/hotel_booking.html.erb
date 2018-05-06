@@ -34,7 +34,7 @@
 								<div class="payment-tabs-content">
 									<!-- // -->
 									<div class="payment-tab">
-                                        <%= render partial: 'payment_form', locals: {dest_path: hotel_booking_path} %>
+                                        <%= render partial: 'payment_form', locals: { dest_path: booking_complete_path, hotel: @hotel_to_book } %>
                                         <div class="clear"></div>
                                         <br />
 										<div class="checkbox">
