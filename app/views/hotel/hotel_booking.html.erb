@@ -29,6 +29,7 @@
 							<div class="payment-wrapper">
 								<div class="payment-tabs">
 									<a href="#" class="active">Credit Card <span></span></a>
+									<a href='#'>Reward Points <span></span></a>
 								</div>
 								<div class="clear"></div>
 								<div class="payment-tabs-content">
@@ -45,11 +46,30 @@
               							</div>
 									</div>
 									<!-- \\ -->
+									<div class="payment-tab">
+										<h2>Review and book your trip</h2>
+										<div class="payment-alert">
+											
+										<% if current_user.reward_points >= 10 %>
+											<span>You will be redeeming 10 Reward Points to complete your payment.</span>
+											<h3>You currently have <%= current_user.reward_points %> Reward Points </h3>
+											
+											<!-- NEED TO ADD FUNCTIONALITY TO THIS BUTTON -->
+											<%= form_tag reward_booking_path remote: true do |f| %>
+												<%= submit_tag 'Complete Payment', class: 'booking-complete-btn' %>
+											<% end %>
+
+										<% end %>
+										<% if current_user.reward_points < 10 %>
+											<span>You do not have enough reward points to complete your payment.</span>
+											<h3>You currently only have <%= current_user.reward_points %> Reward Points.</h3>
+										<% end %>
+										
+									</div>
+
+									</div>
 								</div>
-							</div>
-							<div class="booking-complete">
-								<h2>Review and book your trip</h2>
-								<button class="booking-complete-btn"><%= link_to 'COMPLETE BOOKING', booking_complete_path %></button>
+
 							</div>
 
 						</div>
