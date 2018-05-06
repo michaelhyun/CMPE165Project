@@ -100,7 +100,7 @@
                                                             <span>avg/night</span>
                                                         </div>
 
-                                                        <div class="cat-list-btn"><%= link_to 'update', booking_update_path(:booking => result.id), :class=>'select_btn', :id => 'select_btn' %></div>
+                                                        <div class="cat-list-btn"><%= link_to 'update', booking_update_details_path(:booking => result.id), :class=>'select_btn', :id => 'select_btn' %></div>
                                                         <div class="cat-list-btn"><%= link_to 'delete', booking_delete_path(:booking => result.id), :class=>'select_btn', :id => 'select_btn' %></div>
                                                     </div>
                                                 </div>

@@ -110,6 +110,9 @@ class HotelController < ApplicationController
 
     # GET payment confirmation page
 	def booking_complete
+		@room_count = params[:room_count]
+		@adult_count = params[:adult_count]
+		@child_count = params[:child_count]
 	end
 
 	def booking_delete
@@ -118,6 +121,9 @@ class HotelController < ApplicationController
 	end
 
 	def booking_update
+	end
+
+	def booking_update_details
 	end
 
 	def google_place_next_page(tok)

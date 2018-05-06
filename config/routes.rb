@@ -14,6 +14,7 @@ get 'booking_complete' => 'hotel#booking_complete'  # confirmation page
 get 'rewards' => 'hotel#_rewards_card'                    # rewards page
 get 'booking_delete' => 'hotel#booking_delete'
 get 'booking_update' => 'hotel#booking_update'
+get 'booking_update_details' => 'hotel#booking_update_details'
 get 'my_booking'=>'account#mybooking'
 get 'my_reservation'=>'account#myreservation'
 
