@@ -35,7 +35,16 @@
         <span id="error-msg" style="color: #fa755a;"></span>
     </div>
 </div>
-<button style="margin-top:10px">Submit Payment</button>
+
+<%= hidden_field_tag 'hidden_hotel_id', @hotel_to_book.id %>
+<%= hidden_field_tag 'hidden_hotel_name', @hotel_to_book.hotel_name %>
+<%= hidden_field_tag 'hidden_total_price', @total_price %>
+<%= hidden_field_tag 'hidden_checkin_date', @checkin_date %>
+<%= hidden_field_tag 'hidden_checkout_date', @checkout_date %>
+<%= hidden_field_tag 'hidden_number_nights',  @number_nights %>
+<%= hidden_field_tag 'hidden_adult_count', @adult_count %>
+<%= hidden_field_tag 'hidden_child_count', @child_count %>
+<button class="booking-complete-btn">Submit Payment</button>
 <% end %>
 
 <script type="text/javascript">
@@ -126,6 +135,62 @@ $('#payment-form').submit((event) => {
                 'name': 'stripeToken',
                 'value': result.token.id
             }).appendTo(form);
+ 
+            var hotelId = $('#hidden_hotel_id')[0].value;            
+            var selectedRoom = $('#hidden_hotel_id')[0].value;            
+            var price = $('#hidden_total_price')[0].value;
+            var checkinDay = $('#hidden_checkin_date')[0].value;
+            var checkoutDay = $('#hidden_checkout_date')[0].value;
+            var numberOfNights = $('#hidden_number_nights')[0].value;
+            var adultCount = $('#hidden_adult_count')[0].value;
+            var childCount = $('#hidden_child_count')[0].value;
+
+            $('<input type="hidden" />').attr({
+                'name': 'param_hotel_id',
+                'value': hotelId
+            }).appendTo(form);
+
+            $('<input type="hidden" />').attr({
+                'name': 'param_selected_room',
+                'value': selectedRoom
+            }).appendTo(form);
+
+            $('<input type="hidden" />').attr({
+                'name': 'param_price',
+                'value': price
+            }).appendTo(form);
+
+            $('<input type="hidden" />').attr({
+                'name': 'param_hotel_id',
+                'value': hotelId
+            }).appendTo(form);
+
+            $('<input type="hidden" />').attr({
+                'name': 'param_checkin_date',
+                'value': checkinDay
+            }).appendTo(form);
+           
+            $('<input type="hidden" />').attr({
+                'name': 'param_checkout_date',
+                'value': checkoutDay
+            }).appendTo(form);
+          
+            $('<input type="hidden" />').attr({
+                'name': 'param_num_of_nights',
+                'value': numberOfNights
+            }).appendTo(form);
+
+            $('<input type="hidden" />').attr({
+                'name': 'param_adult_count',
+                'value': adultCount
+            }).appendTo(form);
+
+            $('<input type="hidden" />').attr({
+                'name': 'param_child_count',
+                'value': childCount
+            }).appendTo(form);
+
+
             //alert(result.token.id);
             alert('Your payment details have been processed.');
             // submit the form
