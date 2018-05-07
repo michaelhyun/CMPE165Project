@@ -111,7 +111,7 @@ class HotelController < ApplicationController
 		@booking = Booking.create(
 			check_in: checkin_date,
 			check_out: checkout_date,
-			total_price: (total_amount).to_i,
+			total_price: Float(total_amount),
 			transaction_id: 'TRANSFROMREWARDS',
 			num_adults: adult_count,
 			num_child: child_count,
@@ -129,7 +129,7 @@ class HotelController < ApplicationController
     # POST for submitting payment info
 	def book_hotel
 		booked_hotel = Hotel.find(params[:param_hotel_id])
-		total_amount = (params[:param_price]).to_i
+		total_amount = Float(params[:param_price])
 		selected_room_type = params[:param_selected_room]
 
 		checkin_date = params[:param_checkin_date]
@@ -156,31 +156,39 @@ class HotelController < ApplicationController
 		@amount = total_amount
         @user = current_user
         @user.reward_points = @user.reward_points+1
-		@user.save
 
-		@booking = Booking.create( check_in: checkin_date,
-								   check_out: checkout_date,
-								   total_price: (total_amount).to_i,
-								   transaction_id: trans_id,
-								   num_adults: adult_count,
-								   num_child: child_count,
-								   user_id: current_user.id,
-								   hotel_id: hotel_id)
+        user_email = @user.email
+
         begin
             # for now, creates a new customer and (transparently) unique customer id per transaction
             # TODO: store customer.id in User model (this associates user with payment credentials stored by stripe)
             customer = Stripe::Customer.create(
-                :email   => current_user.email,
+                :email   => user_email,
                 :source  => params[:stripeToken] # this token corresponds to the entered card details
             )
 
             # creates one-time charge for hotel booking
             charge = Stripe::Charge.create(
                 :customer    => customer.id,
-                :amount      => @amount,
+                :amount      => Integer(@amount * 100),
                 :description => 'Rails Stripe customer',
-                :currency    => 'usd'
+                :currency    => 'usd',
+                :receipt_email => user_email
             )
+            @booking = Booking.create(
+                check_in: checkin_date,
+                check_out: checkout_date,
+                total_price: Float(total_amount),
+                transaction_id: charge.id,
+                num_adults: adult_count,
+                num_child: child_count,
+                user_id: current_user.id,
+                hotel_id: hotel_id
+            )
+            puts customer
+            puts charge
+            @user.save
+
             redirect_to booking_complete_path
 
         rescue Stripe::CardError => e
@@ -195,7 +203,16 @@ class HotelController < ApplicationController
 
 	def booking_delete
 		target = Booking.find(params[:booking])
-		target.destroy()
+        @used_reward = target.transaction_id == 'TRANSFROMREWARDS'
+        @refund_amount = 0.9 * target.total_price
+        if not @used_reward
+            refund =  Stripe::Refund.create(
+                :charge => target.transaction_id,
+                :amount => Integer(@refund_amount*100)
+            )
+            puts refund
+    		target.destroy()
+        end
 	end
 
 	def booking_update
