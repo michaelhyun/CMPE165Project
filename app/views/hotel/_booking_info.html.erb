@@ -1,0 +1,29 @@
+<div class="complete-info">
+    <h2>Booking Information</h2>
+    <%
+        hotel = Hotel.find(booking.hotel_id)
+        table = {
+            "Title" => hotel.hotel_name,
+            "Address" => hotel.formatted_address,
+            "Check-In Date" => booking.check_in.to_date,
+            "Check-Out Date" => booking.check_out.to_date,
+            "Number of Adults" => booking.num_adults,
+            "Number of Children" => booking.num_child,
+            "Room Type" => booking.room_type,
+            "Total Price" => number_to_currency(booking.total_price)
+        }
+        labels = ["Title", "Address",
+                "Check-In Date", "Check-Out Date",
+                "Number of Adults", "Number of Children",
+                "Room Type", "Total Price"]
+    %>
+    <div class="complete-info-table">
+        <% labels.each do |label| %>
+            <div class="complete-info-i">
+                <div class="complete-info-l"><%= label %></div>
+                <div class="complete-info-r"><%= table[label] %></div>
+                <div class="clear"></div>
+            </div>
+        <% end %>
+    </div>
+</div>

@@ -3,12 +3,12 @@
 <html lang="en">
 <head>
 
-</head>  
-<body class="inner-body">  
+</head>
+<body class="inner-body">
 
 <!-- main-cont -->
-<div class="main-cont">  	
-	
+<div class="main-cont">
+
 	<div class="inner-page">
 		<div class="inner-breadcrumbs">
 			<div class="content-wrapper">
@@ -17,25 +17,23 @@
         			<a href="#">Account</a> / <span>Rewards</span>
       			</div>
       			<div class="clear"></div>
-      		</div>		
+      		</div>
 		</div>
-		
+
 		<div class="rewards-card-wrapper">
             <div class="rewards-card-lbl" style="margin-bottom: 250px">
-            You have <%= current_user.reward_points %> point(s).<br/>
-            <% if current_user.reward_points < 10 %>
-            	Book more stays to get a free stay at a hotel!
-            <% end %>
-            <% if current_user.reward_points >= 10 %>
-            	Congrats!, use your points to get a free stay at any hotel!
-            <% end %>
-
+                You currently have <%= current_user.reward_points %> <%= current_user.reward_points != 1 ? "points" : "point" %>.<br/>
+                <% if current_user.reward_points < 10 %>
+                	<%= link_to "Book #{9-current_user.reward_points} more stays", hotel_listing_path(:location => 'San Jose') %> to get a free stay at a hotel!
+                <% elsif current_user.reward_points >= 10 %>
+                	Congrats! <%= link_to 'Use your points', hotel_listing_path(:location => 'San Jose') %> to get a free stay at any hotel!
+                <% end %>
 			</div>
-		</div>				
+		</div>
 	</div>
 </div>
 <!-- /main-cont -->
 
- 
-</body>  
-</html> 
+
+</body>
+</html>

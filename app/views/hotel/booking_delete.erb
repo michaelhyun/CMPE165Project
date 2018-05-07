@@ -2,17 +2,17 @@
 <html lang="en">
 <head>
 
-</head>  
-<body>  
+</head>
+<body>
 
 <!-- main-cont -->
 <div class="main-cont">
   <div class="body-wrapper">
     <div class="wrapper-padding">
     <div class="page-head">
-      <div class="page-title">Hotels - <span>booking complete</span></div>
+      <div class="page-title">Hotels - <span>Booking Cancelled</span></div>
       <div class="breadcrumbs">
-        <a href="/">Home</a> / <a href="#">Hotel</a> / <span>hotel delete</span>
+        <a href="/">Home</a> / <a href="#">Hotel</a> / <span>Cancel Booking</span>
       </div>
       <div class="clear"></div>
     </div>
@@ -23,27 +23,33 @@
   				<div class="sp-page-lb">
   					<div class="sp-page-p">
 						<div class="booking-left">
-							<h2>Booking Complete</h2>
-							
+							<h2>Booking Cancelled</h2>
+
 							<div class="comlete-alert">
 								<div class="comlete-alert-a">
-									<b style="font-size: 20pt" >Thank You. Your Reservation is Canceled.</b>
-
-									<span></span>
-								</div>
+									<b style="font-size: 20pt" >Your reservation has been cancelled.</b>
+                                    <% if not @used_reward %>
+                                        <p>Your <%= number_to_currency(@total_amount) %> reservation at <%= @title %> has been cancelled.<br/></p>
+                                        <p>Unfortunately, cancellation comes with a 10% cancellation fee.</p>
+                                        <p>We have issued a refund of <%= number_to_currency(@refund_amount) %> to your card on file.</p>
+                                    <% else %>
+                                        <p>Since you reserved this booking by redeeming points, no refund has been issued.</p>
+                                        <p>Redeemed points cannot be refunded</p>
+                                    <% end %>
+                                </div>
 							</div>
-							
-								
-								
+
+
+
 								<div class="complete-devider"></div>
-								
+
 								<div class="complete-txt final">
 									<p></p>
 									<div class="complete-txt-link"><%= link_to 'Return to My Reservation', my_reservation_path  %></div>
 								</div>
-								
+
 							</div>
-							
+
 						</div>
   					</div>
   				</div>
@@ -80,7 +86,7 @@
 					</div>
 					<div class="clear"></div>
 					</div>
-				<!-- \\ -->	
+				<!-- \\ -->
 				<!-- // -->
 					<div class="reasons-i">
 					<div class="reasons-h">
@@ -99,7 +105,7 @@
 					</div>
 					<div class="clear"></div>
 					</div>
-				<!-- \\ -->	
+				<!-- \\ -->
 				<!-- // -->
 					<div class="reasons-i">
 					<div class="reasons-h">
@@ -118,16 +124,16 @@
 					</div>
 					<div class="clear"></div>
 					</div>
-				<!-- \\ -->				
+				<!-- \\ -->
 				</div>
 			</div>
-			
+
 		</div>
 		<div class="clear"></div>
 	</div>
 
-    </div>	
-  </div>  
+    </div>
+  </div>
 </div>
 <!-- /main-cont -->
 
@@ -145,7 +151,7 @@
 		})(jQuery);
   	});
   </script>
-<!-- \\ scripts \\ --> 
- 
-</body>  
-</html> 
+<!-- \\ scripts \\ -->
+
+</body>
+</html>

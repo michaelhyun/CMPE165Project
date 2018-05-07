@@ -1,15 +1,15 @@
 class HotelController < ApplicationController
 	skip_before_action :authenticate_user!
 	include HotelHelper
-	def hotel_list	
+	def hotel_list
 		if !params[:location].nil?
-			@results_from_db = Hotel.all.where("city_name LIKE ?", params[:location])						
+			@results_from_db = Hotel.all.where("city_name LIKE ?", params[:location])
 			if @results_from_db.nil? or @results_from_db.count == 0
 				add_results_to_db(params[:location])
-				@results_from_db = Hotel.all.where("city_name LIKE ?", params[:location])				
+				@results_from_db = Hotel.all.where("city_name LIKE ?", params[:location])
 			end
-			if !params[:hotel_name].nil? 
-				@results = @results_from_db.select { |h| h.hotel_name.include? params[:hotel_name] }						
+			if !params[:hotel_name].nil?
+				@results = @results_from_db.select { |h| h.hotel_name.include? params[:hotel_name] }
 			else
 				@results = @results_from_db
 			end
@@ -17,12 +17,12 @@ class HotelController < ApplicationController
 	end
 
 	def add_results_to_db(location)
-		results = google_place_search(location)			
+		results = google_place_search(location)
 		results = results['results']
 		results.each do |result|
-			hname = result['name']					
-			hotel_exist = Hotel.where("hotel_name = ?", hname)		
-			next if hotel_exist.count != 0				
+			hname = result['name']
+			hotel_exist = Hotel.where("hotel_name = ?", hname)
+			next if hotel_exist.count != 0
 				fmat_address = 			result['formatted_address']
 				google_id = 			result['id']
 				google_place_id = 		result['place_id']
@@ -31,16 +31,16 @@ class HotelController < ApplicationController
 				latitude =  			result['geometry']['location']['lat']
 				photoref =				helper_get_google_img(result)
 				hprice = rand(50..199)
-				hotell = Hotel.create(  :hotel_name => hname, 
-										:city_name => location, 
-										:latitude=> latitude, 
-										:longitude => longitude, 
-										:formatted_address => fmat_address, 
-										:google_id => google_id, 
-										:google_place_id => google_place_id, 
-										:google_rating => google_rating, 
+				hotell = Hotel.create(  :hotel_name => hname,
+										:city_name => location,
+										:latitude=> latitude,
+										:longitude => longitude,
+										:formatted_address => fmat_address,
+										:google_id => google_id,
+										:google_place_id => google_place_id,
+										:google_rating => google_rating,
 										:photo_reference => photoref,
-										:hotel_price => hprice )			
+										:hotel_price => hprice )
 				#store to database
 				hotell.save
 		end
@@ -54,7 +54,7 @@ class HotelController < ApplicationController
 		@single_room_price 	= price
 		@twin_room_price 	= 1.5*price
 		@double_room_price 	= 2*price
-		@family_room_price = 2.5*price		
+		@family_room_price = 2.5*price
 	end
 
     # GET payment form
@@ -81,6 +81,12 @@ class HotelController < ApplicationController
 		@room_count = params[:room_count]
 		@adult_count = params[:adult_count]
 		@child_count = params[:child_count]
+
+        room_for_commit = {'single' => 'Single Room',
+                           'double' => 'Double Room',
+                           'twin'   => 'Twin Room',
+                           'family' => 'Family Suite'}
+        @room_type = room_for_commit[params[:commit]]
 		@total_price =  @room_price.to_f * @number_nights.to_i
 	end
 
@@ -95,7 +101,7 @@ class HotelController < ApplicationController
 		adult_count	= params[:adult_count]
 		child_count	= params[:child_count]
 		current_user_id	= params[:current_user]
-		hotel_id		= params[:hotel_id]	
+		hotel_id		= params[:hotel_id]
 		#loop through every booking and determine if the user should be able to book it
 		current_reservations = Booking.where("user_id = ?", current_user.id)
 		current_reservations.each do |reservation|
@@ -108,20 +114,21 @@ class HotelController < ApplicationController
 			end
 		end
 
-		@booking = Booking.create( 
-			check_in: checkin_date,  
+		@booking = Booking.create(
+			check_in: checkin_date,
 			check_out: checkout_date,
-			total_price: (total_amount).to_i,
+			total_price: Float(total_amount),
 			transaction_id: 'TRANSFROMREWARDS',
 			num_adults: adult_count,
 			num_child: child_count,
+            room_type: params[:room_type],
 			user_id: current_user.id,
 			hotel_id: hotel_id )
 
     	@user = current_user
         @user.reward_points = @user.reward_points-10
         @user.save
-    	redirect_to booking_complete_path
+    	redirect_to booking_complete_path(booking: @booking.id)
     end
     helper_method :book_hotel_with_rewards
 
@@ -129,7 +136,7 @@ class HotelController < ApplicationController
     # POST for submitting payment info
 	def book_hotel
 		booked_hotel = Hotel.find(params[:param_hotel_id])
-		total_amount = (params[:param_price]).to_i
+		total_amount = Float(params[:param_price])
 		selected_room_type = params[:param_selected_room]
 
 		checkin_date = params[:param_checkin_date]
@@ -153,35 +160,44 @@ class HotelController < ApplicationController
 			end
 		end
 
-		@amount = total_amount 
+		@amount = total_amount
         @user = current_user
         @user.reward_points = @user.reward_points+1
-		@user.save
-		
-		@booking = Booking.create( check_in: checkin_date,  
-								   check_out: checkout_date,
-								   total_price: (total_amount).to_i,
-								   transaction_id: trans_id,
-								   num_adults: adult_count,
-								   num_child: child_count,
-								   user_id: current_user.id,
-								   hotel_id: hotel_id)
+
+        user_email = @user.email
+
         begin
             # for now, creates a new customer and (transparently) unique customer id per transaction
             # TODO: store customer.id in User model (this associates user with payment credentials stored by stripe)
             customer = Stripe::Customer.create(
-                :email   => params[:stripeEmail],
+                :email   => user_email,
                 :source  => params[:stripeToken] # this token corresponds to the entered card details
             )
 
             # creates one-time charge for hotel booking
             charge = Stripe::Charge.create(
                 :customer    => customer.id,
-                :amount      => @amount,
+                :amount      => Integer(@amount * 100),
                 :description => 'Rails Stripe customer',
-                :currency    => 'usd'
+                :currency    => 'usd',
+                :receipt_email => user_email
             )
-            redirect_to booking_complete_path
+            @booking = Booking.create(
+                check_in: checkin_date,
+                check_out: checkout_date,
+                total_price: Float(total_amount),
+                transaction_id: charge.id,
+                num_adults: adult_count,
+                num_child: child_count,
+                room_type: params[:param_room_type],
+                user_id: current_user.id,
+                hotel_id: hotel_id
+            )
+            puts customer
+            puts charge
+            @user.save
+
+            redirect_to booking_complete_path(booking: @booking.id)
 
         rescue Stripe::CardError => e
             flash[:error] = e.message
@@ -191,11 +207,23 @@ class HotelController < ApplicationController
 
     # GET payment confirmation page
 	def booking_complete
+        @points = current_user.reward_points
 	end
 
 	def booking_delete
 		target = Booking.find(params[:booking])
-		target.destroy()
+        @title = Hotel.find(target.hotel_id).hotel_name
+        @used_reward = target.transaction_id == 'TRANSFROMREWARDS'
+        @total_amount = target.total_price
+        @refund_amount = 0.9 * target.total_price
+        if not @used_reward
+            refund = Stripe::Refund.create(
+                :charge => target.transaction_id,
+                :amount => Integer(@refund_amount*100)
+            )
+            puts refund
+        end
+        target.destroy()
 	end
 
 	def booking_update
@@ -228,7 +256,7 @@ class HotelController < ApplicationController
 		cleaned_address = address.gsub(", USA", "")
 
 		results["results"].each do |hotel|
-			result_name = hotel['property_name'].downcase().strip()	
+			result_name = hotel['property_name'].downcase().strip()
 			result_zip = hotel["address"]["postal_code"]
 
 			unless !result_zip.nil?
@@ -246,7 +274,7 @@ class HotelController < ApplicationController
 				table['price'] = hotel["total_price"]["amount"]
 				table['phone'] = hotel["contacts"][0]["detail"]
 				table['fax'] = hotel["contacts"][1]["detail"]
-				table['address'] = "#{hotel["address"]["line1"]} #{hotel["address"]["city"]}, #{hotel["address"]["region"]} #{hotel["address"]["postal_code"]}" 
+				table['address'] = "#{hotel["address"]["line1"]} #{hotel["address"]["city"]}, #{hotel["address"]["region"]} #{hotel["address"]["postal_code"]}"
 				table['room_type'] = hotel["rooms"][0]["room_type_info"]["room_type"]
 				table['bed_size'] = hotel["rooms"][0]["room_type_info"]["bed_type"]
 				table['number_of_beds'] = hotel["rooms"][0]["room_type_info"]["number_of_beds"]

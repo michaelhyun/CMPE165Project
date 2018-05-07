@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 
-</head>  
-<body>  
+</head>
+<body>
 
 <!-- main-cont -->
 <div class="main-cont">
@@ -23,19 +23,20 @@
   				<div class="sp-page-lb">
   					<div class="sp-page-p">
 						<div class="booking-left">
-							<h2>Booking Complete</h2>							
+							<h2>Booking Complete</h2>
 							<div class="comlete-alert">
 								<div class="comlete-alert-a">
 									<b style="font-size: 20pt">Thank You. Your Order is Confirmed.</b>
-									<span></span>
+									<span>You are now at <%= @points %> reward <%= @points != 1 ? "points": "point" %>.</span>
 								</div>
 							</div>
-							
+                            <%= render partial: 'booking_info', locals: { booking: Booking.find(params[:booking]) } %>
+
 							<div class="complete-info">
 								<h2>Your Personal Information</h2>
 								<div class="complete-info-table">
 									<div class="complete-info-i">
-										<div class="complete-info-l">E-Mail Adress:</div>
+										<div class="complete-info-l">Email Address:</div>
 										<div class="complete-info-r"> <%= current_user.email %> </div>
 										<div class="clear"></div>
 									</div>
@@ -46,11 +47,11 @@
 									</div>
 									<div><%= link_to 'View My Reservations', my_reservation_path%></div>
 								</div>
-								
-								
-								
+
+
+
 							</div>
-							
+
 						</div>
   					</div>
   				</div>
@@ -66,13 +67,13 @@
 				<div class="h-help-phone">1-800-911-9111</div>
 				<div class="h-help-email">whosecodeisitanways@sjsu.edu</div>
 			</div>
-			
+
 		</div>
 		<div class="clear"></div>
 	</div>
 
-    </div>	
-  </div>  
+    </div>
+  </div>
 </div>
 <!-- /main-cont -->
 
@@ -90,7 +91,7 @@
 		})(jQuery);
   	});
   </script>
-<!-- \\ scripts \\ --> 
- 
-</body>  
-</html> 
+<!-- \\ scripts \\ -->
+
+</body>
+</html>
