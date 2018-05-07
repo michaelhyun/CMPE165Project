@@ -53,9 +53,15 @@
 										<% if current_user.reward_points >= 10 %>
 											<span>You will be redeeming 10 Reward Points to complete your payment.</span>
 											<h3>You currently have <%= current_user.reward_points %> Reward Points </h3>
-											
-											<!-- NEED TO ADD FUNCTIONALITY TO THIS BUTTON -->
+																						
 											<%= form_tag reward_booking_path remote: true do |f| %>
+												<%= hidden_field_tag 'checkin_date',  		@checkin_date  %>
+												<%= hidden_field_tag 'checkout_date', 		@checkout_date %>
+												<%= hidden_field_tag 'total_amount',  		@total_price   %>
+												<%= hidden_field_tag 'adult_count',	 		@adult_count 	%>
+												<%= hidden_field_tag 'child_count',	 		@child_count	%>
+												<%= hidden_field_tag 'current_user_id', 	current_user.id %>												
+												<%= hidden_field_tag 'hotel_id', 	 		@hotel_to_book.id %>
 												<%= submit_tag 'Complete Payment', class: 'booking-complete-btn' %>
 											<% end %>
 

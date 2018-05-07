@@ -534,12 +534,12 @@
 																				</div>
 																				<div class="cat-list-content-r">
 																					<div class="cat-list-content-p">
-																						<div class="available-price">634.00$</div>
+																						<div class="available-price"><%= @single_room_price %>$</div>
 																						<div class="available-price-a">avg/night</div>
 																						<div class="available-price-c">9 available</div>
 																						<!-- THIS IS WHERE IT LINKS TO THE BOOKINGS PAGE -->
 																							<%= hidden_field_tag 'hotel_id', @selected_hotel.id %>
-                                                                                            <%= hidden_field_tag 'room_price', 634.00 %>
+                                                                                            <%= hidden_field_tag 'single_room_price', @single_room_price %>
 																						<%= submit_tag 'SELECT SINGLE', :id => 'single', class: 'available-btn' %>
 																					</div>
 																				</div>
@@ -590,10 +590,10 @@
 																				</div>
 																				<div class="cat-list-content-r">
 																					<div class="cat-list-content-p">
-																						<div class="available-price">450.00$</div>
+																						<div class="available-price"><%= @double_room_price %>$</div>
 																						<div class="available-price-a">avg/night</div>
 																						<div class="available-price-c">9 available</div>
-																						<%= hidden_field_tag 'room_price', 450.00 %>
+																						<%= hidden_field_tag 'double_room_price', @double_room_price  %>
                                                                                         <%= submit_tag 'SELECT DOUBLE', class: 'available-btn' %>
 																					</div>
 																				</div>
@@ -625,7 +625,7 @@
 																									<a href="#">Twin Room</a>
 																								</div>
 																								<div class="offer-slider-location">Max Occupancy: 2 persons</div>
-																								<p> consequuntur magni dolores eos.</p>
+																								<p> <p>
 																								<div class="cat-icons">
 																									<span class="cat-icon-01 active"></span>
 																									<span class="cat-icon-02"></span>
@@ -642,10 +642,10 @@
 																				</div>
 																				<div class="cat-list-content-r">
 																					<div class="cat-list-content-p">
-																						<div class="available-price">380.00$</div>
+																						<div class="available-price"> <%= @twin_room_price  %>$</div>
 																						<div class="available-price-a">avg/night</div>
 																						<div class="available-price-c">9 available</div>
-																						<%= hidden_field_tag 'room_price', 380.00 %>
+																						<%= hidden_field_tag 'twin_room_price', @twin_room_price %>
                                                                                         <%= submit_tag 'SELECT TWIN', class: 'available-btn' %>
 																					</div>
 																				</div>
@@ -694,11 +694,11 @@
 																				</div>
 																				<div class="cat-list-content-r">
 																					<div class="cat-list-content-p">
-																						<div class="available-price">540.00$</div>
+																						<div class="available-price"><%= @family_room_price %>$</div>
 																						<div class="available-price-a">avg/night</div>
 																						<div class="available-price-c">9 available</div>
 																						<%= hidden_field_tag 'hotel_id', @selected_hotel.id %>
-																						<%= hidden_field_tag 'room_price', 540.00 %>
+																						<%= hidden_field_tag 'family_room_price', @family_room_price %>
 																						<%= submit_tag 'SELECT FAMILY', class: 'available-btn' %>
 																					</div>
 																				</div>

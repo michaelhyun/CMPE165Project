@@ -1,6 +1,5 @@
 class HotelController < ApplicationController
 	skip_before_action :authenticate_user!
-
 	include HotelHelper
 	def hotel_list	
 		if !params[:location].nil?
@@ -50,28 +49,64 @@ class HotelController < ApplicationController
 	def hotel_detail
 		id = !params[:hotel].nil? ? params[:hotel] : 0
 		@selected_hotel = Hotel.find(id)
-		
-		
+		price = @selected_hotel.hotel_price.to_i
+
+		@single_room_price 	= price
+		@twin_room_price 	= 1.5*price
+		@double_room_price 	= 2*price
+		@family_room_price = 2.5*price		
 	end
 
     # GET payment form
 	def hotel_booking
 		@hotel_to_book = Hotel.find(params[:hotel_id])
+		@selected_room_type = params[:commit]
+		@room_price = 0
 		@total_price = 0
+		if @selected_room_type.include? "TWIN"
+			@room_price = params[:twin_room_price]
+		elsif @selected_room_type.include? "DOUBLE"
+			@room_price = params[:double_room_price]
+		elsif @selected_room_type.include? "SINGLE"
+			@room_price = params[:single_room_price]
+		elsif @selected_room_type.include? "FAMILY"
+			@room_price = params[:family_room_price]
+		else
+			@room_price = @hotel_to_book.hotel_price
+		end
 		@hotel_id = params[:hotel_id]
 		@checkin_date = !params[:checkin_date].nil? ? Date.parse(params[:checkin_date]) : Date.today
 		@checkout_date = !params[:checkout_date].nil? ? Date.parse(params[:checkout_date]) : 1.day.from_now
 		@number_nights = (@checkout_date.to_date - @checkin_date.to_date).to_i
-		@room_price = params[:room_price].to_i
 		@room_count = params[:room_count]
 		@adult_count = params[:adult_count]
 		@child_count = params[:child_count]
-		@total_price = @total_price + (@room_price * @number_nights)
+		@total_price =  @room_price.to_f * @number_nights.to_i
 	end
 
 
 
-    def book_hotel_with_rewards
+	def book_hotel_with_rewards
+		puts params
+
+		checkin_date	= params[:checkin_date]
+		checkout_date	= params[:checkout_date]
+		total_amount	= params[:total_amount]
+		adult_count	= params[:adult_count]
+		child_count	= params[:child_count]
+		current_user_id	= params[:current_user]
+		hotel_id		= params[:hotel_id]	
+
+		@booking = Booking.create( 
+			check_in: checkin_date,  
+			check_out: checkout_date,
+			total_price: (total_amount).to_i,
+			transaction_id: 'TRANSFROMREWARDS',
+			num_adults: adult_count,
+			num_child: child_count,
+			user_id: current_user.id,
+			hotel_id: hotel_id )
+
     	@user = current_user
         @user.reward_points = @user.reward_points-10
         @user.save
@@ -103,14 +138,12 @@ class HotelController < ApplicationController
 		
 		@booking = Booking.create( check_in: checkin_date,  
 								   check_out: checkout_date,
-								   total_price: total_amount,
+								   total_price: (total_amount).to_i,
 								   transaction_id: trans_id,
 								   num_adults: adult_count,
 								   num_child: child_count,
 								   user_id: current_user.id,
-								   hotel_id: hotel_id )
-
-
+								   hotel_id: hotel_id)
         begin
             # for now, creates a new customer and (transparently) unique customer id per transaction
             # TODO: store customer.id in User model (this associates user with payment credentials stored by stripe)

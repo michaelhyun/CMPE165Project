@@ -37,6 +37,8 @@
 
                             <%= content_tag "div", id: "myDiv", data: {results: @results} do %>
                             <% @results.each do |result| %>
+                            <!-- Try to make things more robust. -->
+                            <% next if result.hotel_id.nil? %>
                             <% hotel = Hotel.find(result.hotel_id) %>
                             <%= content_tag "div", id: hotel.hotel_name, class: "cat-list-item fly-in" do %>
                             <div class="cat-list-item fly-in" max-height: "400">
