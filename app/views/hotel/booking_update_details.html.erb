@@ -12,7 +12,7 @@
     <div class="page-head">
       <div class="page-title">Hotels - <span>booking complete</span></div>
       <div class="breadcrumbs">
-        <a href="/">Home</a> / <a href="#">Hotel</a> / <span>hotel booking</span>
+        <a href="#">Home</a> / <a href="#">Hotel</a> / <span>hotel booking</span>
       </div>
       <div class="clear"></div>
     </div>
@@ -23,14 +23,7 @@
   				<div class="sp-page-lb">
   					<div class="sp-page-p">
 						<div class="booking-left">
-							<h2>Booking Complete</h2>
 							
-							<div class="comlete-alert">
-								<div class="comlete-alert-a">
-									<b style="font-size: 20pt">Thank You. Your Booking is Updated.</b>
-									<span></span>
-								</div>
-                            </div>
                             
                             <div class="complete-txt">
                             <div class="complete-txt-link"><%= link_to 'Return to My Reservation', my_reservation_path  %></div>
@@ -56,11 +49,57 @@
 								
 								<div class="complete-txt">
 									<h2>Payment Info</h2>
-
 								</div>
 								
 								<div class="complete-devider"></div>
 								
+								<div class="complete-txt final">
+									<h2>Update Booking</h2>
+									<%= form_tag( booking_update_path, method: :get ) do |f| %>
+									
+									<div class="rates-line">
+										
+										<div class="srch-tab-line">
+											<div class="srch-tab-left">
+												<label>Check in</label>
+												<%= date_field_tag :checkin_date, Date.today %>
+											</div>
+	
+											<div class="srch-tab-right">
+												<label>Check out</label>
+												<%= date_field_tag :checkout_date, Date.parse(1.day.from_now.to_s)  %>
+											</div>
+											<div class="clear"></div>
+										</div>
+										<!-- \\ -->
+									</div>
+									<div class="rates-line-right">
+										<!-- // -->
+										<div class="srch-tab-line no-margin-bottom">
+											<div class="srch-tab-3c">
+												<label>Rooms</label>
+												<%= select_tag :room_count, options_for_select(["1","2","3","4"]) %>
+											</div>
+	
+											<div class="srch-tab-3c">
+												<label>Adult</label>
+												<%= select_tag :adult_count, options_for_select(["1","2","3","4"]) %>
+											</div>
+											<div class="srch-tab-3c">
+												<label>Child</label>
+												<%= select_tag :child_count, options_for_select(["0", "1","2","3","4"]) %>
+
+											</div>
+											<div class="clear"></div>
+										</div>
+										<!-- \\ -->  
+									</div>
+									<div class="booking-complete">
+									<h2>Update your trip</h2>
+									<%= hidden_field_tag 'booking', @booking %>
+									<button class="booking-complete-btn"> Update Booking<%= submit_tag 'Update Booking', :style => "display: none;"  %> </button>
+									<% end %>
+								</div>								</div>
 								</div>
 								
 							</div>
@@ -70,6 +109,8 @@
   				</div>
   				<div class="clear"></div>
 			</div>
+			
+
 		</div>
 
 		<div class="sp-page-r">
@@ -153,7 +194,20 @@
 <!-- /main-cont -->
 
 
-
+<!-- // scripts // -->
+  <script>
+  	$(document).ready(function(){
+		'use strict';
+		(function($) {
+			$(function() {
+				$('.checkbox input').styler({
+					selectSearch: true
+				});
+			});
+		})(jQuery);
+  	});
+  </script>
+<!-- \\ scripts \\ --> 
  
 </body>  
 </html> 

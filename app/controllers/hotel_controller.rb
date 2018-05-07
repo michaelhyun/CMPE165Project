@@ -208,6 +208,9 @@ class HotelController < ApplicationController
     # GET payment confirmation page
 	def booking_complete
         @points = current_user.reward_points
+		@room_count = params[:room_count]
+		@adult_count = params[:adult_count]
+		@child_count = params[:child_count]
 	end
 
 	def booking_delete
@@ -226,7 +229,17 @@ class HotelController < ApplicationController
         target.destroy()
 	end
 
-	def booking_update
+	def booking_update  
+		target = Booking.find(params[:booking])
+		target.num_adults = params[:adult_count]
+		target.num_child = params[:child_count]
+		target.check_in = params[:checkin_date]
+		target.check_out = params[:checkout_date]
+		target.save
+	end
+
+	def booking_update_details
+		@booking = params[:booking]
 	end
 
 	def google_place_next_page(tok)
