@@ -57,7 +57,7 @@
 						<span>Detail</span>
 					</div>
 					<div class="breadcrumbs">
-						<a href="#">Home</a> /
+						<a href="/">Home</a> /
 						<a href="#">Hotel</a> /
 						<span>Detail</span>
 					</div>
@@ -452,6 +452,81 @@
 											<!-- // content-tabs-i // -->
 
 											<div class="content-tabs-i">
+											<div class="search-tab-content hotels-tab">
+				<form action="hotel_listing" method="get">
+				<div class="side-block fly-in">
+				<div class="side-block-search">
+					<div class="page-search-p">
+								<!-- // -->
+								<div class="srch-tab-line">
+									<label>Hotel</label>
+									<%= text_field_tag :hotel_name, '', class:'input-a', placeholder: 'Hotel Name' %>
+								</div>
+								<div class="srch-tab-line">
+									<label>Location</label>
+									<%= text_field_tag :location, '', class:'input-a', placeholder: 'Location' %>
+								</div>
+								<!-- // -->
+								<!-- // -->
+								<div class="srch-tab-line">
+									<div class="srch-tab-left">
+										<label>Check in</label>
+										<div class="input-a"><input type="text" value="" class="date-inpt" placeholder="mm/dd/yy"> <span class="date-icon"></span></div>
+									</div>
+									<div class="srch-tab-right">
+										<label>Check out</label>
+										<div class="input-a"><input type="text" value="" class="date-inpt" placeholder="mm/dd/yy"> <span class="date-icon"></span></div>
+									</div>
+									<div class="clear"></div>
+								</div>
+								<!-- \\ -->
+								<!-- // -->
+								<div class="srch-tab-line no-margin-bottom" style="display: none;">
+									<div class="srch-tab-3c">
+										<label>Rooms</label>
+										<div class="select-wrapper">
+										<select class="custom-select">
+											<option>--</option>
+											<option>1</option>
+											<option>2</option>
+											<option>3</option>
+											<option>4</option>
+										</select>
+										</div>
+									</div>
+									<div class="srch-tab-3c">
+										<label>adult</label>
+										<div class="select-wrapper">
+										<select class="custom-select">
+											<option>--</option>
+											<option>1</option>
+											<option>2</option>
+											<option>3</option>
+											<option>4</option>
+										</select>
+										</div>
+									</div>
+									<div class="srch-tab-3c">
+										<label>Child</label>
+										<div class="select-wrapper">
+										<select class="custom-select">
+											<option>--</option>
+											<option>1</option>
+											<option>2</option>
+											<option>3</option>
+											<option>4</option>
+										</select>
+										</div>
+									</div>
+									<div class="clear"></div>
+								</div>
+								<!-- \\ -->
+					<button type="submit" class="srch-btn">Search</button>
+					</div>
+				</div>
+				</div>
+			</form>
+				</div>
 												<%= form_tag( hotel_booking_path, method: :get ) do |f| %>
 													<h2>Your Travel Rates</h2>
 													<div class="rates-search">
