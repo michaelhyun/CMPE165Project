@@ -199,6 +199,7 @@ class HotelController < ApplicationController
 
     # GET payment confirmation page
 	def booking_complete
+        @points = current_user.reward_points
 	end
 
 	def booking_delete
