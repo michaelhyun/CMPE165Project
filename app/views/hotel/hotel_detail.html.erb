@@ -423,81 +423,6 @@
 											<!-- // content-tabs-i // -->
 
 											<div class="content-tabs-i">
-											<div class="search-tab-content hotels-tab">
-				<form action="hotel_listing" method="get">
-				<div class="side-block fly-in">
-				<div class="side-block-search">
-					<div class="page-search-p">
-								<!-- // -->
-								<div class="srch-tab-line">
-									<label>Hotel</label>
-									<%= text_field_tag :hotel_name, '', class:'input-a', placeholder: 'Hotel Name' %>
-								</div>
-								<div class="srch-tab-line">
-									<label>Location</label>
-									<%= text_field_tag :location, '', class:'input-a', placeholder: 'Location' %>
-								</div>
-								<!-- // -->
-								<!-- // -->
-								<div class="srch-tab-line">
-									<div class="srch-tab-left">
-										<label>Check in</label>
-										<div class="input-a"><input type="text" value="" class="date-inpt" placeholder="mm/dd/yy"> <span class="date-icon"></span></div>
-									</div>
-									<div class="srch-tab-right">
-										<label>Check out</label>
-										<div class="input-a"><input type="text" value="" class="date-inpt" placeholder="mm/dd/yy"> <span class="date-icon"></span></div>
-									</div>
-									<div class="clear"></div>
-								</div>
-								<!-- \\ -->
-								<!-- // -->
-								<div class="srch-tab-line no-margin-bottom" style="display: none;">
-									<div class="srch-tab-3c">
-										<label>Rooms</label>
-										<div class="select-wrapper">
-										<select class="custom-select">
-											<option>--</option>
-											<option>1</option>
-											<option>2</option>
-											<option>3</option>
-											<option>4</option>
-										</select>
-										</div>
-									</div>
-									<div class="srch-tab-3c">
-										<label>adult</label>
-										<div class="select-wrapper">
-										<select class="custom-select">
-											<option>--</option>
-											<option>1</option>
-											<option>2</option>
-											<option>3</option>
-											<option>4</option>
-										</select>
-										</div>
-									</div>
-									<div class="srch-tab-3c">
-										<label>Child</label>
-										<div class="select-wrapper">
-										<select class="custom-select">
-											<option>--</option>
-											<option>1</option>
-											<option>2</option>
-											<option>3</option>
-											<option>4</option>
-										</select>
-										</div>
-									</div>
-									<div class="clear"></div>
-								</div>
-								<!-- \\ -->
-					<button type="submit" class="srch-btn">Search</button>
-					</div>
-				</div>
-				</div>
-			</form>
-				</div>
 												<%= form_tag( hotel_booking_path, method: :get ) do |f| %>
 													<h2>Your Travel Rates</h2>
 													<div class="rates-search">
@@ -544,302 +469,330 @@
 
 														<div class="available-row">
 
-															<!-- START OF ROOM LISTING 1 -->
-															<div class="cat-list-item">
-																<div class="cat-list-item-l">
-																	<a href="#">
-																		<img alt="" src="assets/single.jpg">
-																	</a>
-																</div>
-																<div class="cat-list-item-r">
-																	<div class="cat-list-item-rb">
-																		<div class="cat-list-item-p">
-																			<div class="cat-list-content">
-																				<div class="cat-list-content-a">
-																					<div class="cat-list-content-l">
-																						<div class="cat-list-content-lb">
-																							<div class="cat-list-content-lpadding">
-																								<div class="offer-slider-link">
-																									<a href="#">Single Room</a>
-																								</div>
-																								<div class="offer-slider-location">Max Occupancy: 2 persons</div>
-																								<p> </p>
-																								<div class="cat-icons">
-																									<span class="cat-icon-01 active"></span>
-																									<span class="cat-icon-02"></span>
-																									<span class="cat-icon-03"></span>
-																									<span class="cat-icon-04"></span>
-																									<span class="cat-icon-05"></span>
-																									<span class="cat-icon-06"></span>
-																									<div class="clear"></div>
-																								</div>
-																							</div>
-																						</div>
-																						<br class="clear">
-																					</div>
-																				</div>
-																				<div class="cat-list-content-r">
-																					<div class="cat-list-content-p">
-																						<div class="available-price"><%= @single_room_price %>$</div>
-																						<div class="available-price-a">avg/night</div>
-																						<div class="available-price-c">9 available</div>
-																						<!-- THIS IS WHERE IT LINKS TO THE BOOKINGS PAGE -->
-																							<%= hidden_field_tag 'hotel_id', @selected_hotel.id %>
-                                                                                            <%= hidden_field_tag 'single_room_price', @single_room_price %>
-																						<%= submit_tag 'select', :id => 'single', class: 'available-btn' %>
-																					</div>
-																				</div>
-																				<div class="clear"></div>
-																			</div>
-																		</div>
-																	</div>
-																	<br class="clear">
-																</div>
-																<div class="clear"></div>
+														<!-- START OF ROOM LISTING 1 -->
+														<div class="cat-list-item">
+															<div class="cat-list-item-l">
+																<a href="#">
+																	<img alt="" src="assets/single.jpg">
+																</a>
 															</div>
-															<!-- END OF ROOM LISTING 2 -->
-
-
-															<!-- // -->
-															<div class="cat-list-item">
-																<div class="cat-list-item-l">
-																	<a href="#">
-																		<img alt="" src="assets/double.jpg">
-																	</a>
-																</div>
-																<div class="cat-list-item-r">
-																	<div class="cat-list-item-rb">
-																		<div class="cat-list-item-p">
-																			<div class="cat-list-content">
-																				<div class="cat-list-content-a">
-																					<div class="cat-list-content-l">
-																						<div class="cat-list-content-lb">
-																							<div class="cat-list-content-lpadding">
-																								<div class="offer-slider-link">
-																									<a href="#">Double Room</a>
-																								</div>
-																								<div class="offer-slider-location">Max Occupancy: 2 persons</div>
-																								<p> </p>
-																								<div class="cat-icons">
-																									<span class="cat-icon-01 active"></span>
-																									<span class="cat-icon-02"></span>
-																									<span class="cat-icon-03"></span>
-																									<span class="cat-icon-04"></span>
-																									<span class="cat-icon-05"></span>
-																									<span class="cat-icon-06"></span>
-																									<div class="clear"></div>
-																								</div>
+															<div class="cat-list-item-r">
+																<div class="cat-list-item-rb">
+																	<div class="cat-list-item-p">
+																		<div class="cat-list-content">
+																			<div class="cat-list-content-a">
+																				<div class="cat-list-content-l">
+																					<div class="cat-list-content-lb">
+																						<div class="cat-list-content-lpadding">
+																							<div class="offer-slider-link">
+																								<a href="#">Single Room</a>
+																							</div>
+																							<div class="offer-slider-location">Max Occupancy: 2 persons</div>
+																							<p> </p>
+																							<div class="cat-icons">
+																								<span class="cat-icon-01 active"></span>
+																								<span class="cat-icon-02"></span>
+																								<span class="cat-icon-03"></span>
+																								<span class="cat-icon-04"></span>
+																								<span class="cat-icon-05"></span>
+																								<span class="cat-icon-06"></span>
+																								<div class="clear"></div>
 																							</div>
 																						</div>
-																						<br class="clear">
 																					</div>
+																					<br class="clear">
 																				</div>
-																				<div class="cat-list-content-r">
-																					<div class="cat-list-content-p">
-																						<div class="available-price"><%= @double_room_price %>$</div>
-																						<div class="available-price-a">avg/night</div>
-																						<div class="available-price-c">9 available</div>
-																						<%= hidden_field_tag 'double_room_price', @double_room_price  %>
-                                                                                        <%= submit_tag 'select', class: 'available-btn' %>
-																					</div>
-																				</div>
-																				<div class="clear"></div>
 																			</div>
-																		</div>
-																	</div>
-																	<br class="clear">
-																</div>
-																<div class="clear"></div>
-															</div>
-															<!-- \\ -->
-															<!-- // -->
-															<div class="cat-list-item">
-																<div class="cat-list-item-l">
-																	<a href="#">
-																		<img alt="" src="assets/twin.jpg">
-																	</a>
-																</div>
-																<div class="cat-list-item-r">
-																	<div class="cat-list-item-rb">
-																		<div class="cat-list-item-p">
-																			<div class="cat-list-content">
-																				<div class="cat-list-content-a">
-																					<div class="cat-list-content-l">
-																						<div class="cat-list-content-lb">
-																							<div class="cat-list-content-lpadding">
-																								<div class="offer-slider-link">
-																									<a href="#">Twin Room</a>
-																								</div>
-																								<div class="offer-slider-location">Max Occupancy: 2 persons</div>
-																								<p> <p>
-																								<div class="cat-icons">
-																									<span class="cat-icon-01 active"></span>
-																									<span class="cat-icon-02"></span>
-																									<span class="cat-icon-03"></span>
-																									<span class="cat-icon-04"></span>
-																									<span class="cat-icon-05"></span>
-																									<span class="cat-icon-06"></span>
-																									<div class="clear"></div>
-																								</div>
-																							</div>
-																						</div>
-																						<br class="clear">
-																					</div>
-																				</div>
-																				<div class="cat-list-content-r">
-																					<div class="cat-list-content-p">
-																						<div class="available-price"> <%= @twin_room_price  %>$</div>
-																						<div class="available-price-a">avg/night</div>
-																						<div class="available-price-c">9 available</div>
-																						<%= hidden_field_tag 'twin_room_price', @twin_room_price %>
-                                                                                        <%= submit_tag 'select', class: 'available-btn' %>
-																					</div>
-																				</div>
-																				<div class="clear"></div>
-																			</div>
-																		</div>
-																	</div>
-																	<br class="clear">
-																</div>
-																<div class="clear"></div>
-															</div>
-															<!-- \\ -->
-															<!-- // -->
-															<div class="cat-list-item">
-																<div class="cat-list-item-l">
-																	<a href="#">
-																		<img alt="" src="assets/family.jpg">
-																	</a>
-																</div>
-																<div class="cat-list-item-r">
-																	<div class="cat-list-item-rb">
-																		<div class="cat-list-item-p">
-																			<div class="cat-list-content">
-																				<div class="cat-list-content-a">
-																					<div class="cat-list-content-l">
-																						<div class="cat-list-content-lb">
-																							<div class="cat-list-content-lpadding">
-																								<div class="offer-slider-link">
-																									<a href="#">Family Suite</a>
-																								</div>
-																								<div class="offer-slider-location">Max Occupancy: 2 persons</div>
-																								<p> consequuntur magni dolores eos.</p>
-																								<div class="cat-icons">
-																									<span class="cat-icon-01 active"></span>
-																									<span class="cat-icon-02"></span>
-																									<span class="cat-icon-03"></span>
-																									<span class="cat-icon-04"></span>
-																									<span class="cat-icon-05"></span>
-																									<span class="cat-icon-06"></span>
-																									<div class="clear"></div>
-																								</div>
-																							</div>
-																						</div>
-																						<br class="clear">
-																					</div>
-																				</div>
-																				<div class="cat-list-content-r">
-																					<div class="cat-list-content-p">
-																						<div class="available-price"><%= @family_room_price %>$</div>
-																						<div class="available-price-a">avg/night</div>
-																						<div class="available-price-c">9 available</div>
+																			<div class="cat-list-content-r">
+																				<div class="cat-list-content-p">
+																					<div class="available-price"><%= @single_room_price %>$</div>
+																					<div class="available-price-a">avg/night</div>
+																					<div class="available-price-c">9 available</div>
+																					<!-- THIS IS WHERE IT LINKS TO THE BOOKINGS PAGE -->
 																						<%= hidden_field_tag 'hotel_id', @selected_hotel.id %>
-																						<%= hidden_field_tag 'family_room_price', @family_room_price %>
-																						<%= submit_tag 'select', class: 'available-btn' %>
-																					</div>
+																						<%= hidden_field_tag 'single_room_price', @single_room_price %>
+																						<button class="cat-list-btn">Select<%= submit_tag 'select', :id => 'single', :style => "display: none;"  %> </button>
 																				</div>
-																				<div class="clear"></div>
 																			</div>
+																			<div class="clear"></div>
 																		</div>
 																	</div>
-																	<br class="clear">
+																</div>
+																<br class="clear">
+															</div>
+															<div class="clear"></div>
+														</div>
+														<!-- END OF ROOM LISTING 2 -->
+
+
+														<!-- // -->
+														<div class="cat-list-item">
+															<div class="cat-list-item-l">
+																<a href="#">
+																	<img alt="" src="assets/double.jpg">
+																</a>
+															</div>
+															<div class="cat-list-item-r">
+																<div class="cat-list-item-rb">
+																	<div class="cat-list-item-p">
+																		<div class="cat-list-content">
+																			<div class="cat-list-content-a">
+																				<div class="cat-list-content-l">
+																					<div class="cat-list-content-lb">
+																						<div class="cat-list-content-lpadding">
+																							<div class="offer-slider-link">
+																								<a href="#">Double Room</a>
+																							</div>
+																							<div class="offer-slider-location">Max Occupancy: 2 persons</div>
+																							<p> </p>
+																							<div class="cat-icons">
+																								<span class="cat-icon-01 active"></span>
+																								<span class="cat-icon-02"></span>
+																								<span class="cat-icon-03"></span>
+																								<span class="cat-icon-04"></span>
+																								<span class="cat-icon-05"></span>
+																								<span class="cat-icon-06"></span>
+																								<div class="clear"></div>
+																							</div>
+																						</div>
+																					</div>
+																					<br class="clear">
+																				</div>
+																			</div>
+																			<div class="cat-list-content-r">
+																				<div class="cat-list-content-p">
+																					<div class="available-price"><%= @double_room_price %>$</div>
+																					<div class="available-price-a">avg/night</div>
+																					<div class="available-price-c">9 available</div>
+																					<%= hidden_field_tag 'double_room_price', @double_room_price  %>
+																					<button class="cat-list-btn">Select<%= submit_tag 'select', :id => 'double', :style => "display: none;"  %> </button>
+																				</div>
+																			</div>
+																			<div class="clear"></div>
+																		</div>
+																	</div>
+																</div>
+																<br class="clear">
+															</div>
+															<div class="clear"></div>
+														</div>
+														<!-- \\ -->
+														<!-- // -->
+														<div class="cat-list-item">
+															<div class="cat-list-item-l">
+																<a href="#">
+																	<img alt="" src="assets/twin.jpg">
+																</a>
+															</div>
+															<div class="cat-list-item-r">
+																<div class="cat-list-item-rb">
+																	<div class="cat-list-item-p">
+																		<div class="cat-list-content">
+																			<div class="cat-list-content-a">
+																				<div class="cat-list-content-l">
+																					<div class="cat-list-content-lb">
+																						<div class="cat-list-content-lpadding">
+																							<div class="offer-slider-link">
+																								<a href="#">Twin Room</a>
+																							</div>
+																							<div class="offer-slider-location">Max Occupancy: 2 persons</div>
+																							<p> <p>
+																							<div class="cat-icons">
+																								<span class="cat-icon-01 active"></span>
+																								<span class="cat-icon-02"></span>
+																								<span class="cat-icon-03"></span>
+																								<span class="cat-icon-04"></span>
+																								<span class="cat-icon-05"></span>
+																								<span class="cat-icon-06"></span>
+																								<div class="clear"></div>
+																							</div>
+																						</div>
+																					</div>
+																					<br class="clear">
+																				</div>
+																			</div>
+																			<div class="cat-list-content-r">
+																				<div class="cat-list-content-p">
+																					<div class="available-price"> <%= @twin_room_price  %>$</div>
+																					<div class="available-price-a">avg/night</div>
+																					<div class="available-price-c">9 available</div>
+																					<%= hidden_field_tag 'twin_room_price', @twin_room_price %>
+																					<button class="cat-list-btn">Select<%= submit_tag 'select', :id => 'twin', :style => "display: none;"  %> </button>
+																				</div>
+																			</div>
+																			<div class="clear"></div>
+																		</div>
+																	</div>
+																</div>
+																<br class="clear">
+															</div>
+															<div class="clear"></div>
+														</div>
+														<!-- \\ -->
+														<!-- // -->
+														<div class="cat-list-item">
+															<div class="cat-list-item-l">
+																<a href="#">
+																	<img alt="" src="assets/family.jpg">
+																</a>
+															</div>
+															<div class="cat-list-item-r">
+																<div class="cat-list-item-rb">
+																	<div class="cat-list-item-p">
+																		<div class="cat-list-content">
+																			<div class="cat-list-content-a">
+																				<div class="cat-list-content-l">
+																					<div class="cat-list-content-lb">
+																						<div class="cat-list-content-lpadding">
+																							<div class="offer-slider-link">
+																								<a href="#">Family Suite</a>
+																							</div>
+																							<div class="offer-slider-location">Max Occupancy: 2 persons</div>
+																							<p> consequuntur magni dolores eos.</p>
+																							<div class="cat-icons">
+																								<span class="cat-icon-01 active"></span>
+																								<span class="cat-icon-02"></span>
+																								<span class="cat-icon-03"></span>
+																								<span class="cat-icon-04"></span>
+																								<span class="cat-icon-05"></span>
+																								<span class="cat-icon-06"></span>
+																								<div class="clear"></div>
+																							</div>
+																						</div>
+																					</div>
+																					<br class="clear">
+																				</div>
+																			</div>
+																			<div class="cat-list-content-r">
+																				<div class="cat-list-content-p">
+																					<div class="available-price"><%= @family_room_price %>$</div>
+																					<div class="available-price-a">avg/night</div>
+																					<div class="available-price-c">9 available</div>
+																					<%= hidden_field_tag 'hotel_id', @selected_hotel.id %>
+																					<%= hidden_field_tag 'family_room_price', @family_room_price %>
+																					<button class="cat-list-btn">Select<%= submit_tag 'select', :id => 'family', :style => "display: none;"  %> </button>
+																				</div>
+																			</div>
+																			<div class="clear"></div>
+																		</div>
+																	</div>
+																</div>
+																<br class="clear">
+															</div>
+															<div class="clear"></div>
+														</div>
+														<!-- \\ -->
+													</div>
+
+												</div>
+
+												<% end %>
+
+										</div>
+
+
+
+										<!-- \\ content-tabs-i \\ -->
+										<!-- // content-tabs-i // -->
+										<div class="content-tabs-i">
+											<h2>Hotel Facilities</h2>
+											<p> </p>
+											<ul class="preferences-list">
+												<li class="internet">High-speed Internet</li>
+												<li class="conf-room">Conference room</li>
+												<li class="play-place">Play Place</li>
+												<li class="restourant">Restourant</li>
+												<li class="bar">Bar</li>
+												<li class="doorman">Doorman</li>
+												<li class="kitchen">Kitchen</li>
+												<li class="spa">Spa services</li>
+												<li class="bike">Bike Rental</li>
+												<li class="entertaiment">Entertaiment</li>
+												<li class="hot-tub">Hot Tub</li>
+												<li class="pool">Swimming Pool</li>
+												<li class="parking">Free parking</li>
+												<li class="gym">Gym</li>
+												<li class="tv">TV</li>
+												<li class="pets">Pets allowed</li>
+												<li class="handicap">Handicap</li>
+												<li class="secure">Secure </li>
+											</ul>
+											<div class="clear"></div>
+											<div class="preferences-devider"></div>
+											<h2>Alternative Style</h2>
+											<p> </p>
+											<ul class="preferences-list-alt">
+												<li class="internet">High-speed Internet</li>
+												<li class="parking">Free parking</li>
+												<li class="gym">Gym</li>
+												<li class="restourant">Restourant</li>
+												<li class="pets">Pets allowed</li>
+												<li class="pool">Swimming Pool</li>
+												<li class="kitchen">Kitchen</li>
+												<li class="conf-room">Conference room</li>
+												<li class="bike">Bike Rental</li>
+												<li class="entertaiment">Entertaiment</li>
+												<li class="bar">Bar</li>
+												<li class="secure">Secure</li>
+											</ul>
+											<div class="clear"></div>
+										</div>
+										<!-- \\ content-tabs-i \\ -->
+										<!-- // content-tabs-i // -->
+										<div class="content-tabs-i">
+											<div class="reviews-a">
+
+												<div class="reviews-c">
+													<div class="reviews-l">
+
+														</nav>
+													</div>
+
+												</div>
+												<div class="clear"></div>
+
+												<div class="reviews-devider"></div>
+
+												<div class="hotel-reviews">
+
+
+
+													<div class="clear"></div>
+												</div>
+
+												<div class="hotel-reviews-devider"></div>
+
+												<div class="guest-reviews">
+
+													<div class="guest-reviews-row">
+														<!-- // -->
+														<div class="guest-reviews-i">
+															<div class="guest-reviews-a">
+																<div class="guest-reviews-l">
+
+																</div>
+																<div class="guest-reviews-r">
+																	<div class="guest-reviews-rb">
+																		<div class="guest-reviews-b">
+																			<div class="guest-reviews-bl">
+																				<div class="guest-reviews-blb">
+
+																					<br class="clear" />
+																				</div>
+																			</div>
+																			<div class="guest-reviews-br">
+																				<div class="guest-reviews-padding">
+
+
+																				</div>
+																			</div>
+																		</div>
+																		<br class="clear" />
+																	</div>
 																</div>
 																<div class="clear"></div>
 															</div>
 															<!-- \\ -->
-														</div>
-
-													</div>
-
-													<% end %>
-
-											</div>
-
-
-
-											<!-- \\ content-tabs-i \\ -->
-											<!-- // content-tabs-i // -->
-											<div class="content-tabs-i">
-												<h2>Hotel Facilities</h2>
-												<p> </p>
-												<ul class="preferences-list">
-													<li class="internet">High-speed Internet</li>
-													<li class="conf-room">Conference room</li>
-													<li class="play-place">Play Place</li>
-													<li class="restourant">Restourant</li>
-													<li class="bar">Bar</li>
-													<li class="doorman">Doorman</li>
-													<li class="kitchen">Kitchen</li>
-													<li class="spa">Spa services</li>
-													<li class="bike">Bike Rental</li>
-													<li class="entertaiment">Entertaiment</li>
-													<li class="hot-tub">Hot Tub</li>
-													<li class="pool">Swimming Pool</li>
-													<li class="parking">Free parking</li>
-													<li class="gym">Gym</li>
-													<li class="tv">TV</li>
-													<li class="pets">Pets allowed</li>
-													<li class="handicap">Handicap</li>
-													<li class="secure">Secure </li>
-												</ul>
-												<div class="clear"></div>
-												<div class="preferences-devider"></div>
-												<h2>Alternative Style</h2>
-												<p> </p>
-												<ul class="preferences-list-alt">
-													<li class="internet">High-speed Internet</li>
-													<li class="parking">Free parking</li>
-													<li class="gym">Gym</li>
-													<li class="restourant">Restourant</li>
-													<li class="pets">Pets allowed</li>
-													<li class="pool">Swimming Pool</li>
-													<li class="kitchen">Kitchen</li>
-													<li class="conf-room">Conference room</li>
-													<li class="bike">Bike Rental</li>
-													<li class="entertaiment">Entertaiment</li>
-													<li class="bar">Bar</li>
-													<li class="secure">Secure</li>
-												</ul>
-												<div class="clear"></div>
-											</div>
-											<!-- \\ content-tabs-i \\ -->
-											<!-- // content-tabs-i // -->
-											<div class="content-tabs-i">
-												<div class="reviews-a">
-
-													<div class="reviews-c">
-														<div class="reviews-l">
-
-															</nav>
-														</div>
-
-													</div>
-													<div class="clear"></div>
-
-													<div class="reviews-devider"></div>
-
-													<div class="hotel-reviews">
-
-
-
-														<div class="clear"></div>
-													</div>
-
-													<div class="hotel-reviews-devider"></div>
-
-													<div class="guest-reviews">
-
-														<div class="guest-reviews-row">
 															<!-- // -->
 															<div class="guest-reviews-i">
 																<div class="guest-reviews-a">
@@ -852,365 +805,337 @@
 																				<div class="guest-reviews-bl">
 																					<div class="guest-reviews-blb">
 
-																						<br class="clear" />
 																					</div>
-																				</div>
-																				<div class="guest-reviews-br">
-																					<div class="guest-reviews-padding">
-
-
-																					</div>
+																					<br class="clear" />
 																				</div>
 																			</div>
-																			<br class="clear" />
+																			<div class="guest-reviews-br">
+																				<div class="guest-reviews-padding">
+
+
+																				</div>
+																			</div>
 																		</div>
+																		<br class="clear" />
 																	</div>
-																	<div class="clear"></div>
 																</div>
-																<!-- \\ -->
-																<!-- // -->
-																<div class="guest-reviews-i">
-																	<div class="guest-reviews-a">
-																		<div class="guest-reviews-l">
-
-																		</div>
-																		<div class="guest-reviews-r">
-																			<div class="guest-reviews-rb">
-																				<div class="guest-reviews-b">
-																					<div class="guest-reviews-bl">
-																						<div class="guest-reviews-blb">
-
-																						</div>
-																						<br class="clear" />
-																					</div>
-																				</div>
-																				<div class="guest-reviews-br">
-																					<div class="guest-reviews-padding">
-
-
-																					</div>
-																				</div>
-																			</div>
-																			<br class="clear" />
-																		</div>
-																	</div>
-																	<div class="clear"></div>
-																</div>
-																<!-- \\ -->
-																<!-- // -->
-																<div class="guest-reviews-i">
-																	<div class="guest-reviews-a">
-																		<div class="guest-reviews-l">
-																			<div class="guest-reviews-img">
-
-																			</div>
-																		</div>
-																		<div class="guest-reviews-r">
-																			<div class="guest-reviews-rb">
-																				<div class="guest-reviews-b">
-																					<div class="guest-reviews-bl">
-																						<div class="guest-reviews-blb">
-
-																						</div>
-																						<br class="clear" />
-																					</div>
-																				</div>
-																				<div class="guest-reviews-br">
-																					<div class="guest-reviews-padding">
-																						<nav>
-																							<ul>
-
-																							</ul>
-																						</nav>
-
-																					</div>
-																				</div>
-																			</div>
-																			<br class="clear" />
-																		</div>
-																	</div>
-																	<div class="clear"></div>
-																</div>
-																<!-- \\ -->
-																<!-- // -->
-																<div class="guest-reviews-i">
-																	<div class="guest-reviews-a">
-																		<div class="guest-reviews-l">
-
-																		</div>
-																		<div class="guest-reviews-r">
-																			<div class="guest-reviews-rb">
-																				<div class="guest-reviews-br">
-																					<div class="guest-reviews-padding">
-
-
-																					</div>
-																				</div>
-																			</div>
-																			<br class="clear" />
-																		</div>
-																	</div>
-																	<div class="clear"></div>
-																</div>
-																<!-- \\ -->
+																<div class="clear"></div>
 															</div>
-															<select class="custom-select">
-																<option>&nbsp;</option>
-																<option>1</option>
-																<option>2</option>
-																<option>3</option>
-																<option>4</option>
-															</select>
+															<!-- \\ -->
+															<!-- // -->
+															<div class="guest-reviews-i">
+																<div class="guest-reviews-a">
+																	<div class="guest-reviews-l">
+																		<div class="guest-reviews-img">
+
+																		</div>
+																	</div>
+																	<div class="guest-reviews-r">
+																		<div class="guest-reviews-rb">
+																			<div class="guest-reviews-b">
+																				<div class="guest-reviews-bl">
+																					<div class="guest-reviews-blb">
+
+																					</div>
+																					<br class="clear" />
+																				</div>
+																			</div>
+																			<div class="guest-reviews-br">
+																				<div class="guest-reviews-padding">
+																					<nav>
+																						<ul>
+
+																						</ul>
+																					</nav>
+
+																				</div>
+																			</div>
+																		</div>
+																		<br class="clear" />
+																	</div>
+																</div>
+																<div class="clear"></div>
+															</div>
+															<!-- \\ -->
+															<!-- // -->
+															<div class="guest-reviews-i">
+																<div class="guest-reviews-a">
+																	<div class="guest-reviews-l">
+
+																	</div>
+																	<div class="guest-reviews-r">
+																		<div class="guest-reviews-rb">
+																			<div class="guest-reviews-br">
+																				<div class="guest-reviews-padding">
+
+
+																				</div>
+																			</div>
+																		</div>
+																		<br class="clear" />
+																	</div>
+																</div>
+																<div class="clear"></div>
+															</div>
+															<!-- \\ -->
 														</div>
+														<select class="custom-select">
+															<option>&nbsp;</option>
+															<option>1</option>
+															<option>2</option>
+															<option>3</option>
+															<option>4</option>
+														</select>
 													</div>
 												</div>
 											</div>
-											<!-- \\ content-tabs-i \\ -->
-											<!-- // content-tabs-i // -->
-											<div class="content-tabs-i">
-												<h2>FAQ</h2>
-												<p class="small"> consequuntur magni dolores eos qui voluptatem sequi nesciunt. </p>
-												<div class="todo-devider"></div>
-												<div class="faq-row">
-													<!-- // -->
-													<div class="faq-item">
-														<div class="faq-item-a">
-															<span class="faq-item-left">Totam rem aperiam, eaquie ipsa quae?</span>
-															<span class="faq-item-i"></span>
-															<div class="clear"></div>
-														</div>
-														<div class="faq-item-b">
-															<div class="faq-item-p">
-																Voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia aspernatur aut odit aut fugit consequuntur magni dolores
-																eos qui voluptatem sequi nesciunt. aspernatur aut odit aut fugit
-															</div>
+										</div>
+										<!-- \\ content-tabs-i \\ -->
+										<!-- // content-tabs-i // -->
+										<div class="content-tabs-i">
+											<h2>FAQ</h2>
+											<p class="small"> consequuntur magni dolores eos qui voluptatem sequi nesciunt. </p>
+											<div class="todo-devider"></div>
+											<div class="faq-row">
+												<!-- // -->
+												<div class="faq-item">
+													<div class="faq-item-a">
+														<span class="faq-item-left">Totam rem aperiam, eaquie ipsa quae?</span>
+														<span class="faq-item-i"></span>
+														<div class="clear"></div>
+													</div>
+													<div class="faq-item-b">
+														<div class="faq-item-p">
+															Voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia aspernatur aut odit aut fugit consequuntur magni dolores
+															eos qui voluptatem sequi nesciunt. aspernatur aut odit aut fugit
 														</div>
 													</div>
-													<!-- \\ -->
-													<!-- // -->
-													<div class="faq-item">
-														<div class="faq-item-a">
-															<span class="faq-item-left">Dolores eos qui ratione voluptatem sequi nescuin?</span>
-															<span class="faq-item-i"></span>
-															<div class="clear"></div>
-														</div>
-														<div class="faq-item-b">
-															<div class="faq-item-p">
-																Voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia aspernatur aut odit aut fugit consequuntur magni dolores
-																eos qui voluptatem sequi nesciunt. aspernatur aut odit aut fugit
-
-															</div>
-														</div>
-													</div>
-													<!-- \\ -->
-													<!-- // -->
-													<div class="faq-item">
-														<div class="faq-item-a">
-															<span class="faq-item-left">Neque porro quisquam est, qui dolorem ipsum?</span>
-															<span class="faq-item-i"></span>
-															<div class="clear"></div>
-														</div>
-														<div class="faq-item-b">
-															<div class="faq-item-p">
-																Voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia aspernatur aut odit aut fugit consequuntur magni dolores
-																eos qui voluptatem sequi nesciunt. aspernatur aut odit aut fugit
-															</div>
-														</div>
-													</div>
-													<!-- \\ -->
-													<!-- // -->
-													<div class="faq-item">
-														<div class="faq-item-a">
-															<span class="faq-item-left">Dolor sit amet consectutur adipisci velit, sed?</span>
-															<span class="faq-item-i"></span>
-															<div class="clear"></div>
-														</div>
-														<div class="faq-item-b">
-															<div class="faq-item-p">
-																Voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia aspernatur aut odit aut fugit consequuntur magni dolores
-																eos qui voluptatem sequi nesciunt. aspernatur aut odit aut fugit
-															</div>
-														</div>
-													</div>
-													<!-- \\ -->
-													<!-- // -->
-													<div class="faq-item">
-														<div class="faq-item-a">
-															<span class="faq-item-left">Consectetur, adipisci velit, sed quia non numquam?</span>
-															<span class="faq-item-i"></span>
-															<div class="clear"></div>
-														</div>
-														<div class="faq-item-b">
-															<div class="faq-item-p">
-																Voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia aspernatur aut odit aut fugit consequuntur magni dolores
-																eos qui voluptatem sequi nesciunt. aspernatur aut odit aut fugit
-															</div>
-														</div>
-													</div>
-													<!-- \\ -->
 												</div>
+												<!-- \\ -->
+												<!-- // -->
+												<div class="faq-item">
+													<div class="faq-item-a">
+														<span class="faq-item-left">Dolores eos qui ratione voluptatem sequi nescuin?</span>
+														<span class="faq-item-i"></span>
+														<div class="clear"></div>
+													</div>
+													<div class="faq-item-b">
+														<div class="faq-item-p">
+															Voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia aspernatur aut odit aut fugit consequuntur magni dolores
+															eos qui voluptatem sequi nesciunt. aspernatur aut odit aut fugit
+
+														</div>
+													</div>
+												</div>
+												<!-- \\ -->
+												<!-- // -->
+												<div class="faq-item">
+													<div class="faq-item-a">
+														<span class="faq-item-left">Neque porro quisquam est, qui dolorem ipsum?</span>
+														<span class="faq-item-i"></span>
+														<div class="clear"></div>
+													</div>
+													<div class="faq-item-b">
+														<div class="faq-item-p">
+															Voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia aspernatur aut odit aut fugit consequuntur magni dolores
+															eos qui voluptatem sequi nesciunt. aspernatur aut odit aut fugit
+														</div>
+													</div>
+												</div>
+												<!-- \\ -->
+												<!-- // -->
+												<div class="faq-item">
+													<div class="faq-item-a">
+														<span class="faq-item-left">Dolor sit amet consectutur adipisci velit, sed?</span>
+														<span class="faq-item-i"></span>
+														<div class="clear"></div>
+													</div>
+													<div class="faq-item-b">
+														<div class="faq-item-p">
+															Voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia aspernatur aut odit aut fugit consequuntur magni dolores
+															eos qui voluptatem sequi nesciunt. aspernatur aut odit aut fugit
+														</div>
+													</div>
+												</div>
+												<!-- \\ -->
+												<!-- // -->
+												<div class="faq-item">
+													<div class="faq-item-a">
+														<span class="faq-item-left">Consectetur, adipisci velit, sed quia non numquam?</span>
+														<span class="faq-item-i"></span>
+														<div class="clear"></div>
+													</div>
+													<div class="faq-item-b">
+														<div class="faq-item-p">
+															Voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia aspernatur aut odit aut fugit consequuntur magni dolores
+															eos qui voluptatem sequi nesciunt. aspernatur aut odit aut fugit
+														</div>
+													</div>
+												</div>
+												<!-- \\ -->
 											</div>
-											<!-- \\ content-tabs-i \\ -->
-
 										</div>
+										<!-- \\ content-tabs-i \\ -->
+
 									</div>
-
-
 								</div>
 
+
 							</div>
-							<div class="clear"></div>
+
 						</div>
+						<div class="clear"></div>
 					</div>
-
-					<div class="sp-page-r">
-						<div class="h-detail-r">
-							<div class="h-detail-lbl">
-								<div class="h-detail-lbl-a">
-									<%= @selected_hotel.hotel_name %>
-								</div>
-								<div class="h-detail-lbl-b">
-									<%= @selected_hotel.formatted_address %>
-								</div>
-								<%= hidden_field_tag :longitude_tag, @selected_hotel.longitude %>
-									<%= hidden_field_tag :latitude_tag,  @selected_hotel.latitude %>
-							</div>
-							<div class="h-detail-stars">
-								<ul class="h-stars-list">
-									<% if @selected_hotel.google_rating > 0 %>
-										<li>
-											<img alt="" src="assets/hd-star-b.png">
-										</li>
-										<% end %>
-											<% if @selected_hotel.google_rating > 1 %>
-												<li>
-													<img alt="" src="assets/hd-star-b.png">
-												</li>
-												<% end %>
-													<% if @selected_hotel.google_rating > 2 %>
-														<li>
-															<img alt="" src="assets/hd-star-b.png">
-														</li>
-														<% end %>
-															<% if @selected_hotel.google_rating > 3 %>
-																<li>
-																	<img alt="" src="assets/hd-star-b.png">
-																</li>
-																<% end %>
-																	<% if @selected_hotel.google_rating > 4 %>
-																		<li>
-																			<img alt="" src="assets/hd-star-b.png">
-																		</li>
-																		<% end %>
-								</ul>
-								<div class="h-stars-lbl"> Rating:
-									<%=@selected_hotel.google_rating%>
-								</div>
-
-								<div class="clear"></div>
-							</div>
-
-							<% if user_signed_in? %>
-								<%= link_to "#", id: 'book_now_btn' do %>
-									<div class="book-btn">
-										<span class="book-btn-l">
-											<i></i>
-										</span>
-										<span class="book-btn-r">Book Now</span>
-										<div class="clear"></div>
-									</div>
-									<% end %>
-										<% else %>
-								<%= link_to user_session_path(:hotel => @selected_hotel) do %>
-										<div class="book-btn">
-													<span class="book-btn-l">
-														<i></i>
-													</span>
-													<span class="book-btn-r">Sign in to Book Now!</span>
-													<div class="clear"></div>
-										</div>
-								<% end %>
-						<% end %>
-						</div>
-
-
-
-					</div>
-					<div class="clear"></div>
 				</div>
 
+				<div class="sp-page-r">
+					<div class="h-detail-r">
+						<div class="h-detail-lbl">
+							<div class="h-detail-lbl-a">
+								<%= @selected_hotel.hotel_name %>
+							</div>
+							<div class="h-detail-lbl-b">
+								<%= @selected_hotel.formatted_address %>
+							</div>
+							<%= hidden_field_tag :longitude_tag, @selected_hotel.longitude %>
+								<%= hidden_field_tag :latitude_tag,  @selected_hotel.latitude %>
+						</div>
+						<div class="h-detail-stars">
+							<ul class="h-stars-list">
+								<% if @selected_hotel.google_rating > 0 %>
+									<li>
+										<img alt="" src="assets/hd-star-b.png">
+									</li>
+									<% end %>
+										<% if @selected_hotel.google_rating > 1 %>
+											<li>
+												<img alt="" src="assets/hd-star-b.png">
+											</li>
+											<% end %>
+												<% if @selected_hotel.google_rating > 2 %>
+													<li>
+														<img alt="" src="assets/hd-star-b.png">
+													</li>
+													<% end %>
+														<% if @selected_hotel.google_rating > 3 %>
+															<li>
+																<img alt="" src="assets/hd-star-b.png">
+															</li>
+															<% end %>
+																<% if @selected_hotel.google_rating > 4 %>
+																	<li>
+																		<img alt="" src="assets/hd-star-b.png">
+																	</li>
+																	<% end %>
+							</ul>
+							<div class="h-stars-lbl"> Rating:
+								<%=@selected_hotel.google_rating%>
+							</div>
+
+							<div class="clear"></div>
+						</div>
+
+						<% if user_signed_in? %>
+							<%= link_to "#", id: 'book_now_btn' do %>
+								<div class="book-btn">
+									<span class="book-btn-l">
+										<i></i>
+									</span>
+									<span class="book-btn-r">Book Now</span>
+									<div class="clear"></div>
+								</div>
+								<% end %>
+									<% else %>
+							<%= link_to user_session_path(:hotel => @selected_hotel) do %>
+									<div class="book-btn">
+												<span class="book-btn-l">
+													<i></i>
+												</span>
+												<span class="book-btn-r">Sign in to Book Now!</span>
+												<div class="clear"></div>
+									</div>
+							<% end %>
+					<% end %>
+					</div>
+
+
+
+				</div>
+				<div class="clear"></div>
 			</div>
+
 		</div>
 	</div>
-	<!-- /main-cont -->
+</div>
+<!-- /main-cont -->
 
 
-	<!-- // scripts // -->
-	<script>
-		$(document).ready(function () {
-			'use strict';
-			$('.review-ranger').each(function () {
-				var $this = $(this);
-				var $index = $(this).index();
-				if ($index == '0') {
-					var $val = '3.0'
-				} else if ($index == '1') {
-					var $val = '3.8'
-				} else if ($index == '2') {
-					var $val = '2.8'
-				} else if ($index == '3') {
-					var $val = '4.8'
-				} else if ($index == '4') {
-					var $val = '4.3'
-				} else if ($index == '5') {
-					var $val = '5.0'
+<!-- // scripts // -->
+<script>
+	$(document).ready(function () {
+		'use strict';
+		$('.review-ranger').each(function () {
+			var $this = $(this);
+			var $index = $(this).index();
+			if ($index == '0') {
+				var $val = '3.0'
+			} else if ($index == '1') {
+				var $val = '3.8'
+			} else if ($index == '2') {
+				var $val = '2.8'
+			} else if ($index == '3') {
+				var $val = '4.8'
+			} else if ($index == '4') {
+				var $val = '4.3'
+			} else if ($index == '5') {
+				var $val = '5.0'
+			}
+			$this.find('.slider-range-min').slider({
+				range: "min",
+				step: 0.1,
+				value: $val,
+				min: 0.1,
+				max: 5.1,
+				create: function (event, ui) {
+					$this.find('.ui-slider-handle').append('<span class="range-holder"><i></i></span>');
+				},
+				slide: function (event, ui) {
+					$this.find(".range-holder i").text(ui.value);
 				}
-				$this.find('.slider-range-min').slider({
-					range: "min",
-					step: 0.1,
-					value: $val,
-					min: 0.1,
-					max: 5.1,
-					create: function (event, ui) {
-						$this.find('.ui-slider-handle').append('<span class="range-holder"><i></i></span>');
-					},
-					slide: function (event, ui) {
-						$this.find(".range-holder i").text(ui.value);
-					}
-				});
-				$this.find(".range-holder i").text($val);
 			});
-
-			$('#reasons-slider').bxSlider({
-				infiniteLoop: true,
-				speed: 500,
-				mode: 'fade',
-				minSlides: 1,
-				maxSlides: 1,
-				moveSlides: 1,
-				auto: true,
-				slideMargin: 0
-			});
-
-			$('#gallery').bxSlider({
-				infiniteLoop: true,
-				speed: 500,
-				slideWidth: 108,
-				minSlides: 1,
-				maxSlides: 6,
-				moveSlides: 1,
-				auto: false,
-				slideMargin: 7
-			});
-			var myContainer = $('.content-tabs')
-			$('#book_now_btn').click(function (e) {
-				$('#availability_btn').click();
-				$('.content-tabs')[0].scrollIntoView();				
-				e.preventDefault();				
-			});
+			$this.find(".range-holder i").text($val);
 		});
-	</script>
-	<!-- \\ scripts \\ -->
+
+		$('#reasons-slider').bxSlider({
+			infiniteLoop: true,
+			speed: 500,
+			mode: 'fade',
+			minSlides: 1,
+			maxSlides: 1,
+			moveSlides: 1,
+			auto: true,
+			slideMargin: 0
+		});
+
+		$('#gallery').bxSlider({
+			infiniteLoop: true,
+			speed: 500,
+			slideWidth: 108,
+			minSlides: 1,
+			maxSlides: 6,
+			moveSlides: 1,
+			auto: false,
+			slideMargin: 7
+		});
+		var myContainer = $('.content-tabs')
+		$('#book_now_btn').click(function (e) {
+			$('#availability_btn').click();
+			$('.content-tabs')[0].scrollIntoView();				
+			e.preventDefault();				
+		});
+	});
+</script>
+<!-- \\ scripts \\ -->
 
 </body>
 
