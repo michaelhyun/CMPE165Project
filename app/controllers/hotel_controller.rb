@@ -150,6 +150,8 @@ class HotelController < ApplicationController
 		target = Booking.find(params[:booking])
 		target.num_adults = params[:adult_count]
 		target.num_child = params[:child_count]
+		target.check_in = params[:checkin_date]
+		target.check_out = params[:checkout_date]
 		target.save
 	end
 
