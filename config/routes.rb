@@ -10,7 +10,7 @@ get 'hotel' => 'hotel#hotel_detail'
 
 get 'hotel_booking' => 'hotel#hotel_booking'        # payment page
 post 'hotel_booking' => 'hotel#book_hotel'          # submitting payment info
-post 'booking_complete' => 'hotel#booking_complete'  # confirmation page
+get 'booking_complete' => 'hotel#booking_complete'  # confirmation page
 get 'rewards' => 'hotel#_rewards_card'                    # rewards page
 get 'booking_delete' => 'hotel#booking_delete'
 get 'booking_update' => 'hotel#booking_update'

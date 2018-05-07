@@ -56,11 +56,8 @@ class HotelController < ApplicationController
 
     # GET payment form
 	def hotel_booking
-#http://localhost:3000/hotel_booking?utf8=%E2%9C%93&checkin_date=&checkout_date=&room_count=1&adult_count=1&child_count=1&hotel_id=3&room_price=5.00&commit=SELECT+SINGLE&room_price=10.00&room_price=15.00&room_price=20.00
 		@hotel_to_book = Hotel.find(params[:hotel_id])
-		
 		@total_price = 0
-		
 		@hotel_id = params[:hotel_id]
 		@checkin_date = !params[:checkin_date].nil? ? Date.parse(params[:checkin_date]) : Date.today
 		@checkout_date = !params[:checkout_date].nil? ? Date.parse(params[:checkout_date]) : 1.day.from_now
@@ -69,8 +66,6 @@ class HotelController < ApplicationController
 		@room_count = params[:room_count]
 		@adult_count = params[:adult_count]
 		@child_count = params[:child_count]
-
-		
 		@total_price = @total_price + (@room_price * @number_nights)
 	end
 
@@ -86,13 +81,36 @@ class HotelController < ApplicationController
 
 
     # POST for submitting payment info
-    def book_hotel
-        # prices in stripe are defined in cents, hence 500 => $5.00
-        # TODO: change hard-coded price to price of specific hotel room
-        @amount=500
+	def book_hotel
+		booked_hotel = Hotel.find(params[:param_hotel_id])
+		total_amount = (params[:param_price]).to_i
+		selected_room_type = params[:param_selected_room]
+
+		checkin_date = params[:param_checkin_date]
+		checkout_date = params[:param_checkout_date]
+
+		num_of_nights = params[:param_num_of_nights]
+		adult_count = params[:param_adult_count]
+		child_count = params[:param_child_count]
+
+		hotel_id = params[:param_hotel_id]
+		trans_id = params[:stripeToken]
+
+		@amount = total_amount 
         @user = current_user
         @user.reward_points = @user.reward_points+1
-        @user.save
+		@user.save
+		
+		@booking = Booking.create( check_in: checkin_date,  
+								   check_out: checkout_date,
+								   total_price: total_amount,
+								   transaction_id: trans_id,
+								   num_adults: adult_count,
+								   num_child: child_count,
+								   user_id: current_user.id,
+								   hotel_id: hotel_id )
+
+
         begin
             # for now, creates a new customer and (transparently) unique customer id per transaction
             # TODO: store customer.id in User model (this associates user with payment credentials stored by stripe)
