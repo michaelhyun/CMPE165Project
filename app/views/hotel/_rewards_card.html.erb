@@ -24,7 +24,7 @@
             <div class="rewards-card-lbl" style="margin-bottom: 250px">
                 You currently have <%= current_user.reward_points %> <%= current_user.reward_points != 1 ? "points" : "point" %>.<br/>
                 <% if current_user.reward_points < 10 %>
-                	<%= link_to "Book #{9-current_user.reward_points} more stays", hotel_listing_path(:location => 'San Jose') %> to get a free stay at a hotel!
+                	<%= link_to "Book #{10-current_user.reward_points} more stays", hotel_listing_path(:location => 'San Jose') %> to get a free stay at a hotel!
                 <% elsif current_user.reward_points >= 10 %>
                 	Congrats! <%= link_to 'Use your points', hotel_listing_path(:location => 'San Jose') %> to get a free stay at any hotel!
                 <% end %>
