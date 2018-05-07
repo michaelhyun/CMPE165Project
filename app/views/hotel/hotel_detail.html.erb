@@ -373,17 +373,17 @@
 											<nav>
 												<ul>
 													<li>
-														<a class="active"remote: true href="#">DESCRIPTION</a>
+														<a class="active" remote: true href="#">DESCRIPTION</a>
 													</li>
 													<% if user_signed_in? %>
 														<li>
-															<a href="#">AVAILABILITY</a>
+															<a href="#" id="availability_btn" >AVAILABILITY</a>
 														</li>
 														<% end %>
 															<li>
 																<a href="#">Preferences</a>
 															</li>
-															<li></li>
+													<li></li>
 												</ul>
 											</nav>
 
@@ -1069,7 +1069,7 @@
 								<p> </p>
 							</div>
 							<% if user_signed_in? %>
-								<%= link_to hotel_booking_path(:hotel => @selected_hotel) do %>
+								<%= link_to "#", id: 'book_now_btn' do %>
 									<div class="book-btn">
 										<span class="book-btn-l">
 											<i></i>
@@ -1079,17 +1079,16 @@
 									</div>
 									<% end %>
 										<% else %>
-
-											<%= link_to user_session_path(:hotel => @selected_hotel) do %>
-												<div class="book-btn">
+								<%= link_to user_session_path(:hotel => @selected_hotel) do %>
+										<div class="book-btn">
 													<span class="book-btn-l">
 														<i></i>
 													</span>
 													<span class="book-btn-r">Sign in to Book Now!</span>
 													<div class="clear"></div>
-												</div>
-												<% end %>
-													<% end %>
+										</div>
+								<% end %>
+						<% end %>
 						</div>
 
 						<div class="h-help">
@@ -1167,6 +1166,12 @@
 				moveSlides: 1,
 				auto: false,
 				slideMargin: 7
+			});
+			var myContainer = $('.content-tabs')
+			$('#book_now_btn').click(function (e) {
+				$('#availability_btn').click();
+				$('.content-tabs')[0].scrollIntoView();				
+				e.preventDefault();				
 			});
 		});
 	</script>

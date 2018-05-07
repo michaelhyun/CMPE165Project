@@ -18,6 +18,8 @@ get 'booking_update_details' => 'hotel#booking_update_details'
 get 'my_booking'=>'account#mybooking'
 get 'my_reservation'=>'account#myreservation'
 
+# get 'booking_complete' => 'hotel#book_hotel_with_rewards'
+post 'reward_booking' => 'hotel#book_hotel_with_rewards'
 
 get 'aboutus' => 'admin#about_us'
 get 'contactus' => 'admin#contact_us'
