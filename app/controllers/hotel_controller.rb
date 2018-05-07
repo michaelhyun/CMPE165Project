@@ -203,10 +203,12 @@ class HotelController < ApplicationController
 
 	def booking_delete
 		target = Booking.find(params[:booking])
+        @title = Hotel.find(target.hotel_id).hotel_name
         @used_reward = target.transaction_id == 'TRANSFROMREWARDS'
+        @total_amount = target.total_price
         @refund_amount = 0.9 * target.total_price
         if not @used_reward
-            refund =  Stripe::Refund.create(
+            refund = Stripe::Refund.create(
                 :charge => target.transaction_id,
                 :amount => Integer(@refund_amount*100)
             )

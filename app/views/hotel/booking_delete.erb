@@ -29,11 +29,12 @@
 								<div class="comlete-alert-a">
 									<b style="font-size: 20pt" >Your reservation has been cancelled.</b>
                                     <% if not @used_reward %>
+                                        <p>Your <%= number_to_currency(@total_amount) %> reservation at <%= @title %> has been cancelled.<br/></p>
                                         <p>Unfortunately, cancellation comes with a 10% cancellation fee.</p>
                                         <p>We have issued a refund of <%= number_to_currency(@refund_amount) %> to your card on file.</p>
                                     <% else %>
-                                        <p>Redeemed points cannot be refunded</p>
                                         <p>Since you reserved this booking by redeeming points, no refund has been issued.</p>
+                                        <p>Redeemed points cannot be refunded</p>
                                     <% end %>
                                 </div>
 							</div>
