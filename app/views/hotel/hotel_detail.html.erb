@@ -392,37 +392,8 @@
 										<div class="content-tabs-body">
 											<!-- // content-tabs-i // -->
 											<div class="content-tabs-i">
-												<h2>Hotel Description</h2>
 												<p> </p>
 												<div class="tab-reasons">
-													<h2>4 Reasons to Choose </h2>
-													<div class="tab-reasons-h">
-														<!-- // -->
-														<div class="tab-reasons-i reasons-01">
-															<b>fully responsive</b>
-															<p>.</p>
-														</div>
-														<!-- \\ -->
-														<!-- // -->
-														<div class="tab-reasons-i reasons-02">
-															<b>757 verified reviews</b>
-															<p>.</p>
-														</div>
-														<!-- \\ -->
-														<!-- // -->
-														<div class="tab-reasons-i reasons-03">
-															<b>Manage your bookings online</b>
-															<p>.</p>
-														</div>
-														<!-- \\ -->
-														<!-- // -->
-														<div class="tab-reasons-i reasons-04">
-															<b>Booking is safe</b>
-															<p>.</p>
-														</div>
-														<!-- \\ -->
-														<div class="clear"></div>
-													</div>
 													<div class="facilities">
 														<h2>Facilities of Hotel</h2>
 														<table>
@@ -615,7 +586,7 @@
 																						<!-- THIS IS WHERE IT LINKS TO THE BOOKINGS PAGE -->
 																							<%= hidden_field_tag 'hotel_id', @selected_hotel.id %>
                                                                                             <%= hidden_field_tag 'single_room_price', @single_room_price %>
-																						<button class="cat-list-btn">Select Single<%= submit_tag 'SELECT SINGLE', :id => 'single', :style => "display: none;"  %> </button>
+																						<%= submit_tag 'select', :id => 'single', class: 'available-btn' %>
 																					</div>
 																				</div>
 																				<div class="clear"></div>
@@ -669,7 +640,7 @@
 																						<div class="available-price-a">avg/night</div>
 																						<div class="available-price-c">9 available</div>
 																						<%= hidden_field_tag 'double_room_price', @double_room_price  %>
-                                                                                        <button class="cat-list-btn">Select Double<%= submit_tag 'SELECT DOUBLE', :id => 'double', :style => "display: none;"  %> </button>
+                                                                                        <%= submit_tag 'select', class: 'available-btn' %>
 																					</div>
 																				</div>
 																				<div class="clear"></div>
@@ -721,7 +692,7 @@
 																						<div class="available-price-a">avg/night</div>
 																						<div class="available-price-c">9 available</div>
 																						<%= hidden_field_tag 'twin_room_price', @twin_room_price %>
-                                                                                        <button class="cat-list-btn">Select Twin<%= submit_tag 'SELECT TWIN', :id => 'twin', :style => "display: none;"  %> </button>
+                                                                                        <%= submit_tag 'select', class: 'available-btn' %>
 																					</div>
 																				</div>
 																				<div class="clear"></div>
@@ -774,7 +745,7 @@
 																						<div class="available-price-c">9 available</div>
 																						<%= hidden_field_tag 'hotel_id', @selected_hotel.id %>
 																						<%= hidden_field_tag 'family_room_price', @family_room_price %>
-																						<button class="cat-list-btn">Select Family<%= submit_tag 'SELECT FAMILY', :id => 'family', :style => "display: none;"  %> </button>
+																						<%= submit_tag 'select', class: 'available-btn' %>
 																					</div>
 																				</div>
 																				<div class="clear"></div>
@@ -1135,14 +1106,10 @@
 								<div class="h-stars-lbl"> Rating:
 									<%=@selected_hotel.google_rating%>
 								</div>
-								<a href="#" class="h-add-review">add review</a>
 
 								<div class="clear"></div>
 							</div>
-							<div class="h-details-text">
-								<p> </p>
-								<p> </p>
-							</div>
+
 							<% if user_signed_in? %>
 								<%= link_to "#", id: 'book_now_btn' do %>
 									<div class="book-btn">
@@ -1164,13 +1131,6 @@
 										</div>
 								<% end %>
 						<% end %>
-						</div>
-
-						<div class="h-help">
-							<div class="h-help-lbl"> </div>
-							<div class="h-help-lbl-a"> </div>
-							<div class="h-help-phone"> </div>
-							<div class="h-help-email"> </div>
 						</div>
 
 

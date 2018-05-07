@@ -24,7 +24,7 @@
             <div class="rewards-card-lbl" style="margin-bottom: 250px">
             You have <%= current_user.reward_points %> point(s).<br/>
             <% if current_user.reward_points < 10 %>
-            	You are points away from a free stay!
+            	Book more stays to get a free stay at a hotel!
             <% end %>
             <% if current_user.reward_points >= 10 %>
             	Congrats!, use your points to get a free stay at any hotel!
