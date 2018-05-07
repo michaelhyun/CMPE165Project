@@ -75,9 +75,9 @@
 								<div class="complete-txt final">
 									<h2>Update Booking</h2>
 									<%= form_tag( booking_update_path, method: :get ) do |f| %>
-									<div class="rates-search">
+									
 									<div class="rates-line">
-										<!-- // -->
+										
 										<div class="srch-tab-line">
 											<div class="srch-tab-left">
 												<label>Check in</label>
@@ -115,11 +115,9 @@
 									</div>
 									<div class="booking-complete">
 									<h2>Update your trip</h2>
-									<h1><%= @booking %> </h1>
-									<%= hidden_field_tag 'child_count', @child_count %>
-									<%= hidden_field_tag 'adult_count', @adult_count %>
-
-									<button class="booking-complete-btn"> <%= link_to 'COMPLETE BOOKING', booking_update_path(:booking => @booking) %></button>
+									<%= hidden_field_tag 'booking', @booking %>
+									<button class="booking-complete-btn"> Update Booking<%= submit_tag 'Update Booking', :style => "display: none;"  %> </button>
+									<% end %>
 								</div>								</div>
 								</div>
 								
@@ -130,7 +128,7 @@
   				</div>
   				<div class="clear"></div>
 			</div>
-			<% end %>
+			
 
 		</div>
 
