@@ -81,6 +81,12 @@ class HotelController < ApplicationController
 		@room_count = params[:room_count]
 		@adult_count = params[:adult_count]
 		@child_count = params[:child_count]
+
+        room_for_commit = {'single' => 'Single Room',
+                           'double' => 'Double Room',
+                           'twin'   => 'Twin Room',
+                           'family' => 'Family Suite'}
+        @room_type = room_for_commit[params[:commit]]
 		@total_price =  @room_price.to_f * @number_nights.to_i
 	end
 
@@ -115,6 +121,7 @@ class HotelController < ApplicationController
 			transaction_id: 'TRANSFROMREWARDS',
 			num_adults: adult_count,
 			num_child: child_count,
+            room_type: params[:room_type],
 			user_id: current_user.id,
 			hotel_id: hotel_id )
 
@@ -182,6 +189,7 @@ class HotelController < ApplicationController
                 transaction_id: charge.id,
                 num_adults: adult_count,
                 num_child: child_count,
+                room_type: params[:param_room_type],
                 user_id: current_user.id,
                 hotel_id: hotel_id
             )

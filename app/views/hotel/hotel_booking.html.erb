@@ -23,7 +23,7 @@
   				<div class="sp-page-lb">
   					<div class="sp-page-p">
 						<div class="booking-left">
-						
+
 							<h2>How would you like to pay?</h2>
 
 							<div class="payment-wrapper">
@@ -49,18 +49,19 @@
 									<div class="payment-tab">
 										<h2>Review and book your trip</h2>
 										<div class="payment-alert">
-											
+
 										<% if current_user.reward_points >= 10 %>
 											<span>You will be redeeming 10 Reward Points to complete your payment.</span>
 											<h3>You currently have <%= current_user.reward_points %> Reward Points </h3>
-																						
+
 											<%= form_tag reward_booking_path remote: true do |f| %>
 												<%= hidden_field_tag 'checkin_date',  		@checkin_date  %>
 												<%= hidden_field_tag 'checkout_date', 		@checkout_date %>
 												<%= hidden_field_tag 'total_amount',  		@total_price   %>
 												<%= hidden_field_tag 'adult_count',	 		@adult_count 	%>
 												<%= hidden_field_tag 'child_count',	 		@child_count	%>
-												<%= hidden_field_tag 'current_user_id', 	current_user.id %>												
+                                                <%= hidden_field_tag 'room_type', 			@room_type %>
+												<%= hidden_field_tag 'current_user_id', 	current_user.id %>
 												<%= hidden_field_tag 'hotel_id', 	 		@hotel_to_book.id %>
 												<%= submit_tag 'Complete Payment', class: 'booking-complete-btn' %>
 											<% end %>
@@ -70,7 +71,7 @@
 											<span>You do not have enough reward points to complete your payment.</span>
 											<h3>You currently only have <%= current_user.reward_points %> Reward Points.</h3>
 										<% end %>
-										
+
 									</div>
 
 									</div>
@@ -144,27 +145,27 @@
 					<div class="chk-line">
 						<span class="chk-nights"><%= @number_nights %>  Nights</span>
 						<span class="chk-dates"><%= @checkin_date %>  /  <%= @checkout_date %></span>
-					</div>					
+					</div>
 				</div>
 
 				<div class="chk-details">
 					<h2>Details</h2>
-					<div class="chk-detais-row">						
+					<div class="chk-detais-row">
 						<div class="chk-line">
-							<span class="chk-l">price</span>
-							<span class="chk-r"><%= @room_price %>$</span>
+							<span class="chk-l">Room Price</span>
+							<span class="chk-r"><%= number_to_currency(@room_price) %></span>
 							<div class="clear"></div>
 						</div>
 						<div class="chk-line">
-							<span class="chk-l"> Number of nights stay</span>
-							<span class="chk-r"><%= @number_nights %> </span>
+							<span class="chk-l"> Number of Nights for Stay</span>
+							<span class="chk-r"><%= @number_nights %></span>
 							<div class="clear"></div>
 						</div>
 
 					</div>
 					<div class="chk-total">
 						<div class="chk-total-l">Total Price</div>
-						<div class="chk-total-r">$ <%= @total_price %></div>
+						<div class="chk-total-r"><%= number_to_currency(@total_price) %></div>
 						<div class="clear"></div>
 					</div>
 				</div>

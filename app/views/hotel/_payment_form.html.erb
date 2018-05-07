@@ -42,6 +42,7 @@
 <%= hidden_field_tag 'hidden_checkin_date', @checkin_date %>
 <%= hidden_field_tag 'hidden_checkout_date', @checkout_date %>
 <%= hidden_field_tag 'hidden_number_nights',  @number_nights %>
+<%= hidden_field_tag 'hidden_room_type', @room_type %>
 <%= hidden_field_tag 'hidden_adult_count', @adult_count %>
 <%= hidden_field_tag 'hidden_child_count', @child_count %>
 <button class="booking-complete-btn">Submit Payment</button>
@@ -135,13 +136,14 @@ $('#payment-form').submit((event) => {
                 'name': 'stripeToken',
                 'value': result.token.id
             }).appendTo(form);
- 
-            var hotelId = $('#hidden_hotel_id')[0].value;            
-            var selectedRoom = $('#hidden_hotel_id')[0].value;            
+
+            var hotelId = $('#hidden_hotel_id')[0].value;
+            var selectedRoom = $('#hidden_hotel_id')[0].value;
             var price = $('#hidden_total_price')[0].value;
             var checkinDay = $('#hidden_checkin_date')[0].value;
             var checkoutDay = $('#hidden_checkout_date')[0].value;
             var numberOfNights = $('#hidden_number_nights')[0].value;
+            var roomType = $('#hidden_room_type')[0].value;
             var adultCount = $('#hidden_adult_count')[0].value;
             var childCount = $('#hidden_child_count')[0].value;
 
@@ -169,15 +171,20 @@ $('#payment-form').submit((event) => {
                 'name': 'param_checkin_date',
                 'value': checkinDay
             }).appendTo(form);
-           
+
             $('<input type="hidden" />').attr({
                 'name': 'param_checkout_date',
                 'value': checkoutDay
             }).appendTo(form);
-          
+
             $('<input type="hidden" />').attr({
                 'name': 'param_num_of_nights',
                 'value': numberOfNights
+            }).appendTo(form);
+
+            $('<input type="hidden" />').attr({
+                'name': 'param_room_type',
+                'value': roomType
             }).appendTo(form);
 
             $('<input type="hidden" />').attr({
