@@ -96,6 +96,17 @@ class HotelController < ApplicationController
 		child_count	= params[:child_count]
 		current_user_id	= params[:current_user]
 		hotel_id		= params[:hotel_id]	
+		#loop through every booking and determine if the user should be able to book it
+		current_reservations = Booking.where("user_id = ?", current_user.id)
+		current_reservations.each do |reservation|
+			if checkin_date.to_date <= reservation.check_out and checkout_date.to_date >= reservation.check_in
+				puts "INVLAID DATES"
+				return
+			elsif checkout_date.to_date >= reservation.check_in and checkin_date.to_date <= reservation.check_out
+				puts "INVALID DATES"
+				return
+			end
+		end
 
 		@booking = Booking.create( 
 			check_in: checkin_date,  
@@ -130,6 +141,17 @@ class HotelController < ApplicationController
 
 		hotel_id = params[:param_hotel_id]
 		trans_id = params[:stripeToken]
+
+		current_reservations = Booking.where("user_id = ?", current_user.id)
+		current_reservations.each do |reservation|
+			if checkin_date.to_date <= reservation.check_out and checkout_date.to_date >= reservation.check_in
+				puts "INVLAID DATES"
+				return
+			elsif checkout_date.to_date >= reservation.check_in and checkin_date.to_date <= reservation.check_out
+				puts "INVALID DATES"
+				return
+			end
+		end
 
 		@amount = total_amount 
         @user = current_user
@@ -199,36 +221,6 @@ class HotelController < ApplicationController
 		results = JSON.parse(response.body)
 		return results
 	end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 	def find_matching_hotel(name, address, results)
 		table = Hash.new
