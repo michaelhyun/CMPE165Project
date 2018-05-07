@@ -516,8 +516,8 @@
 																					<!-- THIS IS WHERE IT LINKS TO THE BOOKINGS PAGE -->
 																						<%= hidden_field_tag 'hotel_id', @selected_hotel.id %>
 																						<%= hidden_field_tag 'single_room_price', @single_room_price %>
-																						<%= hidden_field_tag 'commit', 'single' %>
-																						<button class="cat-list-btn">Select<%= submit_tag 'select', :style => "display: none;"  %> </button>
+																						<%= hidden_field_tag 'commit', "single" %>
+																						<button class="cat-list-btn">Select<%= submit_tag 'single', :style => "display: none;"  %> </button>
 																				</div>
 																			</div>
 																			<div class="clear"></div>
@@ -528,10 +528,12 @@
 															</div>
 															<div class="clear"></div>
 														</div>
+														<% end %>
 														<!-- END OF ROOM LISTING 2 -->
 
 
 														<!-- // -->
+														<%= form_tag( hotel_booking_path, method: :get ) do |f| %>
 														<div class="cat-list-item">
 															<div class="cat-list-item-l">
 																<a href="#">
@@ -572,8 +574,8 @@
 																					<div class="available-price-c">9 available</div>
 																					<%= hidden_field_tag 'hotel_id', @selected_hotel.id %>
 																					<%= hidden_field_tag 'double_room_price', @double_room_price  %>
-																					<%= hidden_field_tag 'commit', 'double' %>
-																					<button class="cat-list-btn">Select<%= submit_tag 'select', :style => "display: none;"  %> </button>
+																					<%= hidden_field_tag 'commit', "double" %>
+																					<button class="cat-list-btn">Select<%= submit_tag 'double', :style => "display: none;"  %> </button>
 																				</div>
 																			</div>
 																			<div class="clear"></div>
@@ -584,8 +586,10 @@
 															</div>
 															<div class="clear"></div>
 														</div>
+														<% end %>
 														<!-- \\ -->
 														<!-- // -->
+														<%= form_tag( hotel_booking_path, method: :get ) do |f| %>
 														<div class="cat-list-item">
 															<div class="cat-list-item-l">
 																<a href="#">
@@ -626,8 +630,8 @@
 																					<div class="available-price-c">9 available</div>
 																					<%= hidden_field_tag 'hotel_id', @selected_hotel.id %>
 																					<%= hidden_field_tag 'twin_room_price', @twin_room_price %>
-																					<%= hidden_field_tag 'commit', 'twin' %>
-																					<button class="cat-list-btn">Select<%= submit_tag 'select', :style => "display: none;"  %> </button>
+																					<%= hidden_field_tag 'commit', "twin" %>
+																					<button class="cat-list-btn">Select<%= submit_tag 'twin', :style => "display: none;"  %> </button>
 																				</div>
 																			</div>
 																			<div class="clear"></div>
@@ -638,8 +642,10 @@
 															</div>
 															<div class="clear"></div>
 														</div>
+														<% end %>
 														<!-- \\ -->
 														<!-- // -->
+														<%= form_tag( hotel_booking_path, method: :get ) do |f| %>
 														<div class="cat-list-item">
 															<div class="cat-list-item-l">
 																<a href="#">
@@ -680,8 +686,8 @@
 																					<div class="available-price-c">9 available</div>
 																					<%= hidden_field_tag 'hotel_id', @selected_hotel.id %>
 																					<%= hidden_field_tag 'family_room_price', @family_room_price %>
-																					<%= hidden_field_tag 'commit', 'family' %>
-																					<button class="cat-list-btn">Select<%= submit_tag 'select', :style => "display: none;"  %> </button>
+																					<%= hidden_field_tag 'commit', "family" %>
+																					<button class="cat-list-btn">Select<%= submit_tag 'family', :style => "display: none;"  %> </button>
 																				</div>
 																			</div>
 																			<div class="clear"></div>

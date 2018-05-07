@@ -63,13 +63,13 @@ class HotelController < ApplicationController
 		@selected_room_type = params[:commit]
 		@room_price = 0
 		@total_price = 0
-		if @selected_room_type.include? "TWIN"
+		if @selected_room_type.eql? "twin"
 			@room_price = params[:twin_room_price]
-		elsif @selected_room_type.include? "DOUBLE"
+		elsif @selected_room_type.eql? "double"
 			@room_price = params[:double_room_price]
-		elsif @selected_room_type.include? "SINGLE"
+		elsif @selected_room_type.eql? "single"
 			@room_price = params[:single_room_price]
-		elsif @selected_room_type.include? "FAMILY"
+		elsif @selected_room_type.eql? "family"
 			@room_price = params[:family_room_price]
 		else
 			@room_price = @hotel_to_book.hotel_price
@@ -100,7 +100,7 @@ class HotelController < ApplicationController
 		current_reservations = Booking.where("user_id = ?", current_user.id)
 		current_reservations.each do |reservation|
 			if checkin_date.to_date <= reservation.check_out and checkout_date.to_date >= reservation.check_in
-				puts "INVLAID DATES"
+				puts "INVALID DATES"
 				return
 			elsif checkout_date.to_date >= reservation.check_in and checkin_date.to_date <= reservation.check_out
 				puts "INVALID DATES"
@@ -145,7 +145,7 @@ class HotelController < ApplicationController
 		current_reservations = Booking.where("user_id = ?", current_user.id)
 		current_reservations.each do |reservation|
 			if checkin_date.to_date <= reservation.check_out and checkout_date.to_date >= reservation.check_in
-				puts "INVLAID DATES"
+				puts "INVALID DATES"
 				return
 			elsif checkout_date.to_date >= reservation.check_in and checkin_date.to_date <= reservation.check_out
 				puts "INVALID DATES"
