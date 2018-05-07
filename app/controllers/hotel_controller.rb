@@ -121,7 +121,7 @@ class HotelController < ApplicationController
     	@user = current_user
         @user.reward_points = @user.reward_points-10
         @user.save
-    	redirect_to booking_complete_path
+    	redirect_to booking_complete_path(booking: @booking.id)
     end
     helper_method :book_hotel_with_rewards
 
@@ -189,7 +189,7 @@ class HotelController < ApplicationController
             puts charge
             @user.save
 
-            redirect_to booking_complete_path
+            redirect_to booking_complete_path(booking: @booking.id)
 
         rescue Stripe::CardError => e
             flash[:error] = e.message

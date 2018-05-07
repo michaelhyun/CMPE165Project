@@ -30,6 +30,7 @@
 									<span>You are now at <%= @points %> reward <%= @points != 1 ? "points": "point" %>.</span>
 								</div>
 							</div>
+                            <%= render partial: 'booking_info', locals: { booking: Booking.find(params[:booking]) } %>
 
 							<div class="complete-info">
 								<h2>Your Personal Information</h2>
