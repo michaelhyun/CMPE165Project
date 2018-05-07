@@ -211,8 +211,8 @@ class HotelController < ApplicationController
                 :amount => Integer(@refund_amount*100)
             )
             puts refund
-    		target.destroy()
         end
+        target.destroy()
 	end
 
 	def booking_update
