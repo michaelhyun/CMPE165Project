@@ -107,14 +107,19 @@
 											<div class="srch-tab-3c">
 												<label>Child</label>
 												<%= select_tag :child_count, options_for_select(["0", "1","2","3","4"]) %>
+
 											</div>
 											<div class="clear"></div>
 										</div>
-										<!-- \\ -->
+										<!-- \\ -->  
 									</div>
 									<div class="booking-complete">
 									<h2>Update your trip</h2>
-									<button class="booking-complete-btn"><%= link_to 'COMPLETE BOOKING', booking_update_path %></button>
+									<h1><%= @booking %> </h1>
+									<%= hidden_field_tag 'child_count', @child_count %>
+									<%= hidden_field_tag 'adult_count', @adult_count %>
+
+									<button class="booking-complete-btn"> <%= link_to 'COMPLETE BOOKING', booking_update_path(:booking => @booking) %></button>
 								</div>								</div>
 								</div>
 								

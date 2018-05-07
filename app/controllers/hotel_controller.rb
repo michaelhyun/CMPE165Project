@@ -120,10 +120,23 @@ class HotelController < ApplicationController
 		target.destroy()
 	end
 
-	def booking_update
+	def booking_update  
+		#target = Booking.find(12)
+		target = Booking.find(params[:booking])
+		#room_count = params[:room_count]
+		#@adult_count1 = adult_count
+		#@child_count1 = child_count
+		@adult_count = params[:adult_count]
+		@child_count = params[:child_count]
+
+		target.num_adults = params[:adult_count]
+		target.num_child = arams[:child_count]
+
+		target.save
 	end
 
 	def booking_update_details
+		@booking = params[:booking]
 	end
 
 	def google_place_next_page(tok)
