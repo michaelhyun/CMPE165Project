@@ -540,7 +540,7 @@
 																						<!-- THIS IS WHERE IT LINKS TO THE BOOKINGS PAGE -->
 																							<%= hidden_field_tag 'hotel_id', @selected_hotel.id %>
                                                                                             <%= hidden_field_tag 'single_room_price', @single_room_price %>
-																						<%= submit_tag 'SELECT SINGLE', :id => 'single', class: 'available-btn' %>
+																						<button class="cat-list-btn">Select Single<%= submit_tag 'SELECT SINGLE', :id => 'single', :style => "display: none;"  %> </button>
 																					</div>
 																				</div>
 																				<div class="clear"></div>
@@ -594,7 +594,7 @@
 																						<div class="available-price-a">avg/night</div>
 																						<div class="available-price-c">9 available</div>
 																						<%= hidden_field_tag 'double_room_price', @double_room_price  %>
-                                                                                        <%= submit_tag 'SELECT DOUBLE', class: 'available-btn' %>
+                                                                                        <button class="cat-list-btn">Select Double<%= submit_tag 'SELECT DOUBLE', :id => 'double', :style => "display: none;"  %> </button>
 																					</div>
 																				</div>
 																				<div class="clear"></div>
@@ -646,7 +646,7 @@
 																						<div class="available-price-a">avg/night</div>
 																						<div class="available-price-c">9 available</div>
 																						<%= hidden_field_tag 'twin_room_price', @twin_room_price %>
-                                                                                        <%= submit_tag 'SELECT TWIN', class: 'available-btn' %>
+                                                                                        <button class="cat-list-btn">Select Twin<%= submit_tag 'SELECT TWIN', :id => 'twin', :style => "display: none;"  %> </button>
 																					</div>
 																				</div>
 																				<div class="clear"></div>
@@ -699,7 +699,7 @@
 																						<div class="available-price-c">9 available</div>
 																						<%= hidden_field_tag 'hotel_id', @selected_hotel.id %>
 																						<%= hidden_field_tag 'family_room_price', @family_room_price %>
-																						<%= submit_tag 'SELECT FAMILY', class: 'available-btn' %>
+																						<button class="cat-list-btn">Select Family<%= submit_tag 'SELECT FAMILY', :id => 'family', :style => "display: none;"  %> </button>
 																					</div>
 																				</div>
 																				<div class="clear"></div>
